@@ -1,2 +1,2 @@
-# System-of-a--Design
+# System-of-a-Design
 Repository for project in System Design
