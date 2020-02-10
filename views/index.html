@@ -14,6 +14,30 @@
       <h1>HEADER</h1>
     </header>
     <main id="main">
+      <div id="skapaProfil">
+	<form id="skapaProfilForm">
+	  <p class="skapaProfilInput">
+	    <label for="name">Full name</label><br>
+	    <input type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
+	  </p>
+	  <p class="skapaProfilInput">
+	    <label for="email">Email</label><br>
+	    <input type="email" id="email" class="inputField" required="required" placeholder="Email address">
+	  </p>
+	  <p class="skapaProfilInput">
+	    <label for="age">Age</label><br>
+	    <input type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
+	  </p>
+	  <p class="skapaProfilInput" id="kön">
+	    <label for="gender">Gender</label><br>
+	    <label for="male">Male</label>
+	    <input type="radio" name="gender" class="inputField" id="Male" checked="checked">
+	    <label for="female">Female</label>
+	    <input type="radio" name="gender" class="inputField" id="Female">
+	  </p>
+	  
+	</form>
+      </div>
       <div id="tillProfilButton" v-on:click="tillProfil">
 	<h2>LOGGA IN</h2>
       </div>

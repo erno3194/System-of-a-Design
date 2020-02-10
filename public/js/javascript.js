@@ -15,6 +15,8 @@ const vm = new Vue({
 	skapaProfil: function() {
 	    console.log("Click");
 	    this.hideButtons();
+	    var skapaProfil = document.getElementById("skapaProfil");
+	    skapaProfil.style.display = "block";
 	},
 	tillProfil: function() {
 	    console.log("Click");
