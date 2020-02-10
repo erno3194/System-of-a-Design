@@ -1,11 +1,29 @@
 <!-- index.html -->
-const express = require('express')
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-});
-
-app.listen(8000, () => {
-  console.log('Example app listening on port 8000!')
-});
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <script type="text/javascript" src="js/javascript.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Speed dejting</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body id="body">
+    <header id="header">
+      <h1>HEADER</h1>
+    </header>
+    <main id="main">
+      <div id="tillProfilButton" v-on:click="tillProfil">
+	<h2>LOGGA IN</h2>
+      </div>
+      <div id="skapaProfilButton" v-on:click="skapaProfil">
+	<h2>SKAPA PROFIL</h2>
+      </div>
+    </main>
+    <footer id="footer">
+      <hr>
+      <p>&copy 2020 System of a Design</p>
+    </footer>
+  </body>
+</html>

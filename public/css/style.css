@@ -1,1 +1,95 @@
 /* STYLE DOCUMENT */
+*{
+    margin:0 auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    /* Här kan man ändra storlek på header, main och footer*/
+    grid-template-rows: 10vh 87vh 3vh;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: lightblue;
+}
+
+header{
+    width: inherit;
+    height: 100%;
+    border: 2px solid;
+    grid-row: 1;
+    text-align: center;
+}
+
+h1{
+    font-size: 3em;
+}
+
+main{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    width: inherit;
+    height: 100%;
+    border: 2px solid;
+    grid-row: 2;
+    
+}
+
+footer{
+    height: auto;
+    width: inherit;
+    border: 2px solid;
+    grid-row: 3;
+    font-size: 2em;
+    text-align: center;
+}
+
+#tillProfilButton{
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    background-color: green;
+    margin: 5% ;
+    text-align: center;
+    font-size: 5em;
+    grid-row: 1;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    overflow-y: hidden;
+}
+
+#tillProfilButton:hover{
+    cursor:pointer;
+}
+
+#tillProfilButton h2{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#skapaProfilButton{
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    background-color: green;
+    margin: 5% ;
+    text-align: center;
+    font-size: 5em;
+    grid-row: 2;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    overflow-y: hidden;
+}
+#skapaProfilButton:hover{
+    cursor:pointer;
+}
+
+#skapaProfilButton h2{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
