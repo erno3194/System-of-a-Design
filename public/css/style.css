@@ -111,24 +111,37 @@ footer{
 
 #skapaProfilForm{
     display: grid;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
     grid-tempale-colums: auto;
 }
 
 #name{
     height: auto;
-    grid-row: 1;
+
 }
 
 #email{
     height: auto;
-    grid-row: 2;
+
 }
 
 #age{
     height: auto;
-    grid-row: 3;
+
 }
+
+#nameParagraph{
+    grid-row:1;
+}
+
+#emailParagraph{
+    grid-row:2;
+}
+
+#ageParagraph{
+    grid-row:3;
+}
+
 
 .inputField{
     background-color:white;
@@ -154,6 +167,7 @@ label{
     height: 5em;
 
 }
+
 #kön{
     grid-row: 4;
     display: grid;
@@ -162,6 +176,7 @@ label{
     grid-gap: 1em;
     align-items: start;
 }
+
 #genderLabel{
     grid-row: 1;
     grid-column: 1 / span 2;
@@ -182,11 +197,16 @@ label{
     grid-row: 3;
     grid-column: 1;
 }
+#preferredAgeParagraph{
+    grid-row:5;
+}
 
 #preferredAge{
+    grid-row: 5;
     width: 100%;
     font-size: 5em;
 }
+
 #preferredAge option{
     font-size: 50%;
 }
