@@ -29,20 +29,29 @@
 	    <input type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
 	  </p>
 	  <p class="skapaProfilInput" id="kön">
-	    <label for="gender">Gender</label><br>
-	    <label for="male">Male</label>
-	    <input type="radio" name="gender" class="inputField" id="Male" checked="checked">
-	    <label for="female">Female</label>
-	    <input type="radio" name="gender" class="inputField" id="Female">
+	    <label id="genderLabel" for="gender">Gender</label><br>
+	    <label id="maleLabel" for="male">Male</label>
+	    <input type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
+	    <label id="femaleLabel" for="female">Female</label>
+	    <input type="radio" name="gender" value="female" class="inputField" id="female">
+	  </p>
+	  <p class="skapaProfilInput">
+	    <label for="preferredAge">Preferred age range</label><br>
+	    <select id="preferredAge">
+	      <option selected="selected">18-25</option>
+	      <option>25-35</option>
+	      <option>35-45</option>
+	      <option>45+</option>
+	    </select>
 	  </p>
 	  
 	</form>
       </div>
       <div id="tillProfilButton" v-on:click="tillProfil">
-	<h2>LOGGA IN</h2>
+	<h2>LOGIN</h2>
       </div>
       <div id="skapaProfilButton" v-on:click="skapaProfil">
-	<h2>SKAPA PROFIL</h2>
+	<h2>CREATE PROFILE</h2>
       </div>
     </main>
     <footer id="footer">

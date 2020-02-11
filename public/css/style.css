@@ -108,7 +108,7 @@ footer{
 #skapaProfilForm{
     display: grid;
     grid-template-rows: auto auto auto auto;
-    grid-tempale-coloums: auto;
+    grid-tempale-colums: auto;
 }
 
 #name{
@@ -151,6 +151,38 @@ label{
 
 }
 #kön{
-    grid-row:4;
-    display:grid;
+    grid-row: 4;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 10em 10em;
+    grid-gap: 1em;
+    align-items: start;
+}
+#genderLabel{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+}
+#male{
+    grid-row: 2;
+    grid-column: 2;
+}
+#female{
+    grid-row: 3;
+    grid-column: 2;
+}
+#maleLabel{
+    grid-row: 2;
+    grid-column: 1;
+}
+#femaleLabel{
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#preferredAge{
+    width: 100%;
+    font-size: 5em;
+}
+#preferredAge option{
+    font-size: 50%;
 }
