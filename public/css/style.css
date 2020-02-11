@@ -18,6 +18,8 @@ body{
 }
 
 header{
+    display: grid;
+    align-items: center;
     width: inherit;
     height: 100%;
     border: 2px solid;
@@ -26,7 +28,9 @@ header{
 }
 
 h1{
-    font-size: 3em;
+    color: red;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 4em;
 }
 
 main{
@@ -102,7 +106,7 @@ footer{
     grid-row: 1 / span 2;
     background-color: pink;
     border: 2px solid black;
-    box-shadow: 5px 5px black;
+    /*box-shadow: 5px 5px black;*/
 }
 
 #skapaProfilForm{
