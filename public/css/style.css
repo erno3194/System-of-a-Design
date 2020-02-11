@@ -52,6 +52,13 @@ footer{
     text-align: center;
 }
 
+#skapaProfilDiv{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-gap: 2em;
+}
+
 #tillProfilButton{
     display: flex;
     align-items: center;
@@ -100,6 +107,7 @@ footer{
 
 #skapaProfil{
     display: none;
+    grid-row: 1;
     height: auto;
     width: auto;
     margin: 5%;
@@ -131,7 +139,7 @@ footer{
 }
 
 #nameParagraph{
-    grid-row:1;
+    grid-row:1
 }
 
 #emailParagraph{
@@ -235,4 +243,16 @@ label{
 #boat {
     grid-row: 1;
     grid-column: 3;
+}
+
+
+#submitProfileButton{
+    grid-row: 2;
+    width: 40em;
+    height: 20em;
+}
+
+#submitProfileButton p{
+    font-size: 5em;
+    
 }
