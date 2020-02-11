@@ -90,7 +90,7 @@ footer{
     overflow-y: hidden;
 }
 #skapaProfilButton:hover{
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #skapaProfilButton h2{
@@ -209,4 +209,30 @@ label{
 
 #preferredAge option{
     font-size: 50%;
+}
+
+#intressen {
+    grid-row: 6;
+    display: grid;
+    grid-template-rows: 200px 200px;
+    grid-template-columns: 200px 200px; 
+    grid-gap: 1em;
+    align-items: start;
+}
+
+#bike {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+
+#car {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+
+#boat {
+    grid-row: 1;
+    grid-column: 3;
 }
