@@ -50,19 +50,11 @@
 		<option>45+</option>
 	      </select>
 	    </p>
-
 	    <div class="skapaProfilInput" id="intressen">
-	      <div id="bike">
-		<input type="checkbox" name="vehicle1" value="Bike">
-		<label for="vehicle1"> I have a bike</label><br>
-	      </div>
-	      <div id="car">
-		<input type="checkbox" name="vehicle2" value="Car">
-		<label for="vehicle2"> I have a car</label><br>
-	      </div>
-	      <div id="boat">
-		<input type="checkbox" name="vehicle3" value="Boat" checked>
-		<label for="vehicle3"> I have a boat</label><br>
+	      <label id="intressenLabel">Hobbies:</label>
+	      <div v-for="hobby in hobbies">
+		<label for="hobby">{{hobby}}</label>
+		<input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
 	      </div>
 	    </div>
 	  </form>

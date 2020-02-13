@@ -121,6 +121,7 @@ footer{
     display: grid;
     grid-template-rows: auto auto auto auto auto auto;
     grid-tempale-colums: auto;
+    grid-gap: 1em;
 }
 
 #name{
@@ -149,7 +150,6 @@ footer{
 #ageParagraph{
     grid-row:3;
 }
-.userLogin
 
 .inputField{
     background-color:white;
@@ -222,29 +222,27 @@ label{
 #intressen {
     grid-row: 6;
     display: grid;
-    grid-template-rows: 200px 200px;
-    grid-template-columns: 200px 200px; 
-    grid-gap: 1em;
+    width:100%;
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: auto auto; 
     align-items: start;
+    grid-gap: 1em;
+    
 }
 
-#bike {
-    grid-row: 1;
-    grid-column: 1;
+#intressenLabel{
+    font-size: 4em;
+    grid-column: 1/span 2;
 }
 
-
-#car {
-    grid-row: 1;
-    grid-column: 2;
+#intressen div{
+    display: grid;
 }
 
-
-#boat {
-    grid-row: 1;
-    grid-column: 3;
+#intressen [type="checkbox"]{
+    height: 4em;
+    width: 4em;
 }
-
 
 #submitProfileButton{
     grid-row: 2;
