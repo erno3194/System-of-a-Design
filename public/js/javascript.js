@@ -26,9 +26,15 @@ const vm = new Vue({
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
-	    if(name && email && age && gender && preferredAge){
+	    if(true/*name && email && age && gender && preferredAge*/){
 		skapaProfil.style.display = "none";
-	    } else {
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "block";
+		/*
+		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
+		dateInProgressTemp.style.display = "none";
+		*/
+	    } /*else {
 		var button = document.getElementById("submitProfileButton");
 		button.style.color = "red";
 		setTimeout(function(){button.style.color = "black";},600);
@@ -45,7 +51,7 @@ const vm = new Vue({
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
 		} else document.getElementById("intressenLabel").style.color = "black";
-	    }
+	    }*/
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -62,6 +68,12 @@ const vm = new Vue({
 	tillProfil: function() {
 	    console.log("Click");
 	    this.hideButtons();
+	},
+	dateViewTemp: function() {
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "none";
+	    var dateInProgress = document.getElementById("dateInProgress");
+	    dateInProgressTemp.style.display = "block";
 	}
     }
     
