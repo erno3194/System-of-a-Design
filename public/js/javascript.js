@@ -11,7 +11,7 @@ const vm = new Vue({
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-	currentDate: {name: "Jane Doe", table: "1"},
+	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
     },
     methods: {
 	markDone: function(name, email, age, gender, preferredAge){

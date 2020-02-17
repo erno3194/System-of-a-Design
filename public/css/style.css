@@ -301,8 +301,11 @@ label{
     margin-top: 3em;
 }
 
-#currentDateInfo p{
+#currentDateInfo{
+    word-break: break-word;
 }
+
+
 
 .dTitle {
     font-size: 1em;
