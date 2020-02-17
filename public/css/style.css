@@ -279,6 +279,7 @@ label{
     display: none;
     font-size: 5em;
     text-align: center;
+    grid-row:1/span 2;
 }
 
 #waitingScreen {
@@ -294,4 +295,19 @@ label{
 
 #startDateTEMP p{
     font-size: 5em;
+}
+
+#currentDateInfo {
+    margin-top: 3em;
+}
+
+#currentDateInfo p{
+}
+
+.dTitle {
+    font-size: 1em;
+}
+
+.dInfo {
+    font-size: 2em;
 }
