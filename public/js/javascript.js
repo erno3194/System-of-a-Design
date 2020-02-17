@@ -28,7 +28,7 @@ const vm = new Vue({
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
 	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
-	    if(name && reg.test(email) && age && gender && preferredAge){
+	    if(name && this.reg.test(email) && age && gender && preferredAge){
 		skapaProfil.style.display = "none";
 		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
 	    } else {
