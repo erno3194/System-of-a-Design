@@ -72,9 +72,14 @@
 	<h2>CREATE PROFILE</h2>
       </div>
       <div id="myDates">
-	<h2>Your dates:</h2>
+	<h2>Your dates</h2>
+	<h3>Who do you want to share your contact information with?</h3>
 	<div v-for="date in myDates">
-	  <p>{{date.name}}</p>
+	  <label for="date.name">{{date.name}}</label>
+	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
+	</div>
+	<div id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
+	  <p>Send my information</p>
 	</div>
       </div>
       
