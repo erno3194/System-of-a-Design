@@ -274,3 +274,31 @@ label{
     background: rgba(255,255,255,1);
     margin: 0 0 10px 0;
 }
+
+#myDates{
+    display: none;
+    grid-row: 1/span 2;
+    grid-template-rows: 10% auto auto auto;
+    width: 90%;
+    margin-top: 2em;
+    grid-gap:0.5em;
+}
+
+#myDates h2{
+    font-size: 4em;
+}
+
+#myDates div{
+    display:grid;
+    background-color: pink;
+    width: 100%;
+    height:auto;
+    border: 5px solid black;
+    text-align: center;
+    align-content: center;
+}
+
+#myDates p{
+    font-size: 6em;
+    
+}

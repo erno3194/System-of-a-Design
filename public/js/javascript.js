@@ -10,6 +10,7 @@ const vm = new Vue({
 	preferredAge: "18-25",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
+	myDates: [{name:"Kajsa"},{name:"Bengt"}, {name:"Felix"}],
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
     methods: {
@@ -26,8 +27,10 @@ const vm = new Vue({
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
-	    if(name && email && age && gender && preferredAge){
+	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
+	    if(name && reg.test(email) && age && gender && preferredAge){
 		skapaProfil.style.display = "none";
+		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
 	    } else {
 		var button = document.getElementById("submitProfileButton");
 		button.style.color = "red";

@@ -71,6 +71,13 @@
       <div id="skapaProfilButton" v-on:click="skapaProfil">
 	<h2>CREATE PROFILE</h2>
       </div>
+      <div id="myDates">
+	<h2>Your dates:</h2>
+	<div v-for="date in myDates">
+	  <p>{{date.name}}</p>
+	</div>
+      </div>
+      
     </main>
     <footer id="footer">
       <hr>
