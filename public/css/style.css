@@ -277,4 +277,21 @@ label{
 
 #dateInProgressTemp {
     display: none;
+    font-size: 5em;
+    text-align: center;
+}
+
+#waitingScreen {
+    font-size: 5em;
+    text-align: center;
+}
+
+#startDateTEMP {
+    height: 20em;
+    width: 40em;
+    background-color: pink;
+}
+
+#startDateTEMP p{
+    font-size: 5em;
 }

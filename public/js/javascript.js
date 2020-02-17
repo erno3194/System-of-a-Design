@@ -26,15 +26,12 @@ const vm = new Vue({
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
-	    if(true/*name && email && age && gender && preferredAge*/){
+	    if(name && email && age && gender && preferredAge){
 		skapaProfil.style.display = "none";
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
-		/*
-		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
-		dateInProgressTemp.style.display = "none";
-		*/
-	    } /*else {
+
+	    } else {
 		var button = document.getElementById("submitProfileButton");
 		button.style.color = "red";
 		setTimeout(function(){button.style.color = "black";},600);
@@ -51,7 +48,7 @@ const vm = new Vue({
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
 		} else document.getElementById("intressenLabel").style.color = "black";
-	    }*/
+	    }
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
