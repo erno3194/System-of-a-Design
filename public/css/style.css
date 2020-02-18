@@ -275,6 +275,55 @@ label{
     margin: 0 0 10px 0;
 }
 
+
+#myDates{
+    display: none;
+    grid-row: 1/span 2;
+    grid-template-rows: 10% 10% auto auto auto auto;
+    width: 90%;
+    margin-top: 2em;
+    grid-gap:0.5em;
+    text-align:center;
+}
+
+#myDates h2{
+    font-size: 5em;
+}
+
+#myDates h3{
+    font-size:3em;
+    font-style: italic;
+}
+
+#myDates div{
+    display:flex;
+    background-color: pink;
+    width: 100%;
+    height:auto;
+    border: 5px solid black;
+    text-align: center;
+    align-items: center;
+}
+
+#myDates label{
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 5em;
+    width: 60%;
+}
+
+#myDates [type="checkbox"]{
+    width: 10em;
+    height: 10em;    
+}
+
+#myDates #sendContactInfoButton{
+    background-color: lightblue;
+    width: 100%;
+    height: auto;
+    font-size: 4em;
+}
+
 #dateInProgressTemp {
     display: none;
     font-size: 4em;
@@ -313,6 +362,7 @@ label{
 
 .dInfo {
     font-size: 2em;
+
 }
 
 #goToDateEvaluation {

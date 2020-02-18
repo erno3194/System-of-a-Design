@@ -71,6 +71,20 @@
       <div id="skapaProfilButton" v-on:click="skapaProfil">
 	<h2>CREATE PROFILE</h2>
       </div>
+
+      <div id="myDates">
+	<h2>Your dates</h2>
+	<h3>Who do you want to share your contact information with?</h3>
+	<div v-for="date in myDates">
+	  <label for="date.name">{{date.name}}</label>
+	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
+	</div>
+	<div id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
+	  <p>Send my information</p>
+	</div>
+      </div>
+      
+
       <div id="waitingScreen">
 	<h2>WAITING FOR DATE {{currentDateNumber}}/3 TO BE ARRANGED</h2>
 	<br>
@@ -91,6 +105,7 @@
 	  </button>
 	</div>
       </div>
+
     </main>
     <footer id="footer">
       <hr>
