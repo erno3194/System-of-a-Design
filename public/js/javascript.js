@@ -10,7 +10,8 @@ const vm = new Vue({
 	preferredAge: "18-25",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
-	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
     },
     methods: {
 	markDone: function(name, email, age, gender, preferredAge){
@@ -28,6 +29,9 @@ const vm = new Vue({
 	    var skapaProfil = document.getElementById("skapaProfil");
 	    if(name && email && age && gender && preferredAge){
 		skapaProfil.style.display = "none";
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "block";
+
 	    } else {
 		var button = document.getElementById("submitProfileButton");
 		button.style.color = "red";
@@ -62,6 +66,12 @@ const vm = new Vue({
 	tillProfil: function() {
 	    console.log("Click");
 	    this.hideButtons();
+	},
+	dateViewTemp: function() {
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "none";
+	    var dateInProgress = document.getElementById("dateInProgress");
+	    dateInProgressTemp.style.display = "block";
 	}
     }
     
