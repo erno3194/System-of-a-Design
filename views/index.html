@@ -72,19 +72,23 @@
 	<h2>CREATE PROFILE</h2>
       </div>
       <div id="waitingScreen">
-	<h2>WAITING FOR DATE TO BE ARRANGED</h2>
+	<h2>WAITING FOR DATE {{currentDateNumber}}/3 TO BE ARRANGED</h2>
 	<br>
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
 	  <p>TEMP</p>	  
 	</button>
       </div>
       <div id="dateInProgressTemp">
-	<h2>DATE IN PROGRESS</h2>
+	<h3>DATE IN PROGRESS</h3>
+	<h4>Date number: {{currentDateNumber}}/3</h4>
 	<div id="currentDateInfo">
 	  <p class="dTitle">CURRENTLY SEEING</p>
 	  <p class="dInfo">{{currentDate.name}}</p>
 	  <p class="dTitle">AT TABLE</p>
 	  <p class="dInfo">{{currentDate.table}}</p>
+	  <button id="goToDateEvaluation" type="button" v-on:click="dateEvaluationView">
+	    <p>TEMP</p>
+	  </button>
 	</div>
       </div>
     </main>

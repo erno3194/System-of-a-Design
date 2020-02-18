@@ -12,6 +12,7 @@ const vm = new Vue({
 	selectedHobbies: [],
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
 	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	currentDateNumber: 1,
     },
     methods: {
 	markDone: function(name, email, age, gender, preferredAge){
@@ -70,8 +71,13 @@ const vm = new Vue({
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
-	    var dateInProgress = document.getElementById("dateInProgress");
+	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+	},
+	dateEvaluationView: function() {
+	    var dateInProgress = document.getElementById("dateInProgressTemp");
+	    dateInProgress.style.display = "none";
+	    this.currentDateNumber++;
 	}
     }
     
