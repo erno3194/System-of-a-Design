@@ -275,6 +275,7 @@ label{
     margin: 0 0 10px 0;
 }
 
+
 #myDates{
     display: none;
     grid-row: 1/span 2;
@@ -321,4 +322,45 @@ label{
     width: 100%;
     height: auto;
     font-size: 4em;
+}
+
+#dateInProgressTemp {
+    display: none;
+    font-size: 5em;
+    text-align: center;
+    grid-row:1/span 2;
+}
+
+#waitingScreen {
+    font-size: 5em;
+    text-align: center;
+}
+
+#startDateTEMP {
+    height: 20em;
+    width: 40em;
+    background-color: pink;
+}
+
+#startDateTEMP p{
+    font-size: 5em;
+}
+
+#currentDateInfo {
+    margin-top: 3em;
+}
+
+#currentDateInfo{
+    word-break: break-word;
+}
+
+
+
+.dTitle {
+    font-size: 1em;
+}
+
+.dInfo {
+    font-size: 2em;
+
 }

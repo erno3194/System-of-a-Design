@@ -71,6 +71,7 @@
       <div id="skapaProfilButton" v-on:click="skapaProfil">
 	<h2>CREATE PROFILE</h2>
       </div>
+
       <div id="myDates">
 	<h2>Your dates</h2>
 	<h3>Who do you want to share your contact information with?</h3>
@@ -83,6 +84,24 @@
 	</div>
       </div>
       
+
+      <div id="waitingScreen">
+	<h2>WAITING FOR DATE TO BE ARRANGED</h2>
+	<br>
+	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
+	  <p>TEMP</p>	  
+	</button>
+      </div>
+      <div id="dateInProgressTemp">
+	<h2>DATE IN PROGRESS</h2>
+	<div id="currentDateInfo">
+	  <p class="dTitle">CURRENTLY SEEING</p>
+	  <p class="dInfo">{{currentDate.name}}</p>
+	  <p class="dTitle">AT TABLE</p>
+	  <p class="dInfo">{{currentDate.table}}</p>
+	</div>
+      </div>
+
     </main>
     <footer id="footer">
       <hr>

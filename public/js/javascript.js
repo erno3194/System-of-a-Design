@@ -12,6 +12,8 @@ const vm = new Vue({
 	selectedHobbies: [],
 	myDates: [{name:"Kajsa Långtefternamnsson", dateNumber: 0},{name:"Bengt Testson", dateNumber: 1}, {name:"Felix Ketchup", dateNumber:2}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
+	
+	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
     methods: {
@@ -35,7 +37,9 @@ const vm = new Vue({
 	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
 	    if((name && this.reg.test(email) && age && gender && preferredAge)){
 		skapaProfil.style.display = "none";
-		myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "block";
 	    } else {
 		var button = document.getElementById("submitProfileButton");
 		button.style.color = "red";
@@ -70,6 +74,12 @@ const vm = new Vue({
 	tillProfil: function() {
 	    console.log("Click");
 	    this.hideButtons();
+	},
+	dateViewTemp: function() {
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "none";
+	    var dateInProgress = document.getElementById("dateInProgress");
+	    dateInProgressTemp.style.display = "block";
 	}
     }
     
