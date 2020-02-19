@@ -59,7 +59,7 @@ footer{
     grid-gap: 2em;
 }
 
-#tillProfilButton{
+#beginEventButton{
     display: flex;
     align-items: center;
     height: auto;
@@ -74,15 +74,15 @@ footer{
     overflow-y: hidden;
 }
 
-#tillProfilButton:hover{
+#beginEventButton:hover{
     cursor:pointer;
 }
 
-#tillProfilButton h2{
+#beginEventButton h2{
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-#skapaProfilButton{
+#exitEventButton{
     display: flex;
     align-items: center;
     height: auto;
@@ -96,11 +96,11 @@ footer{
     border: 2px solid black;
     overflow-y: hidden;
 }
-#skapaProfilButton:hover{
+#exitEventButton:hover{
     cursor: pointer;
 }
 
-#skapaProfilButton h2{
+#exitEventButton h2{
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
@@ -115,164 +115,6 @@ footer{
     background-color: lightgrey;
     border: 2px solid black;
     /*box-shadow: 5px 5px black;*/
-}
-
-#skapaProfilForm{
-    display: grid;
-    grid-template-rows: auto auto auto auto auto auto;
-    grid-tempale-colums: auto;
-    grid-gap: 1em;
-}
-
-#name{
-    height: auto;
-
-}
-
-#email{
-    height: auto;
-
-}
-
-#age{
-    height: auto;
-
-}
-
-#nameParagraph{
-    grid-row:1
-}.userLogin
-
-#emailParagraph{
-    grid-row:2;
-}
-
-#ageParagraph{
-    grid-row:3;
-}
-
-.inputField{
-    background-color:white;
-    height: 100%;
-    border: 3px solid black;
-}
-
-label{
-    font-size: 3em;
-}
-
-.inputField[type="text"], .inputField[type="email"]{
-    font-size: 4em;
-}
-
-.inputField[type="number"]{
-    font-size: 4em;
-}
-
-.inputField[type=radio]{
-    border: 0px;
-    width: 100%;
-    height: 5em;
-
-}
-
-#kön{
-    grid-row: 4;
-    display: grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 10em 10em;
-    grid-gap: 1em;
-    align-items: start;
-}
-
-#genderLabel{
-    grid-row: 1;
-    grid-column: 1 / span 2;
-}
-#male{
-    grid-row: 2;
-    grid-column: 2;
-}
-#female{
-    grid-row: 3;
-    grid-column: 2;
-}
-#maleLabel{
-    grid-row: 2;
-    grid-column: 1;
-}
-#femaleLabel{
-    grid-row: 3;
-    grid-column: 1;
-}
-#preferredAgeParagraph{
-    grid-row:5;
-}
-
-#preferredAge{
-    grid-row: 5;
-    width: 100%;
-    font-size: 5em;
-}
-
-#preferredAge option{
-    font-size: 50%;
-}
-
-#intressen {
-    grid-row: 6;
-    display: grid;
-    width:100%;
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: auto auto; 
-    align-items: start;
-    grid-gap: 1em;
-    
-}
-
-#intressenLabel{
-    font-size: 4em;
-    grid-column: 1/span 2;
-}
-
-#intressen div{
-    display: grid;
-}
-
-#intressen [type="checkbox"]{
-    height: 4em;
-    width: 4em;
-}
-
-#submitProfileButton{
-    grid-row: 2;
-    width: 40em;
-    height: 20em;
-}
-
-#submitProfileButton p{
-    font-size: 5em;
-    
-}
-
-#name, #email, #age{
-    width: 70vw;
-    height: 8vh;
-    font-size: 250%;
-
-    border: 5px solid white; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    padding: 15px;
-    background: rgba(255,255,255,1);
-    margin: 0 0 10px 0;
 }
 
 
@@ -362,13 +204,13 @@ label{
 
 .dInfo {
     font-size: 3em;
-    color: white;
+
 }
 
 #name1 {
     height: 20em;
     width: 40em;
-    background-color: blue;
+    background-color: lightblue;
 }    
 
 

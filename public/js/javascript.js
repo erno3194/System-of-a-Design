@@ -21,47 +21,10 @@ const vm = new Vue({
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
-	markDone: function(name, email, age, gender, preferredAge){
-	    this.name = name,
-	    this.email = email,
-	    this.age = age,
-	    this.gender = gender,
-	    this.preferredAge = preferredAge;
-	    console.log(name);
-	    console.log(email);
-	    console.log(age);
-	    console.log(gender);
-	    console.log(preferredAge);
-	    console.log(this.selectedHobbies);
-	    var beginEvent = document.getElementById("beginEvent");
-	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
-	    if((name && this.reg.test(email) && age && gender && preferredAge)){
-		beginEvent.style.display = "none";
-		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
-		var waitingScreen = document.getElementById("waitingScreen");
-		waitingScreen.style.display = "block";
-	    } else {
-		var button = document.getElementById("submitProfileButton");
-		button.style.color = "red";
-		setTimeout(function(){button.style.color = "black";},600);
 
-		if(!name){
-		    document.getElementById("nameParagraph").style.color = "red";
-		} else document.getElementById("nameParagraph").style.color = "black";
-		if(!this.reg.test(email) || !email){
-		    document.getElementById("emailParagraph").style.color = "red";
-		} else document.getElementById("emailParagraph").style.color = "black";
-		if(!age){
-		    document.getElementById("ageParagraph").style.color = "red";
-		} else document.getElementById("ageParagraph").style.color = "block";
-		if(this.selectedHobbies.length == 0){
-		    document.getElementById("intressenLabel").style.color = "red";
-		} else document.getElementById("intressenLabel").style.color = "black";
-	    }
-	},
 	hideButtons: function() {
-	    var skapaButton = document.getElementById("skapaProfilButton");
-	    var tillButton = document.getElementById("tillProfilButton");
+	    var skapaButton = document.getElementById("exitEventButton");
+	    var tillButton = document.getElementById("beginEventButton");
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
@@ -71,7 +34,7 @@ const vm = new Vue({
 	    var beginEvent = document.getElementById("beginEvent");
 	    beginEvent.style.display = "block";
 	},
-	tillProfil: function() {
+	beginEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
 	},
