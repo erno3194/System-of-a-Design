@@ -1,0 +1,21 @@
+var maleArray = [{id:"m1", name: "Carl Olofsson1", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m2", name: "Carl Olofsson2", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m3", name: "Carl Olofsson3", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m4", name: "Carl Olofsson4", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m5", name: "Carl Olofsson5", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m6", name: "Carl Olofsson6", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m7", name: "Carl Olofsson7", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m8", name: "Carl Olofsson8", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"m9", name: "Carl Olofsson9", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+	     {id:"m10", name: "Carl Olofsson10", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"}];
+
+var femaleArray = [{id:"f1", name: "Carl Olofsson1", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f2", name: "Carl Olofsson2", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f3", name: "Carl Olofsson3", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f4", name: "Carl Olofsson4", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f5", name: "Carl Olofsson5", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f6", name: "Carl Olofsson6", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f7", name: "Carl Olofsson7", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f8", name: "Carl Olofsson8", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+		{id:"f9", name: "Carl Olofsson9", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
+	       {id:"f10", name: "Carl Olofsson10", email: "carl@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"}];

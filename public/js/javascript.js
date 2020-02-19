@@ -3,17 +3,8 @@
 const vm = new Vue({
     el: '#main',
     data: {
-	name: "",
-	email: "",
-	age: "",
-	gender: "male",
-	preferredAge: "18-25",
-	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
-	selectedHobbies: [],
-	myDates: [{name:"Kajsa Långtefternamnsson", dateNumber: 0},{name:"Bengt Testson", dateNumber: 1}, {name:"Felix Ketchup", dateNumber:2}],
-	sendContactInfo: [], //dateNumbers of the dates to send info to.
-	
-	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	malesRender: maleArray,
+	femalesRender: femaleArray,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
     methods: {
@@ -31,19 +22,47 @@ const vm = new Vue({
 	beginEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
-	    var beginEvent = document.getElementById("beginEvent");
-	    beginEvent.style.display = "block";
-	},
-	beginEvent: function() {
-	    console.log("Click");
-	    this.hideButtons();
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "grid";
 	},
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
 	    var dateInProgress = document.getElementById("dateInProgress");
-	    dateInProgressTemp.style.display = "block";
-	}
+	    dateInProgressTemp.style.display = "grid";
+	},
+	exitEvent: function() {
+	    console.log("Click");
+	    this.hideButtons();
+	    
+	},
+	expand: function(person){
+	    
+	},
+	
     }
     
 })
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+var children = [];
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");   
+    var block = document.getElementById(data);
+    if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale") block.style.marginTop = "0.5em";
+    else block.style.marginTop = "0em";
+    ev.target.appendChild(block);
+    
+}
+
+
+
+

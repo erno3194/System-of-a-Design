@@ -1,13 +1,15 @@
 /* STYLE DOCUMENT */
+
 *{
     margin:0 auto;
     overflow-x: hidden;
+    overflow-y: hidden;
     box-sizing: border-box;
 }
 
 body{
     display: grid;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     /* Här kan man ändra storlek på header, main och footer*/
     grid-template-rows: 10vh 87vh 3vh;
@@ -22,7 +24,7 @@ header{
     align-items: center;
     width: inherit;
     height: 100%;
-    border: 2px solid;
+ 
     grid-row: 1;
     text-align: center;
 }
@@ -38,7 +40,6 @@ main{
     grid-template-rows: 50% 50%;
     width: inherit;
     height: 100%;
-    border: 2px solid;
     grid-row: 2;
     
 }
@@ -46,7 +47,7 @@ main{
 footer{
     height: auto;
     width: inherit;
-    border: 2px solid;
+ 
     grid-row: 3;
     font-size: 2em;
     text-align: center;
@@ -82,6 +83,7 @@ footer{
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
 #exitEventButton{
     display: flex;
     align-items: center;
@@ -167,15 +169,41 @@ footer{
 }
 
 #dateInProgressTemp {
-    display: none;
-    font-size: 5em;
-    text-align: center;
     grid-row:1/span 2;
+    display: none;
+    width: 100%;
+    text-align: center;
+    grid-template-columns: 20em auto 20em 20%;
+    grid-template-rows: 3em auto;
+}
+
+#dateInProgressTemp h2{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+
+#dropoffMale{
+    grid-column: 1;
+    grid-row: 2;
+    border: 5px solid green;
+    width: 100%;
+}
+
+#dropoffFemale{
+    grid-column: 3;
+    grid-row: 2;
+    border: 5px solid green;
+    width: 100%;
+
 }
 
 #waitingScreen {
+    display: none;
+    
     font-size: 4em;
     text-align: center;
+    grid-row: 1/span 2;
 }
 
 #startDateTEMP {
@@ -188,29 +216,45 @@ footer{
     font-size: 5em;
 }
 
-#currentDateInfo {
-    margin-top: 3em;
-}
-
 #currentDateInfo{
+    grid-column: 2;
+    width: 100%;
+
     word-break: break-word;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1em;
+    border: 5px solid red;
 }
 
-
-
-.dTitle {
-    font-size: 1em;
+.maleClass, .femaleClass, .males, .females{
+    border: 2px solid black;
+    height: 3.2em;
+    width: 15em;
 }
 
-.dInfo {
-    font-size: 3em;
-
-}
-
-#name1 {
-    height: 20em;
-    width: 40em;
+.maleClass{
     background-color: lightblue;
-}    
+}
 
 
+.femaleClass{
+    background-color: pink;
+}
+
+
+.males, .females{
+    height: 3.45em;
+    margin-top: 0.5em;
+    background-color: white;
+}
+
+#males, #females{
+    margin-top: 0.2em;
+}
+
+#currentDateInfo p{
+
+    font-size: 1em;
+    
+}
