@@ -33,10 +33,10 @@ const vm = new Vue({
 	    console.log(gender);
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
-	    var skapaProfil = document.getElementById("skapaProfil");
+	    var beginEvent = document.getElementById("beginEvent");
 	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
 	    if((name && this.reg.test(email) && age && gender && preferredAge)){
-		skapaProfil.style.display = "none";
+		beginEvent.style.display = "none";
 		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
@@ -65,11 +65,11 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
-	skapaProfil: function() {
+	beginEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
-	    var skapaProfil = document.getElementById("skapaProfil");
-	    skapaProfil.style.display = "block";
+	    var beginEvent = document.getElementById("beginEvent");
+	    beginEvent.style.display = "block";
 	},
 	tillProfil: function() {
 	    console.log("Click");

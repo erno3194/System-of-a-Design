@@ -105,7 +105,7 @@ footer{
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-#skapaProfil{
+#beginEvent{
     display: none;
     grid-row: 1;
     height: auto;
@@ -332,7 +332,7 @@ label{
 }
 
 #waitingScreen {
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
 }
 
@@ -361,6 +361,14 @@ label{
 }
 
 .dInfo {
-    font-size: 2em;
-
+    font-size: 3em;
+    color: white;
 }
+
+#name1 {
+    height: 20em;
+    width: 40em;
+    background-color: blue;
+}    
+
+

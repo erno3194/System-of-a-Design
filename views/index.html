@@ -14,7 +14,7 @@
       <h1>Speed dejting</h1>
     </header>
     <main id="main">
-      <div id="skapaProfil">
+      <div id="beginEvent">
 	<div id="skapaProfilDiv">
 	  <form id="skapaProfilForm">
 
@@ -66,10 +66,10 @@
 
       </div>
       <div id="tillProfilButton" v-on:click="tillProfil">
-	<h2>LOGIN</h2>
+	<h2>BEGIN EVENT</h2>
       </div>
-      <div id="skapaProfilButton" v-on:click="skapaProfil">
-	<h2>CREATE PROFILE</h2>
+      <div id="skapaProfilButton" v-on:click="beginEvent">
+	<h2>EXIT EVENT</h2>
       </div>
 
       <div id="myDates">
@@ -86,19 +86,20 @@
       
 
       <div id="waitingScreen">
-	<h2>WAITING FOR DATE TO BE ARRANGED</h2>
+	<h2>WAITING FOR ALL PARTICIPANTS TO CREATE A PROFILE</h2>
 	<br>
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
 	  <p>TEMP</p>	  
 	</button>
       </div>
       <div id="dateInProgressTemp">
-	<h2>DATE IN PROGRESS</h2>
+	<h2>REARRANGE DATE MATCHES</h2>
 	<div id="currentDateInfo">
-	  <p class="dTitle">CURRENTLY SEEING</p>
-	  <p class="dInfo">{{currentDate.name}}</p>
-	  <p class="dTitle">AT TABLE</p>
-	  <p class="dInfo">{{currentDate.table}}</p>
+	  <p class="dTitle"></p>
+    <button id="name1" type="button">
+	    <p class="dInfo">{{currentDate.name}}</p>
+      </button>
+
 	</div>
       </div>
 
