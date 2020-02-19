@@ -37,7 +37,13 @@ const vm = new Vue({
 	    
 	},
 	expand: function(person){
-	    
+	    var block = document.getElementById(person.id);
+	    var sndBlock = block.childNodes[0];
+	    block.style.width="20em";
+	    block.style.height="5em";
+	    sndBlock.style.width="20em";
+	    sndBlock.style.height="4.75em";
+	    sndBlock.innerHTML += person.email;
 	},
 	
     }
