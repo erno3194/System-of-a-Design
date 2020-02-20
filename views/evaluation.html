@@ -8,6 +8,7 @@
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/evaluation_css.css">
     <title>Speed dejting</title>
     <meta charset="utf-8"/>
   </head>
@@ -17,76 +18,83 @@
 
       <header>
         <h1>Dejten är slut!</h1>
-        <h2>Utvärdera din dejt med Vladimir Ivankoriskoslava Stolinchnaya:</h2>
       </header>
 
-    <!--  <div id="form"> -->
-        <section id="eval">
-          <p>
-            <label id="matchID">Hur bra tyckte du att din matchning stämde överens med profilen du fyllde i tidigare?
-            (1 = stämde inte alls, 5 = stämde mycket väl)</label>
-            <label id="matchOneID" for="one">1</label>
-            <input v-model="match" type="radio" name="matching" value="1" id="one">
-            <label id="matchTwoID" for="two">2</label>
-            <input v-model="match" type="radio" name="matching" value="2" id="two">
-            <label id="matchThreeID" for="three">3</label>
-            <input v-model="match" type="radio" name="matching" value="3" id="three">
-            <label id="matchFourID" for="four">4</label>
-            <input v-model="match" type="radio" name="matching" value="4" id="four">
-            <label id="matchFiveID" for="five">5</label>
-            <input v-model="match" type="radio" name="matching" value="5" id="five">
-          </p>
+      <div id="evalFormDiv">
+        <header>
+        <h2 id="subheader">Utvärdera din dejt med Vladimir Ivankoriskoslava Stolinchnaya:</h2>
+      </header>
+        <form id="evalForm">
+          <div id="formDiv">
+            <div id="matchning">
+              <p>
+                <label id="matchID">Hur bra tyckte du att din matchning stämde överens med profilen du fyllde i tidigare?
+                  (1 = stämde inte alls, 5 = stämde mycket väl)</label>
+                  <label id="matchOneID" for="one">1</label>
+                  <input v-model="match" type="radio" name="matching" value="1" id="one">
+                  <label id="matchTwoID" for="two">2</label>
+                  <input v-model="match" type="radio" name="matching" value="2" id="two">
+                  <label id="matchThreeID" for="three">3</label>
+                  <input v-model="match" type="radio" name="matching" value="3" id="three">
+                  <label id="matchFourID" for="four">4</label>
+                  <input v-model="match" type="radio" name="matching" value="4" id="four">
+                  <label id="matchFiveID" for="five">5</label>
+                  <input v-model="match" type="radio" name="matching" value="5" id="five">
+                </p>
+              </div>
 
-          <p>
-            <label id="interestsID">Hur bra tyckte du att era intressen stämde överens?
-            (1 = stämde inte alls, 5 = stämde mycket väl)</label>
-            <label id="interOneID" for="one">1</label>
-            <input v-model="interests" type="radio" name="inter" value="1" id="one">
-            <label id="interTwoID" for="two">2</label>
-            <input v-model="interests" type="radio" name="inter" value="2" id="two">
-            <label id="interThreeID" for="three">3</label>
-            <input v-model="interests" type="radio" name="inter" value="3" id="three">
-            <label id="interFourID" for="four">4</label>
-            <input v-model="interests" type="radio" name="inter" value="4" id="four">
-            <label id="interFiveID" for="five">5</label>
-            <input v-model="interests" type="radio" name="inter" value="5" id="five">
-          </p>
+              <div>
+                <p>
+                  <label id="interestsID">Hur bra tyckte du att era intressen stämde överens?
+                    (1 = stämde inte alls, 5 = stämde mycket väl)</label>
+                    <label id="interOneID" for="one">1</label>
+                    <input v-model="interests" type="radio" name="inter" value="1" id="one">
+                    <label id="interTwoID" for="two">2</label>
+                    <input v-model="interests" type="radio" name="inter" value="2" id="two">
+                    <label id="interThreeID" for="three">3</label>
+                    <input v-model="interests" type="radio" name="inter" value="3" id="three">
+                    <label id="interFourID" for="four">4</label>
+                    <input v-model="interests" type="radio" name="inter" value="4" id="four">
+                    <label id="interFiveID" for="five">5</label>
+                    <input v-model="interests" type="radio" name="inter" value="5" id="five">
+                  </p>
+                </div>
 
-          <p>
-            <label id="rateID">Hur skulle du värdera dejten som helhet?
-            (1 = stämde inte alls, 5 = stämde mycket väl)</label>
-            <label id="rateOneID" for="one">1</label>
-            <input v-model="rating" type="radio" name="rate" value="1" id="one">
-            <label id="rateTwoID" for="two">2</label>
-            <input v-model="rating" type="radio" name="rate" value="2" id="two">
-            <label id="rateThreeID" for="three">3</label>
-            <input v-model="rating" type="radio" name="rate" value="3" id="three">
-            <label id="rateFourID" for="four">4</label>
-            <input v-model="rating" type="radio" name="rate" value="4" id="four">
-            <label id="rateFiveID" for="five">5</label>
-            <input v-model="rating" type="radio" name="rate" value="5" id="five">
-            <label id="rateSixID" for="six">6</label>
-            <input v-model="rating" type="radio" name="rate" value="1" id="one">
-            <label id="rateSevenID" for="seven">7</label>
-            <input v-model="rating" type="radio" name="rate" value="2" id="two">
-            <label id="rateEightID" for="eight">8</label>
-            <input v-model="rating" type="radio" name="rate" value="3" id="three">
-            <label id="rateNineID" for="nine">9</label>
-            <input v-model="rating" type="radio" name="rate" value="4" id="four">
-            <label id="rateTenID" for="ten">10</label>
-            <input v-model="rating" type="radio" name="rate" value="5" id="five">
-          </p>
+                <div>
+                  <p>
+                    <label id="rateID">Hur skulle du värdera dejten som helhet?
+                      (1 = stämde inte alls, 5 = stämde mycket väl)</label>
+                      <label id="rateOneID" for="one">1</label>
+                      <input v-model="rating" type="radio" name="rate" value="1" id="one">
+                      <label id="rateTwoID" for="two">2</label>
+                      <input v-model="rating" type="radio" name="rate" value="2" id="two">
+                      <label id="rateThreeID" for="three">3</label>
+                      <input v-model="rating" type="radio" name="rate" value="3" id="three">
+                      <label id="rateFourID" for="four">4</label>
+                      <input v-model="rating" type="radio" name="rate" value="4" id="four">
+                      <label id="rateFiveID" for="five">5</label>
+                      <input v-model="rating" type="radio" name="rate" value="5" id="five">
+                      <label id="rateSixID" for="six">6</label>
+                      <input v-model="rating" type="radio" name="rate" value="1" id="one">
+                      <label id="rateSevenID" for="seven">7</label>
+                      <input v-model="rating" type="radio" name="rate" value="2" id="two">
+                      <label id="rateEightID" for="eight">8</label>
+                      <input v-model="rating" type="radio" name="rate" value="3" id="three">
+                      <label id="rateNineID" for="nine">9</label>
+                      <input v-model="rating" type="radio" name="rate" value="4" id="four">
+                      <label id="rateTenID" for="ten">10</label>
+                      <input v-model="rating" type="radio" name="rate" value="5" id="five">
+                    </p>
+                  </form>
+                </div>
 
-        </section>
-      <!-- </div> -->
-
-      <section id="submitEvalForm">
         <p id="submission">
           <button type="submit" v-on:click="submitEval">
             <p>Skicka formulär</p>
           </button>
         </p>
-      </section>
+      </div>
+    </div>
 
     </main>
     <footer id="footer">

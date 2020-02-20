@@ -22,17 +22,17 @@
 	      <label for="name">Full name</label><br>
 	      <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
 	    </p>
-	    
+
 	    <p class="skapaProfilInput" id="emailParagraph">
 	      <label for="email">Email</label><br>
 	      <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
 	    </p>
-	    
+
 	    <p class="skapaProfilInput" id="ageParagraph">
 	      <label for="age">Age</label><br>
 	      <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
 	    </p>
-	    
+
 	    <p class="skapaProfilInput" id="kön">
 	      <label id="genderLabel" for="gender">Gender</label><br>
 	      <label id="maleLabel" for="male">Male</label>
@@ -40,7 +40,7 @@
 	      <label id="femaleLabel" for="female">Female</label>
 	      <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
 	    </p>
-	    
+
 	    <p class="skapaProfilInput" id="preferredAgeParagraph">
 	      <label for="preferredAge">Preferred age range</label><br>
 	      <select v-model="preferredAge" id="preferredAge">
@@ -83,13 +83,13 @@
 	  <p>Send my information</p>
 	</div>
       </div>
-      
+
 
       <div id="waitingScreen">
 	<h2>WAITING FOR DATE TO BE ARRANGED</h2>
 	<br>
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
-	  <p>TEMP</p>	  
+	  <p>TEMP</p>
 	</button>
       </div>
       <div id="dateInProgressTemp">
