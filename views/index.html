@@ -1,0 +1,115 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <script type="text/javascript" src="js/javascript.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Speed dejting</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body id="body">
+    <header id="header">
+      <h1>Speed dejting</h1>
+    </header>
+    <main id="main">
+      <div id="skapaProfil">
+	<div id="skapaProfilDiv">
+	  <form id="skapaProfilForm">
+
+	    <p class="skapaProfilInput" id="nameParagraph">
+	      <label for="name">Full name</label><br>
+	      <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
+	    </p>
+	    
+	    <p class="skapaProfilInput" id="emailParagraph">
+	      <label for="email">Email</label><br>
+	      <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
+	    </p>
+	    
+	    <p class="skapaProfilInput" id="ageParagraph">
+	      <label for="age">Age</label><br>
+	      <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
+	    </p>
+	    
+	    <p class="skapaProfilInput" id="kön">
+	      <label id="genderLabel" for="gender">Gender</label><br>
+	      <label id="maleLabel" for="male">Male</label>
+	      <input v-model="gender" type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
+	      <label id="femaleLabel" for="female">Female</label>
+	      <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
+	    </p>
+	    
+	    <p class="skapaProfilInput" id="preferredAgeParagraph">
+	      <label for="preferredAge">Preferred age range</label><br>
+	      <select v-model="preferredAge" id="preferredAge">
+		<option selected="selected">18-25</option>
+		<option>25-35</option>
+		<option>35-45</option>
+		<option>45+</option>
+	      </select>
+	    </p>
+	    <div class="skapaProfilInput" id="intressen">
+	      <label id="intressenLabel">Hobbies:</label>
+	      <div v-for="hobby in hobbies">
+		<label for="hobby">{{hobby}}</label>
+		<input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
+	      </div>
+	    </div>
+	  </form>
+
+	  <button type="submit" v-on:click="markDone(name, email, age, gender, preferredAge)" id="submitProfileButton">
+	    <p>SUBMIT</p>
+	  </button>
+	</div>
+
+      </div>
+      <div id="tillProfilButton" v-on:click="tillProfil">
+	<h2>LOGIN</h2>
+      </div>
+      <div id="skapaProfilButton" v-on:click="skapaProfil">
+	<h2>CREATE PROFILE</h2>
+      </div>
+
+      <div id="myDates">
+	<h2>Your dates</h2>
+	<h3>Who do you want to share your contact information with?</h3>
+	<div v-for="date in myDates">
+	  <label for="date.name">{{date.name}}</label>
+	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
+	</div>
+	<div id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
+	  <p>Send my information</p>
+	</div>
+      </div>
+      
+
+      <div id="waitingScreen">
+	<h2>WAITING FOR DATE {{currentDateNumber}}/3 TO BE ARRANGED</h2>
+	<br>
+	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
+	  <p>TEMP</p>	  
+	</button>
+      </div>
+      <div id="dateInProgressTemp">
+	<h3>DATE IN PROGRESS</h3>
+	<h4>Date number: {{currentDateNumber}}/3</h4>
+	<div id="currentDateInfo">
+	  <p class="dTitle">CURRENTLY SEEING</p>
+	  <p class="dInfo">{{currentDate.name}}</p>
+	  <p class="dTitle">AT TABLE</p>
+	  <p class="dInfo">{{currentDate.table}}</p>
+	  <button id="goToDateEvaluation" type="button" v-on:click="dateEvaluationView">
+	    <p>TEMP</p>
+	  </button>
+	</div>
+      </div>
+
+    </main>
+    <footer id="footer">
+      <hr>
+      <p>&copy 2020 System of a Design</p>
+    </footer>
+  </body>
+</html>
