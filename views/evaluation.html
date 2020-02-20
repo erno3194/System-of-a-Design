@@ -21,9 +21,12 @@
       </header>
 
       <div id="evalFormDiv">
-        <header>
-        <h2 id="subheader">Utvärdera din dejt med Vladimir Ivankoriskoslava Stolinchnaya:</h2>
-      </header>
+        <div id="formHeader">
+          <header>
+            <h2 id="subheader">Utvärdera din dejt med:</h2>
+            <h2 id="dateName">Vladimir Ivankoriskoslava Stolinchnaya</h2>
+          </header>
+        </div>
         <form id="evalForm">
           <div id="formDiv">
             <div id="matchning">
@@ -88,7 +91,7 @@
                   </form>
                 </div>
 
-        <p id="submission">
+        <p id="submitFormButton">
           <button type="submit" v-on:click="submitEval">
             <p>Skicka formulär</p>
           </button>
