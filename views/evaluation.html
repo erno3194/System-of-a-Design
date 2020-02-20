@@ -3,27 +3,29 @@
 <html lang = "en">
 
   <head>
-    <script type="text/javascript" src="js/javascript.js" defer></script>
-    <!--<script type="text/javascript" src="js/evaluation_vue.js" defer></script>-->
-    <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="/socket.io/socket.io.js" defer></script>
     <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
     <link rel="stylesheet" type="text/css" href="css/evaluation_css.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <!--<script type="text/javascript" src="js/javascript.js" defer></script>-->
+    <script type="text/javascript" src="js/evaluation_vue.js" defer></script>
+
+
     <title>Speed dejting</title>
     <meta charset="utf-8"/>
   </head>
 
-  <body id="body">
-    <main>
+  <body id="evalBody">
+    <main id="evalMain">
 
       <header>
-        <h1>Dejten är slut!</h1>
+        <h1>Date is over!</h1>
       </header>
 
       <div id="evalFormDiv">
         <div id="formHeader">
           <header>
-            <h2 id="subheader">Utvärdera din dejt med:</h2>
+            <h2 id="subheader">Evaluate your date with:</h2>
             <h2 id="dateName">Vladimir Ivankoriskoslava Stolinchnaya</h2>
           </header>
         </div>
@@ -47,7 +49,7 @@
                 </p>
               </div>
 
-              <div>
+              <div id="interest">
                 <label id="question">Hur bra tyckte du att era intressen stämde överens?</label>
                 <p id="rateScale">(1 = stämde inte alls, 5 = stämde mycket väl)</p>
                 <p id="radioButtons">
@@ -64,7 +66,7 @@
                   </p>
                 </div>
 
-                <div>
+                <div id="allRate">
                   <label id="question">Hur skulle du värdera dejten som helhet?</label>
                     <p id="rateScale">(1 = stämde inte alls, 5 = stämde mycket väl)</p>
                   <p id="radioButtons">
@@ -92,11 +94,11 @@
                   </form>
                 </div>
 
-        <p id="submitFormButton">
-          <button type="submit" v-on:click="submitEval">
-            <p>Skicka formulär</p
+        <form id="submitFormButton">
+          <button type="submit" v-on:click="submitEval(matchning,interest,allRate)" v-bind:value="submissionButton">
+            <p>Send form</p>
           </button>
-        </p>
+        </form>
       </div>
     </div>
 
