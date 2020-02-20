@@ -33,8 +33,8 @@
           <div id="formDiv">
             <div id="questionDiv">
             <div id="matchning">
-              <label id="question">Hur bra tyckte du att din matchning stämde överens med profilen du fyllde i tidigare?</label>
-                <p id="rateScale">(1 = stämde inte alls, 5 = stämde mycket väl)</p>
+              <label id="question">How well did your date match the info and preferences you provided in your profile?</label>
+                <p id="rateScale">(1 = not at all, 5 = very well)</p>
               <p id="radioButtons">
                   <input v-model="match" type="radio" name="matching" value="1" id="one">
                   <label id="matchOneID" for="one">1</label>
@@ -50,8 +50,8 @@
               </div>
 
               <div id="interest">
-                <label id="question">Hur bra tyckte du att era intressen stämde överens?</label>
-                <p id="rateScale">(1 = stämde inte alls, 5 = stämde mycket väl)</p>
+                <label id="question">To what extent did your and your date's interests coincide?</label>
+                <p id="rateScale">(1 = not at all, 5 = entirely)</p>
                 <p id="radioButtons">
                     <input v-model="interests" type="radio" name="inter" value="1" id="one">
                     <label id="interOneID" for="one">1</label>
@@ -67,8 +67,8 @@
                 </div>
 
                 <div id="allRate">
-                  <label id="question">Hur skulle du värdera dejten som helhet?</label>
-                    <p id="rateScale">(1 = stämde inte alls, 5 = stämde mycket väl)</p>
+                  <label id="question">How would you rate this date in it's entirety?</label>
+                    <p id="rateScale">(1 = really bad, 5 = really good)</p>
                   <p id="radioButtons">
                       <input v-model="rating" type="radio" name="rate" value="1" id="one">
                       <label id="rateOneID" for="one">1</label>
