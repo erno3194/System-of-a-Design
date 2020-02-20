@@ -26,17 +26,17 @@ footer{
 }
 
 #formHeader{
-  height: 200px;
+  height: 300px;
 }
 
 #subheader{
   /*height: 150px;*/
-  font-size: 2em;
+  font-size: 3em;
 }
 
 #dateName{
   /*height: 10px;*/
-  font-size: 2em;
+  font-size: 3em;
 }
 
 #bodyEval{
@@ -55,16 +55,31 @@ footer{
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto;
-  grid-gap: 2em;
+  grid-gap: 4em;
+}
+
+#questionDiv{
+  display: grid;
+  grid-gap: 5em;
+  background: lightgrey;
+}
+
+#question{
+  font-size: 2em;
+}
+
+#rateScale{
+  font-size: 1.5em;
+}
+
+#radioButtons{
+  /*align-items: center;*/
 }
 
 #submitFormButton{
-    /*display: flex;
-    align-items: center;
-    width: 40em;
-    height: 20em;*/
     display: grid;
+    align-items: center;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
-    grid-gap: 2em;
+    grid-template-rows: 4em auto;
+    grid-gap: 4em;
 }
