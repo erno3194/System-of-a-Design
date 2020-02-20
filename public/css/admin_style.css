@@ -229,6 +229,7 @@ footer{
 .maleClass, .femaleClass, .males, .females{
     border: 2px solid black;
     height: 3.2em;
+    overflow-y: hidden;
     width: 15em;
 }
 
@@ -243,9 +244,10 @@ footer{
 
 
 .males, .females{
-    height: 3.45em;
+    border: none;
+    height: 3.2em;
     margin-top: 0.5em;
-    background-color: white;
+    background-color: lightgrey;;
 }
 
 #males, #females{
@@ -253,7 +255,5 @@ footer{
 }
 
 #currentDateInfo p{
-
     font-size: 1em;
-    
 }

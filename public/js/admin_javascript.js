@@ -3,6 +3,7 @@
 const vm = new Vue({
     el: '#main',
     data: {
+	c: "c",
 	malesRender: maleArray,
 	femalesRender: femaleArray,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -37,13 +38,23 @@ const vm = new Vue({
 	    
 	},
 	expand: function(person){
-	    var block = document.getElementById(person.id);
-	    var sndBlock = block.childNodes[0];
-	    block.style.width="20em";
-	    block.style.height="5em";
-	    sndBlock.style.width="20em";
-	    sndBlock.style.height="4.75em";
-	    sndBlock.innerHTML += person.email;
+	    var block = document.getElementById(person.id+this.c);
+	    var sndBlock = document.getElementById(person.id);
+	    console.log(sndBlock.id);
+	    block = document.getElementById(sndBlock.id+this.c);
+	    if(sndBlock.style.width == "20em"){
+		sndBlock.style.width="15em";
+		sndBlock.style.height="3.2em";
+		block.style.width="15em";
+		block.style.height="3.2em";
+		sndBlock.innerHTML = person.name + "<br>Age:" + person.age + "<br>";
+	    } else{		
+		block.style.width="20em";
+		block.style.height="5em";
+		sndBlock.style.width="20em";
+		sndBlock.style.height="5em";
+		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
+	    }
 	},
 	
     }
@@ -61,12 +72,18 @@ function drag(ev) {
 var children = [];
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");   
+    var data = ev.dataTransfer.getData("text");
     var block = document.getElementById(data);
-    if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale") block.style.marginTop = "0.5em";
-    else block.style.marginTop = "0em";
+    if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale"){
+	block.style.marginTop = "0.5em";
+    } else{
+	block.style.marginTop = "0em";
+	document.getElementById(ev.target.id).style.width = block.style.width;
+	document.getElementById(ev.target.id).style.height = block.style.height;
+	block.id = ev.target.id.substring(0, ev.target.id.length-1);
+	console.log(block.id);
+    }
     ev.target.appendChild(block);
-    
 }
 
 

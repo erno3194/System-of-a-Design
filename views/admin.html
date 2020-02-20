@@ -40,8 +40,8 @@
 	</div>
 	<div id="currentDateInfo">
 	  <div id="males">
-	    <div v-for="male in malesRender" v-bind:id="male.id" class="males" ondrop="drop(event)" ondragover="allowDrop(event)" v-on:click="expand(male)">
-	      <div v-bind:id="male.id+c" class="maleClass" draggable="true" ondragstart="drag(event)">
+	    <div v-for="male in malesRender" v-bind:id="male.id+c" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
+	      <div v-bind:id="male.id" class="maleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(male)">
 		<p>{{male.name}}</p> 
 		<p>Age: {{male.age}}</p>
 	      </div>
