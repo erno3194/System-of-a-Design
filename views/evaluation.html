@@ -30,9 +30,9 @@
         <form id="evalForm">
           <div id="formDiv">
             <div id="matchning">
+              <label id="matchID">Hur bra tyckte du att din matchning stämde överens med profilen du fyllde i tidigare?
+                (1 = stämde inte alls, 5 = stämde mycket väl)</label>
               <p>
-                <label id="matchID">Hur bra tyckte du att din matchning stämde överens med profilen du fyllde i tidigare?
-                  (1 = stämde inte alls, 5 = stämde mycket väl)</label>
                   <label id="matchOneID" for="one">1</label>
                   <input v-model="match" type="radio" name="matching" value="1" id="one">
                   <label id="matchTwoID" for="two">2</label>
@@ -47,9 +47,9 @@
               </div>
 
               <div>
+                <label id="interestsID">Hur bra tyckte du att era intressen stämde överens?
+                  (1 = stämde inte alls, 5 = stämde mycket väl)</label>
                 <p>
-                  <label id="interestsID">Hur bra tyckte du att era intressen stämde överens?
-                    (1 = stämde inte alls, 5 = stämde mycket väl)</label>
                     <label id="interOneID" for="one">1</label>
                     <input v-model="interests" type="radio" name="inter" value="1" id="one">
                     <label id="interTwoID" for="two">2</label>
@@ -64,9 +64,9 @@
                 </div>
 
                 <div>
+                  <label id="rateID">Hur skulle du värdera dejten som helhet?
+                    (1 = stämde inte alls, 5 = stämde mycket väl)</label>
                   <p>
-                    <label id="rateID">Hur skulle du värdera dejten som helhet?
-                      (1 = stämde inte alls, 5 = stämde mycket väl)</label>
                       <label id="rateOneID" for="one">1</label>
                       <input v-model="rating" type="radio" name="rate" value="1" id="one">
                       <label id="rateTwoID" for="two">2</label>

@@ -1,7 +1,54 @@
 /* STYLE FOR EVALUATION FORM */
 
+header{
+    display: grid;
+    align-items: center;
+    width: inherit;
+    height: 100%;
+    border: 2px solid;
+    grid-row: 1;
+    text-align: center;
+}
+
+h1{
+    color: red;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 4em;
+}
+
+footer{
+    height: auto;
+    width: inherit;
+    border: 2px solid;
+    grid-row: 3;
+    font-size: 2em;
+    text-align: center;
+}
+
+#formHeader{
+  height: 200px;
+}
+
 #subheader{
-  heigh: 500px;
+  /*height: 150px;*/
+  font-size: 2em;
+}
+
+#dateName{
+  /*height: 10px;*/
+  font-size: 2em;
+}
+
+#bodyEval{
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    /* Här kan man ändra storlek på header, main och footer*/
+    grid-template-rows: 10vh 87vh 3vh;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
 }
 
 #evalFormDiv{
@@ -12,7 +59,12 @@
 }
 
 #submitFormButton{
-    grid-row: 2;
+    /*display: flex;
+    align-items: center;
     width: 40em;
-    height: 20em;
+    height: 20em;*/
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-gap: 2em;
 }
