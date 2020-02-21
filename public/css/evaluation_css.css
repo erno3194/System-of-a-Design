@@ -79,6 +79,11 @@ footer{
   font-size: 2em;
 }
 
+input[type=radio] {
+  width: 6em;
+  height: 6em;
+}
+
 #submitFormButton p{
     display: grid;
     align-items: flex-start;
