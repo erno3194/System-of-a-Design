@@ -62,8 +62,6 @@ footer{
 }
 
 #questionDiv{
-  display: grid;
-  grid-gap: 3em;
   background: lightgrey;
 }
 
@@ -90,4 +88,20 @@ input[type=radio] {
     align-content: stretch;
     grid-gap: 1em;
     font-size: 3em;
+}
+
+
+#ratingButton {
+    width: 90%;
+    height: 15em;
+    align-self: center;
+}
+
+#ratingButton p {
+    font-size: 3em;
+}
+
+#matchning {
+    display: grid;
+    align-contents: center;
 }
