@@ -336,13 +336,13 @@ label{
     text-align: center;
 }
 
-#startDateTEMP {
+#startDateTEMP, #goToEvalTemp {
     height: 20em;
     width: 40em;
     background-color: pink;
 }
 
-#startDateTEMP p{
+#startDateTEMP p, #goToEvalTemp p{
     font-size: 5em;
 }
 
@@ -364,3 +364,88 @@ label{
     font-size: 2em;
 
 }
+
+#formHeader{
+  display: grid;
+  height: auto;
+}
+
+#subheader{
+  font-size: 3em;
+}
+
+#dateName{
+  /*height: 10px;*/
+  font-size: 3em;
+}
+
+#bodyEval{
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    /* Här kan man ändra storlek på header, main och footer*/
+    grid-template-rows: 10vh 87vh 3vh;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+}
+
+#evalFormDiv{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-gap: 4em;
+  text-align:center;
+}
+
+#questionDiv{
+  background: lightgrey;
+}
+
+#question{
+  font-size: 3.5em;
+}
+
+#rateScale{
+  font-size: 2em;
+}
+
+#radioButtons{
+  font-size: 2em;
+}
+
+input[type=radio] {
+  width: 6em;
+  height: 6em;
+}
+
+#submitFormButton p{
+    display: grid;
+    align-items: flex-start;
+    align-content: stretch;
+    grid-gap: 1em;
+    font-size: 3em;
+}
+
+
+#ratingButton {
+    width: 90%;
+    height: 15em;
+    align-self: center;
+}
+
+#ratingButton p {
+    font-size: 3em;
+}
+
+#matchning {
+    display: grid;
+    align-contents: center;
+}
+
+#evalFormDiv {
+    display: none;
+    grid-row: 1 / span 2;
+}
+
