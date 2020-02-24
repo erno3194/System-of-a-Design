@@ -326,7 +326,7 @@ label{
 
 #dateInProgressTemp {
     display: none;
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
     grid-row:1/span 2;
 }
@@ -347,7 +347,7 @@ label{
 }
 
 #currentDateInfo {
-    margin-top: 3em;
+    margin-top: 1em;
 }
 
 #currentDateInfo{
@@ -364,6 +364,7 @@ label{
     font-size: 2em;
 
 }
+
 
 #formHeader{
   display: grid;
@@ -447,5 +448,16 @@ input[type=radio] {
 #evalFormDiv {
     display: none;
     grid-row: 1 / span 2;
+}
+
+
+#goToDateEvaluation {
+    height: 20em;
+    width: 40em;
+    background-color: pink;
+}
+
+#goToDateEvaluation p {
+    font-size: 5em;
 }
 

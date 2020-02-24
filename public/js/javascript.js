@@ -15,9 +15,10 @@ const vm = new Vue({
 	selectedHobbies: [],
 	myDates: [{name:"Kajsa Långtefternamnsson", dateNumber: 0},{name:"Bengt Testson", dateNumber: 1}, {name:"Felix Ketchup", dateNumber:2}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
-	
 	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	currentDateNumber: 1,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+
     },
     methods: {
 	goToEvalTemp: function(){
@@ -95,8 +96,13 @@ const vm = new Vue({
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
-	    var dateInProgress = document.getElementById("dateInProgress");
+	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+	},
+	dateEvaluationView: function() {
+	    var dateInProgress = document.getElementById("dateInProgressTemp");
+	    dateInProgress.style.display = "none";
+	    this.currentDateNumber++;
 	}
     }
     
