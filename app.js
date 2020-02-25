@@ -22,13 +22,9 @@ app.use('/vue',
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/index.html'));
 });
-// Serve map.html as /map
-app.get('/map', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/map.html'));
-});
-// Serve dispatcher.html as /dispatcher
-app.get('/dispatcher', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
+// Serve admin.html as /admin
+app.get('/admin', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/admin.html'));
 });
 // Serve evaluation.html as /evaluation
 app.get('/evaluation', function(req,res) {

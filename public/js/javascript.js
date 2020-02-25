@@ -3,6 +3,9 @@
 const vm = new Vue({
     el: '#main',
     data: {
+	rating: "",
+	interests: "",
+	match: "",
 	name: "",
 	email: "",
 	age: "",
@@ -12,11 +15,28 @@ const vm = new Vue({
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
-	
-	currentDate: {name: "Kim Johansson", table: "1"},
+	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	currentDateNumber: 1,
+>>>>>>> 2ae241244ffe090e8614722ad72f5df9d94f2c9b
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+
     },
     methods: {
+	goToEvalTemp: function(){
+	    var dateInProgress = document.getElementById("dateInProgressTemp");
+	    dateInProgress.style.display = "none";
+	    var evaluation = document.getElementById("evalFormDiv");
+	    evaluation.style.display = "block";
+	},
+	submitEval: function(match, interests, rating){
+	    console.log(match);
+	    console.log(interests);
+	    console.log(rating);
+	    var block = document.getElementById("evalFormDiv");
+	    block.style.display = "none";
+	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
+	    myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+	},
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
@@ -34,10 +54,10 @@ const vm = new Vue({
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
-	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
-	    if((name && this.reg.test(email) && age && gender && preferredAge)){
+
+	    if((name && this.reg.test(email) && age && gender && preferredAge && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
-		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+		
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
 	    } else {
@@ -78,8 +98,13 @@ const vm = new Vue({
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
-	    var dateInProgress = document.getElementById("dateInProgress");
+	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+	},
+	dateEvaluationView: function() {
+	    var dateInProgress = document.getElementById("dateInProgressTemp");
+	    dateInProgress.style.display = "none";
+	    this.currentDateNumber++;
 	}
     }
     
