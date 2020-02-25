@@ -15,9 +15,8 @@ const vm = new Vue({
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
-	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	currentDate: {name: "Kim Johansson", table: "1"},
 	currentDateNumber: 1,
->>>>>>> 2ae241244ffe090e8614722ad72f5df9d94f2c9b
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
 
     },
