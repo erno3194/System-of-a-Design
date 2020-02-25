@@ -22,13 +22,9 @@ app.use('/vue',
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/index.html'));
 });
-// Serve map.html as /map
-app.get('/map', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/map.html'));
-});
-// Serve dispatcher.html as /dispatcher
-app.get('/dispatcher', function(req, res) {
-  res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
+// Serve admin.html as /admin
+app.get('/admin', function(req, res) {
+  res.sendFile(path.join(__dirname, 'views/admin.html'));
 });
 
 // Store data in an object to keep the global namespace clean and

@@ -1,0 +1,69 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <script type="text/javascript" src="js/data.js" defer></script>
+    <script type="text/javascript" src="js/admin_javascript.js" defer></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/admin_style.css">
+    <title>Speed dejting</title>
+    <meta charset="utf-8"/>
+  </head>
+  <body id="body">
+    <header id="header">
+      <h1>Speed dejting</h1>
+    </header>
+    <main id="main">
+      <div id="beginEvent">
+
+      </div>
+      <div id="beginEventButton" v-on:click="beginEvent">
+	<h2>BEGIN EVENT</h2>
+      </div>
+      <div id="exitEventButton" v-on:click="exitEvent">
+	<h2>EXIT EVENT</h2>
+      </div>
+
+      <div id="waitingScreen">
+	<h2>WAITING FOR ALL PARTICIPANTS TO CREATE A PROFILE</h2>
+	<br>
+	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
+	  <p>TEMP</p>	  
+	</button>
+      </div>
+      
+      <div id="dateInProgressTemp">
+	<h2 >REARRANGE DATE MATCHES</h2>
+	<div id="dropoffMale" ondrop="drop(event)" ondragover="allowDrop(event)">
+	  
+	</div>
+	<div id="currentDateInfo">
+	  <div id="males">
+	    <div v-for="male in malesRender" v-bind:id="male.id+c" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
+	      <div v-bind:id="male.id" class="maleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(male)">
+		<p>{{male.name}}</p> 
+		<p>Age: {{male.age}}</p>
+	      </div>
+	    </div>
+	  </div>
+	    <div id="females">
+	    <div v-for="female in femalesRender" class="females" ondrop="drop(event)" ondragover="allowDrop(event)">
+	      <div v-bind:id="female.id" class="femaleClass" draggable="true" ondragstart="drag(event)">
+		<p>{{female.name}}</p> 
+		<p>Age: {{female.age}}</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div id="dropoffFemale" ondrop="drop(event)" ondragover="allowDrop(event)">
+	  
+	</div>
+      </div>
+    </main>
+    <footer id="footer">
+      <hr>
+      <p>&copy 2020 System of a Design</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+/* STYLE DOCUMENT */
+
+*{
+    margin:0 auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    /* Här kan man ändra storlek på header, main och footer*/
+    grid-template-rows: 10vh 87vh 3vh;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+}
+
+header{
+    display: grid;
+    align-items: center;
+    width: inherit;
+    height: 100%;
+ 
+    grid-row: 1;
+    text-align: center;
+}
+
+h1{
+    color: red;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 4em;
+}
+
+main{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    width: inherit;
+    height: 100%;
+    grid-row: 2;
+    
+}
+
+footer{
+    height: auto;
+    width: inherit;
+ 
+    grid-row: 3;
+    font-size: 2em;
+    text-align: center;
+}
+
+#skapaProfilDiv{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-gap: 2em;
+}
+
+#beginEventButton{
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    background-color: green;
+    margin: 5% ;
+    text-align: center;
+    font-size: 5em;
+    grid-row: 1;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    overflow-y: hidden;
+}
+
+#beginEventButton:hover{
+    cursor:pointer;
+}
+
+#beginEventButton h2{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#exitEventButton{
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    background-color: green;
+    margin: 5% ;
+    text-align: center;
+    font-size: 5em;
+    grid-row: 2;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    overflow-y: hidden;
+}
+#exitEventButton:hover{
+    cursor: pointer;
+}
+
+#exitEventButton h2{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#beginEvent{
+    display: none;
+    grid-row: 1;
+    height: auto;
+    width: auto;
+    margin: 5%;
+    grid-row: 1 / span 2;
+    background-color: lightgrey;
+    border: 2px solid black;
+    /*box-shadow: 5px 5px black;*/
+}
+
+
+#myDates{
+    display: none;
+    grid-row: 1/span 2;
+    grid-template-rows: 10% 10% auto auto auto auto;
+    width: 90%;
+    margin-top: 2em;
+    grid-gap:0.5em;
+    text-align:center;
+}
+
+#myDates h2{
+    font-size: 5em;
+}
+
+#myDates h3{
+    font-size:3em;
+    font-style: italic;
+}
+
+#myDates div{
+    display:flex;
+    background-color: pink;
+    width: 100%;
+    height:auto;
+    border: 5px solid black;
+    text-align: center;
+    align-items: center;
+}
+
+#myDates label{
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 5em;
+    width: 60%;
+}
+
+#myDates [type="checkbox"]{
+    width: 10em;
+    height: 10em;    
+}
+
+#myDates #sendContactInfoButton{
+    background-color: lightblue;
+    width: 100%;
+    height: auto;
+    font-size: 4em;
+}
+
+#dateInProgressTemp {
+    grid-row:1/span 2;
+    display: none;
+    width: 100%;
+    text-align: center;
+    grid-template-columns: 20em auto 20em 20%;
+    grid-template-rows: 3em auto;
+}
+
+#dateInProgressTemp h2{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+
+#dropoffMale{
+    grid-column: 1;
+    grid-row: 2;
+    border: 5px solid green;
+    width: 100%;
+}
+
+#dropoffFemale{
+    grid-column: 3;
+    grid-row: 2;
+    border: 5px solid green;
+    width: 100%;
+
+}
+
+#waitingScreen {
+    display: none;
+    
+    font-size: 4em;
+    text-align: center;
+    grid-row: 1/span 2;
+}
+
+#startDateTEMP {
+    height: 20em;
+    width: 40em;
+    background-color: pink;
+}
+
+#startDateTEMP p{
+    font-size: 5em;
+}
+
+#currentDateInfo{
+    grid-column: 2;
+    width: 100%;
+
+    word-break: break-word;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1em;
+    border: 5px solid red;
+}
+
+.maleClass, .femaleClass, .males, .females{
+    border: 2px solid black;
+    height: 3.2em;
+    overflow-y: hidden;
+    width: 15em;
+}
+
+.maleClass{
+    background-color: lightblue;
+}
+
+
+.femaleClass{
+    background-color: pink;
+}
+
+
+.males, .females{
+    border: none;
+    height: 3.2em;
+    margin-top: 0.5em;
+    background-color: lightgrey;;
+}
+
+#males, #females{
+    margin-top: 0.2em;
+}
+
+#currentDateInfo p{
+    font-size: 1em;
+}
