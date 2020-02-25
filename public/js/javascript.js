@@ -28,12 +28,13 @@ const vm = new Vue({
 	    evaluation.style.display = "block";
 	},
 	submitEval: function(match, interests, rating){
-	    console.log("TESTING TESTINGS")
-
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
-
+	    var block = document.getElementById("evalFormDiv");
+	    block.style.display = "none";
+	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
+	    myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
 	},
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
@@ -52,10 +53,10 @@ const vm = new Vue({
 	    console.log(preferredAge);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
-	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
-	    if((name && this.reg.test(email) && age && gender && preferredAge)){
+
+	    if((name && this.reg.test(email) && age && gender && preferredAge && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
-		//myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+		
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
 	    } else {
