@@ -3,6 +3,9 @@
 const vm = new Vue({
     el: '#main',
     data: {
+	rating: "",
+	interests: "",
+	match: "",
 	name: "",
 	email: "",
 	age: "",
@@ -18,6 +21,20 @@ const vm = new Vue({
 
     },
     methods: {
+	goToEvalTemp: function(){
+	    var dateInProgress = document.getElementById("dateInProgressTemp");
+	    dateInProgress.style.display = "none";
+	    var evaluation = document.getElementById("evalFormDiv");
+	    evaluation.style.display = "block";
+	},
+	submitEval: function(match, interests, rating){
+	    console.log("TESTING TESTINGS")
+
+	    console.log(match);
+	    console.log(interests);
+	    console.log(rating);
+
+	},
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);

@@ -26,6 +26,10 @@ app.get('/', function(req, res) {
 app.get('/admin', function(req, res) {
   res.sendFile(path.join(__dirname, 'views/admin.html'));
 });
+// Serve evaluation.html as /evaluation
+app.get('/evaluation', function(req,res) {
+  res.sendFile(path.join(__dirname, 'views/evaluation.html'));
+});
 
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary

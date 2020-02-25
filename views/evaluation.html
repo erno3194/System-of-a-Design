@@ -1,0 +1,100 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang = "en">
+
+  <head>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <link rel="stylesheet" type="text/css" href="css/evaluation_css.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <!--<script type="text/javascript" src="js/javascript.js" defer></script>-->
+    <script type="text/javascript" src="js/evaluation_vue.js" defer></script>
+
+
+    <title>Speed dejting</title>
+    <meta charset="utf-8"/>
+  </head>
+
+  <body id="evalBody">
+    <main id="evalMain">
+
+
+
+      <div id="evalFormDiv">
+        <div id="formHeader">
+  
+	    <h1>Date is over!</h1>
+            <h2 id="subheader">Evaluate your date with:</h2>
+            <h2 id="dateName">Vladimir Ivankoriskoslava Stolinchnaya</h2>
+
+        </div>
+        
+          <div id="formDiv">
+            <div id="questionDiv">
+              <div id="matchning">
+		<form id="evalForm">
+		<label id="question">How well did your date match the info and preferences you provided in your profile?</label>
+                <p id="rateScale">(1 = not at all, 5 = very well)</p>
+		<p id="radioButtons">
+                  <input v-model="match" type="radio" name="matching" value="1" id="one">
+                  <label id="matchOneID" for="one">1</label>
+                  <input v-model="match" type="radio" name="matching" value="2" id="two">
+                  <label id="matchTwoID" for="two">2</label>
+                  <input v-model="match" type="radio" name="matching" value="3" id="three">
+                  <label id="matchThreeID" for="three">3</label>
+                  <input v-model="match" type="radio" name="matching" value="4" id="four">
+                  <label id="matchFourID" for="four">4</label>
+                  <input v-model="match" type="radio" name="matching" value="5" id="five">
+                  <label id="matchFiveID" for="five">5</label>
+                </p>
+              </div>
+
+              <div id="interest">
+                <label id="question">To what extent did your and your date's interests coincide?</label>
+                <p id="rateScale">(1 = not at all, 5 = entirely)</p>
+                <p id="radioButtons">
+                  <input v-model="interests" type="radio" name="inter" value="1" id="one">
+                  <label id="interOneID" for="one">1</label>
+                  <input v-model="interests" type="radio" name="inter" value="2" id="two">
+                  <label id="interTwoID" for="two">2</label>
+                  <input v-model="interests" type="radio" name="inter" value="3" id="three">
+                  <label id="interThreeID" for="three">3</label>
+                  <input v-model="interests" type="radio" name="inter" value="4" id="four">
+                  <label id="interFourID" for="four">4</label>
+                  <input v-model="interests" type="radio" name="inter" value="5" id="five">
+                  <label id="interFiveID" for="five">5</label>
+                </p>
+              </div>
+
+              <div id="allRate">
+                <label id="question">How would you rate this date in it's entirety?</label>
+                <p id="rateScale">(1 = really bad, 5 = really good)</p>
+                <p id="radioButtons">
+                  <input v-model="rating" type="radio" name="rate" value="1" id="one">
+                  <label id="rateOneID" for="one">1</label>
+                  <input v-model="rating" type="radio" name="rate" value="2" id="two">
+                  <label id="rateTwoID" for="two">2</label>
+                  <input v-model="rating" type="radio" name="rate" value="3" id="three">
+                  <label id="rateThreeID" for="three">3</label>
+                  <input v-model="rating" type="radio" name="rate" value="4" id="four">
+                  <label id="rateFourID" for="four">4</label>
+                  <input v-model="rating" type="radio" name="rate" value="5" id="five">
+                  <label id="rateFiveID" for="five">5</label>
+                </p>
+                
+              </div>
+
+	</form>
+	<button id="ratingButton" type="button" v-on:click="submitEval(match,interests,rating)">
+	  <p>Send form</p>
+	</button>
+	</div>
+	</div>	
+      </div>
+    </main>
+    <footer id="footer">
+      <hr>
+      <p>&copy 2020 System of a Design</p>
+    </footer>
+  </body>
+</html>
