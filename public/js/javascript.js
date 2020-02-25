@@ -10,10 +10,10 @@ const vm = new Vue({
 	preferredAge: "18-25",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
-	myDates: [{name:"Kajsa Långtefternamnsson", dateNumber: 0},{name:"Bengt Testson", dateNumber: 1}, {name:"Felix Ketchup", dateNumber:2}],
+	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	
-	currentDate: {name: "Vladimir Ivankoriskoslava Stolinchnaya", table: "1"},
+	currentDate: {name: "Kim Johansson", table: "1"},
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
     methods: {
