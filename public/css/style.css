@@ -365,9 +365,8 @@ label{
 
 }
 
-
 #formHeader{
-  display: grid;
+  
   height: auto;
 }
 
@@ -460,4 +459,3 @@ input[type=radio] {
 #goToDateEvaluation p {
     font-size: 5em;
 }
-
