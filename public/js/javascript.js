@@ -60,22 +60,25 @@ const vm = new Vue({
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
 	    } else {
+		var fail = document.getElementById("failedProfile");
+		fail.style.display = "block";
 		var button = document.getElementById("submitProfileButton");
+		
 		button.style.color = "red";
 		setTimeout(function(){button.style.color = "black";},600);
 
 		if(!name){
 		    document.getElementById("nameParagraph").style.color = "red";
-		} else document.getElementById("nameParagraph").style.color = "black";
+		} else document.getElementById("nameParagraph").style.color = "green";
 		if(!this.reg.test(email) || !email){
 		    document.getElementById("emailParagraph").style.color = "red";
-		} else document.getElementById("emailParagraph").style.color = "black";
+		} else document.getElementById("emailParagraph").style.color = "green";
 		if(!age){
 		    document.getElementById("ageParagraph").style.color = "red";
-		} else document.getElementById("ageParagraph").style.color = "block";
+		} else document.getElementById("ageParagraph").style.color = "green";
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
-		} else document.getElementById("intressenLabel").style.color = "black";
+		} else document.getElementById("intressenLabel").style.color = "green";
 	    }
 	},
 	hideButtons: function() {

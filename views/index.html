@@ -15,7 +15,7 @@
     </header>
     <main id="main">
       <div id="skapaProfil">
-	<div id="skapaProfilDiv">
+	<div id="skapaProfilDiv"> 
 	  <form id="skapaProfilForm">
 
 	    <p class="skapaProfilInput" id="nameParagraph">
@@ -57,8 +57,8 @@
 		<input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
 	      </div>
 	    </div>
+	    <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	  </form>
-
 	  <button type="submit" v-on:click="markDone(name, email, age, gender, preferredAge)" id="submitProfileButton">
 	    <p>SUBMIT</p>
 	  </button>

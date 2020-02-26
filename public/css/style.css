@@ -120,7 +120,7 @@ footer{
 #skapaProfilForm{
     display: grid;
     grid-template-rows: auto auto auto auto auto auto;
-    grid-tempale-colums: auto;
+    grid-template-columns: auto;
     grid-gap: 1em;
 }
 
@@ -258,8 +258,7 @@ label{
 #name, #email, #age{
     width: 70vw;
     height: 8vh;
-    font-size: 250%;
-
+    caret-color: black;
     border: 5px solid white; 
     -webkit-box-shadow: 
       inset 0 0 8px  rgba(0,0,0,0.1),
@@ -458,4 +457,9 @@ input[type=radio] {
 
 #goToDateEvaluation p {
     font-size: 5em;
+}
+
+#failedProfile{
+    font-size: 3em;
+    color: red;
 }
