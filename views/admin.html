@@ -50,12 +50,14 @@
 	      </div>
 	    </div>
 	  </div>
-	    <div id="females">
+	  
+	  <div id="females">
 	    <div v-for="female in femalesRender" v-bind:id="female.id+c" class="females" ondrop="drop(event)" ondragover="allowDrop(event)">
 	      <div v-bind:id="female.id" class="femaleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(female)">
 		<p>{{female.name}}</p> 
 		<p>Age: {{female.age}}</p>
 	      </div>
+
 	    </div>
 	  </div>
 	</div>
