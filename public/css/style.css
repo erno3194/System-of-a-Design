@@ -335,10 +335,20 @@ label{
     text-align: center;
 }
 
-#startDateTEMP, #goToEvalTemp, #mapTable{
+#startDateTEMP, #goToEvalTemp{
     height: 20em;
     width: 40em;
     background-color: pink;
+}
+
+#mapTable{
+    height: 15em;
+    width: 35em;
+    background-color: green;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 50px;
 }
 
 #startDateTEMP p, #goToEvalTemp p, #mapTable p{
@@ -465,5 +475,7 @@ input[type=radio] {
 }
 
 #map {
+    padding: 10px;
+    border: 8px solid;
     display: none;
 }
