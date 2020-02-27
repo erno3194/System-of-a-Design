@@ -25,6 +25,8 @@ const vm = new Vue({
     el: '#main',
     data: {
 	c: "c",
+	f: "f",
+	m: "m",
 	malesRender: maleArray,
 	femalesRender: femaleArray,
 	dateInProgressBool: false,
@@ -61,9 +63,15 @@ const vm = new Vue({
 	},
 	expand: function(person){
 	    var sndBlock = document.getElementById(person.id);
-	    //sndBlock = document.getElementById(sndBlock.id);
+	    var pairIndex = document.getElementById(this.c + person.id.substring(1));
+	    if(person.id[0] == 'm'){
+		var pair = document.getElementById(this.f + person.id.substring(1));
+	    } else{
+		var pair = document.getElementById(this.m + person.id.substring(1));
+	    }
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
+		var trdBlock = document.getElementById(pair.id+this.c);
 	    } catch(e){
 		block = null;
 	    }
