@@ -118,16 +118,18 @@ const vm = new Vue({
 	    var map = document.getElementById("map");
 	    map.style.display = "block";
 	    this.mapButtonText = "Close map";
+	    var helpText = document.getElementById("tableMapHelp");
+	    helpText.style.display = "none";
 	},
 
 	hideMap: function() {
 	    var map = document.getElementById("map");
-	    map.style.display = "none";
-	    
+	    map.style.display = "none";   
 	    var dateInfo = document.getElementById("currentDateInfo");
 	    dateInfo.style.display = "block";
-
 	    this.mapButtonText = "Open map";
+	    var helpText = document.getElementById("tableMapHelp");
+	    helpText.style.display = "block";
 	},
 	
 	showOrHideMap: function() {

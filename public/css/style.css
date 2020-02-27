@@ -479,3 +479,9 @@ input[type=radio] {
     border: 8px solid;
     display: none;
 }
+
+#tableMapHelp {
+    font-size: 60%;
+    font-style: italic;
+    
+}
