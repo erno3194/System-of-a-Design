@@ -3,6 +3,8 @@
 const vm = new Vue({
     el: '#main',
     data: {
+	mapOn: false,
+	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
 	match: "",
@@ -102,12 +104,42 @@ const vm = new Vue({
 	    waitingScreen.style.display = "none";
 	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+
 	},
 	dateEvaluationView: function() {
 	    var dateInProgress = document.getElementById("dateInProgressTemp");
 	    dateInProgress.style.display = "none";
 	    this.currentDateNumber++;
-	}
+	},
+
+	showMap: function() {
+	    var dateInfo = document.getElementById("currentDateInfo");
+	    dateInfo.style.display = "none";
+	    var map = document.getElementById("map");
+	    map.style.display = "block";
+	    this.mapButtonText = "Close map";
+	},
+
+	hideMap: function() {
+	    var map = document.getElementById("map");
+	    map.style.display = "none";
+	    
+	    var dateInfo = document.getElementById("currentDateInfo");
+	    dateInfo.style.display = "block";
+
+	    this.mapButtonText = "Open map";
+	},
+	
+	showOrHideMap: function() {
+	    if (!this.mapOn){
+		this.showMap();
+		this.mapOn = true;
+	    }
+	    else{
+		this.hideMap();
+		this.mapOn = false;
+	    }
+	},
     }
     
 })

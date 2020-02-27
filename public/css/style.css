@@ -335,13 +335,13 @@ label{
     text-align: center;
 }
 
-#startDateTEMP, #goToEvalTemp {
+#startDateTEMP, #goToEvalTemp, #mapTable{
     height: 20em;
     width: 40em;
     background-color: pink;
 }
 
-#startDateTEMP p, #goToEvalTemp p{
+#startDateTEMP p, #goToEvalTemp p, #mapTable p{
     font-size: 5em;
 }
 
@@ -462,4 +462,8 @@ input[type=radio] {
 #failedProfile{
     font-size: 3em;
     color: red;
+}
+
+#map {
+    display: none;
 }

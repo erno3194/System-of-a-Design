@@ -101,11 +101,22 @@
 	  <p class="dTitle">AT TABLE</p>
 	  <p class="dInfo">{{currentDate.table}}</p>
 
+
 	  <button id="goToEvalTemp" type="button" v-on:click="goToEvalTemp">
 	    <p>TEMP</p>
 	  </button>
 	</div>
+	<div>
+	  <p id="map">
+	    <img src="img/table-map.png">
+	  </p>
+	</div>
+	<div id="mapDiv">
+	  <button id="mapTable" type="button" v-on:click="showOrHideMap">
+	    <p id="mapShow">{{mapButtonText}}</p>
+	</div>
       </div>
+
       <div id="evalFormDiv">
         <div id="formHeader">
 	  
