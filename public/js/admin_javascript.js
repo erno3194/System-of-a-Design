@@ -128,7 +128,6 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-    document.getElementById(ev.target.id+"c").id="";
 }
 
 var children = [];
@@ -138,14 +137,17 @@ function drop(ev, male) {
     var block = document.getElementById(data);
     if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale"){
 	block.style.marginTop = "0.5em";
-    } else{
+	ev.target.appendChild(block);
+	document.getElementById(block.id+"c").id="c";
+    } else if(ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
 	block.style.marginTop = "0em";
 	ev.target.id = block.id+"c";
 	document.getElementById(ev.target.id).style.width = block.style.width;
 	document.getElementById(ev.target.id).style.height = block.style.height;
-	//block.id = ev.target.id.substring(0, ev.target.id.length-1);
-
-	console.log(block.id);
+	ev.target.appendChild(block);
+    } else{
+	console.log(ev.target.childNodes);
+	console.log(ev.target.id);
     }
-    ev.target.appendChild(block);
+
 }
