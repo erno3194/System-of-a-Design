@@ -341,7 +341,7 @@ label{
     background-color: pink;
 }
 
-#mapTable{
+#mapButton{
     height: 15em;
     width: 35em;
     background-color: powderblue;
@@ -351,7 +351,7 @@ label{
     border-radius: 50px;
 }
 
-#startDateTEMP p, #goToEvalTemp p, #mapTable p{
+#startDateTEMP p, #goToEvalTemp p, #mapButton p{
     font-size: 5em;
 }
 
