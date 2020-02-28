@@ -285,16 +285,16 @@ label{
     text-align:center;
 }
 
-#myDates h2{
+#myDates h2, #myMatches h2{
     font-size: 5em;
 }
 
-#myDates h3{
+#myDates h3, #myMatches h3{
     font-size:3em;
     font-style: italic;
 }
 
-#myDates div{
+#myDates div, #myMatches div{
     display:flex;
     background-color: pink;
     width: 100%;
@@ -302,13 +302,28 @@ label{
     border: 5px solid black;
     text-align: center;
     align-items: center;
+    border-radius: 5em;
+    
 }
 
-#myDates label{
+#sendContactInfoButton{
+    border-radius: 1em;
+    border: 5px solid black;
+}
+
+#myDates label {
     word-wrap: break-word;
     hyphens: auto;
     font-size: 5em;
     width: 60%;
+}
+
+#myMatches label{
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 3em;
+    width: 60%;
+    font-weight: bold;
 }
 
 #myDates [type="checkbox"]{
@@ -322,6 +337,18 @@ label{
     height: auto;
     font-size: 4em;
 }
+
+#myMatches{
+    display: none;
+    grid-row: 1/span 2;
+    grid-template-rows: 10% 10% auto auto auto auto;
+    width: 90%;
+    margin-top: 2em;
+    grid-gap: 0.5em;
+    text-align:center;
+}
+
+
 
 #dateInProgressTemp {
     display: none;
@@ -474,6 +501,7 @@ input[type=radio] {
     color: red;
 }
 
+
 #map {
     padding: 10px;
     border: 8px solid;
@@ -484,4 +512,22 @@ input[type=radio] {
     font-size: 60%;
     font-style: italic;
     
+
+#myMatches h2{
+    font-size: 7em;
+    font-weight: bold;
 }
+
+#myMatches h3{
+    font-size: 4em;
+}
+
+#matchInfo label{
+    font-size: 3em;
+    word-wrap: break-word;
+}
+
+.matchNameClass {
+    font-weight: bold;
+}
+
