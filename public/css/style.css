@@ -347,13 +347,23 @@ label{
     text-align: center;
 }
 
-#startDateTEMP, #goToEvalTemp {
+#startDateTEMP, #goToEvalTemp{
     height: 20em;
     width: 40em;
     background-color: pink;
 }
 
-#startDateTEMP p, #goToEvalTemp p{
+#mapButton{
+    height: 15em;
+    width: 35em;
+    background-color: powderblue;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 50px;
+}
+
+#startDateTEMP p, #goToEvalTemp p, #mapButton p{
     font-size: 5em;
 }
 
@@ -474,4 +484,16 @@ input[type=radio] {
 #failedProfile{
     font-size: 3em;
     color: red;
+}
+
+#map {
+    padding: 10px;
+    border: 8px solid;
+    display: none;
+}
+
+#tableMapHelp {
+    font-size: 60%;
+    font-style: italic;
+    
 }
