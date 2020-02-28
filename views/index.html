@@ -79,20 +79,22 @@
 	  <label for="date.name">{{date.name}}</label>
 	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
 	</div>
-	<div id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
+	<button id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
 	  <p>Send my information</p>
 	</div>
       </div>
 
       <div id="myMatches">
 	<h2>Your matches</h2>
-	<h3>Here are their information:</h3>
+	<h3>Here is their information:</h3>
 	<div id="matchInfo" v-for="match in myMatches">
-	  <label for="match.name">{{match.name}}</label>
-	  <label for="match.name">{{match.phoneNumber}}</label>
-	  <label for="match.name">{{match.email}}</label>
+	  <label class="matchNameClass" for="match.name">{{match.name}}</label>
+	 <!-- <label for="match.name">{{match.phoneNumber}}</label> -->
+	 <label for="match.name">{{match.email}}</label>	 
 	</div>
+	<p id="thankYouMessage"><br>Thank you for using Speed Dejting!</p>
       </div>
+
 	
 
 
