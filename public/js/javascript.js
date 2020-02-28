@@ -50,6 +50,8 @@ const vm = new Vue({
 	    myMatches.style.display = "grid";
 	    var thankYouMessage = document.getElementById("thankYouMessage");
 	    thankYouMessage.style.display = "block";
+	    thankYouMessage.style.fontStyle = "italic";
+	    thankYouMessage.style.fontSize = "3em";
 	},
 	markDone: function(name, email, age, gender, preferredAge){
 	    this.name = name,

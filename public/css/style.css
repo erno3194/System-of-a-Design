@@ -303,6 +303,7 @@ label{
     text-align: center;
     align-items: center;
     border-radius: 5em;
+    
 }
 
 #sendContactInfoButton{
@@ -310,11 +311,19 @@ label{
     border: 5px solid black;
 }
 
-#myDates label, myMatches label{
+#myDates label {
     word-wrap: break-word;
     hyphens: auto;
     font-size: 5em;
     width: 60%;
+}
+
+#myMatches label{
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 3em;
+    width: 60%;
+    font-weight: bold;
 }
 
 #myDates [type="checkbox"]{
@@ -506,7 +515,7 @@ input[type=radio] {
 
 #myMatches h2{
     font-size: 7em;
-    font-style: bold;
+    font-weight: bold;
 }
 
 #myMatches h3{
@@ -522,8 +531,3 @@ input[type=radio] {
     font-weight: bold;
 }
 
-#thankYouMessage {
-    display: none;
-    font-style: italic;
-    font-size: 3em;
-}
