@@ -14,6 +14,9 @@ const vm = new Vue({
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
+	myMatches: [{name: "Kim Johansson", dateNumber: 0, phoneNumber: "112", email: "e@mail.se"},
+		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
+		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "Kim Johansson", table: "1"},
 	currentDateNumber: 1,
@@ -39,6 +42,10 @@ const vm = new Vue({
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
+	    var block = document.getElementById("myDates");
+	    block.style.display = "none";
+	    var myMatches = document.getElementById("myMatches");
+	    myMatches.style.display = "grid";
 	},
 	markDone: function(name, email, age, gender, preferredAge){
 	    this.name = name,

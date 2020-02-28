@@ -84,6 +84,17 @@
 	</div>
       </div>
 
+      <div id="myMatches">
+	<h2>Your matches</h2>
+	<h3>Here are their information:</h3>
+	<div id="matchInfo" v-for="match in myMatches">
+	  <label for="match.name">{{match.name}}</label>
+	  <label for="match.name">{{match.phoneNumber}}</label>
+	  <label for="match.name">{{match.email}}</label>
+	</div>
+      </div>
+	
+
 
       <div id="waitingScreen">
 	<h2>WAITING FOR DATE {{currentDateNumber}}/3 TO BE ARRANGED</h2>
