@@ -82,7 +82,9 @@ const vm = new Vue({
 		block = null;
 	    }
 	    if(sndBlock.style.width == "20em"){
-		var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em"; 
+		try{
+		    var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em"; 
+		}catch{}
 		sndBlock.style.width="15em";
 		sndBlock.style.height="3.2em";
 		if(block){
