@@ -172,13 +172,14 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     var block = document.getElementById(data);
     try{
-	document.getElementById(block.id+"c").id="c";
+	document.getElementById(block.id+"c").id=block.id[0] + "c";
     } catch(e){}
     if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale"){
-	block.style.marginTop = "0.5em";
-	ev.target.appendChild(block);
-
-    } else if(ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
+	if(block.id[0].toUpperCase() == ev.target.id[7]){
+	    block.style.marginTop = "0.5em";
+	    ev.target.appendChild(block);
+	}
+    } else if((ev.target.id[0] == block.id[0]) &&ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
 	block.style.marginTop = "0em";
 	ev.target.id = block.id+"c";
 	ev.target.style.width = block.style.width;
