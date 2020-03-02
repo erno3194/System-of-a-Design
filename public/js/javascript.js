@@ -12,8 +12,8 @@ const vm = new Vue({
 	email: "",
 	age: "",
 	gender: "male",
-	preferredAgeMax: "",
-	preferredAgeMin: "",
+	ageMinimum: "",
+	ageMaximum: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
@@ -54,7 +54,7 @@ const vm = new Vue({
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
 	},
-	markDone: function(name, email, age, gender, preferredAgeMin, preferredAgeMax){
+	markDone: function(name, email, age, gender, ageMinimum, ageMaximum){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
@@ -70,7 +70,7 @@ const vm = new Vue({
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
 
-	    if((name && this.reg.test(email) && age && gender && preferredAge && this.selectedHobbies.length > 0)){
+	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
 		
 		var waitingScreen = document.getElementById("waitingScreen");
@@ -95,10 +95,10 @@ const vm = new Vue({
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
 		} else document.getElementById("intressenLabel").style.color = "green";
-		if(!preferredAgeMin || preferredAgeMin < 18 || preferredAgeMin > 101){
+		if(!ageMinimum || ageMinimum < 18 || ageMinimum > 101){
 		    document.getElementById("ageMinParagraph").style.color = "red";
 		}else document.getElementById("ageMinParagraph").style.color = "green";
-		if(!preferredAgeMax || preferredAgeMax < 18 || preferredAgeMax > 101){
+		if(!ageMaximum || ageMaximum < 18 || ageMaximum > 101){
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
