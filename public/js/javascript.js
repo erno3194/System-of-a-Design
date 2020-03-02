@@ -12,7 +12,8 @@ const vm = new Vue({
 	email: "",
 	age: "",
 	gender: "male",
-	preferredAge: "18-25",
+	preferredAgeMax: "",
+	preferredAgeMin: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
@@ -53,17 +54,19 @@ const vm = new Vue({
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
 	},
-	markDone: function(name, email, age, gender, preferredAge){
+	markDone: function(name, email, age, gender, preferredAgeMin, preferredAgeMax){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
 	    this.gender = gender,
-	    this.preferredAge = preferredAge;
+	    this.preferredAgeMin = preferredAgeMin;
+	    this.preferredAgeMax = preferredAgeMax;
 	    console.log(name);
 	    console.log(email);
 	    console.log(age);
 	    console.log(gender);
-	    console.log(preferredAge);
+	    console.log(preferredAgeMin);
+	    console.log(preferredAgeMax);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
 
@@ -86,12 +89,18 @@ const vm = new Vue({
 		if(!this.reg.test(email) || !email){
 		    document.getElementById("emailParagraph").style.color = "red";
 		} else document.getElementById("emailParagraph").style.color = "green";
-		if(!age){
+		if(!age || age < 18 || age > 101){
 		    document.getElementById("ageParagraph").style.color = "red";
 		} else document.getElementById("ageParagraph").style.color = "green";
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
 		} else document.getElementById("intressenLabel").style.color = "green";
+		if(!preferredAgeMin || preferredAgeMin < 18 || preferredAgeMin > 101){
+		    document.getElementById("ageMinParagraph").style.color = "red";
+		}else document.getElementById("ageMinParagraph").style.color = "green";
+		if(!preferredAgeMax || preferredAgeMax < 18 || preferredAgeMax > 101){
+		    document.getElementById("ageMaxParagraph").style.color = "red";
+		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
 	},
 	hideButtons: function() {

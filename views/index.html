@@ -41,6 +41,16 @@
 	      <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
 	    </p>
 
+	    <p class="skapaProfilInput" id="ageMinParagraph">
+	      <label for="preferedAgeMin">Preferred lowest age: </label><br>
+	      <input v-model="ageMinimum"  placeholder="18-100" id="preferredAgeMin" type="number" min="18" max="100" class="inputField"/>
+	    </p>
+
+	    <p class="skapaProfilInput" id="ageMaxParagraph">
+	      <label for="preferedAgeMax">Preferred highest age: </label><br>
+	      <input v-model="ageMaximum" placeholder="18-100" id="preferredAgeMax" type="number" min="18" max="100" class="inputField"/>
+	    </p>
+	    <!-- DROPDOWN ÅLDER
 	    <p class="skapaProfilInput" id="preferredAgeParagraph">
 	      <label for="preferredAge">Preferred age range</label><br>
 	      <select v-model="preferredAge" id="preferredAge">
@@ -50,6 +60,7 @@
 		<option>45+</option>
 	      </select>
 	    </p>
+	    -->
 	    <div class="skapaProfilInput" id="intressen">
 	      <label id="intressenLabel">Hobbies:</label>
 	      <div v-for="hobby in hobbies">
@@ -59,7 +70,7 @@
 	    </div>
 	    <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	  </form>
-	  <button type="submit" v-on:click="markDone(name, email, age, gender, preferredAge)" id="submitProfileButton">
+	  <button type="submit" v-on:click="markDone(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
 	    <p>SUBMIT</p>
 	  </button>
 	</div>
