@@ -7,7 +7,7 @@ var maleArray = [{id:"m1", name: "Lucas Lucasson", email: "lucas@test.se", age: 
 		{id:"m7", name: "Oliver Oliversson", email: "Oliver@test.se", age: 23, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "35-55"},
 		{id:"m8", name: "Oscar Oscarsson", email: "Oscar@test.se", age: 21, gender: "male", hobbies: ["Movies", "Food"], preferredAge: "25-35"},
 		{id:"m9", name: "Adam Adamsson", email: "Adam@test.se", age: 30, gender: "male", hobbies: ["Food"], preferredAge: "35-55"},
-		 {id:"m10", name: "Matteo Matteosson", email: "Matteo@test.se", age: 20, gender: "male", hobbies: ["Outdoors", "Food", "Movies"], preferredAge: "35-55"}];
+		 {id:"m0", name: "Matteo Matteosson", email: "Matteo@test.se", age: 20, gender: "male", hobbies: ["Outdoors", "Food", "Movies"], preferredAge: "35-55"}];
 
 var femaleArray = [{id:"f1", name: "Maria Mariadotter", email: "maria@test.se", age: 38, gender: "female", hobbies: ["Other", "Food"], preferredAge: "18-25"},
 		{id:"f2", name: "Anna Annadotter", email: "anna@test.se", age: 28, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
@@ -18,4 +18,4 @@ var femaleArray = [{id:"f1", name: "Maria Mariadotter", email: "maria@test.se", 
 		{id:"f7", name: "Karin Karindotter", email: "arin@test.se", age: 25, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "25-35"},
 		{id:"f8", name: "Ingrid Ingriddotter", email: "ingrid@test.se", age: 23, gender: "female", hobbies: ["Movies"], preferredAge: "18-25"},
 		{id:"f9", name: "Christina Christinadotter", email: "christina@test.se", age: 20, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "35-45"},
-	       {id:"f10", name: "Sofia Sofiadotter", email: "sofia@test.se", age: 33, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "35-45"}];
+	       {id:"f0", name: "Sofia Sofiadotter", email: "sofia@test.se", age: 33, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "35-45"}];
