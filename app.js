@@ -53,16 +53,22 @@ const data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders() });
+    socket.emit('initialize', { orders: data.getAllOrders() });
 
-  // When a connected client emits an "addOrder" message
-  socket.on('addOrder', function(order) {
-    data.addOrder(order);
+    // When a connected client emits an "addOrder" message
+    socket.on('addOrder', function(order) {
+	data.addOrder(order);
     // send updated info to all connected clients,
     // note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders() });
-  });
+	io.emit('currentQueue', { orders: data.getAllOrders() });
+    });
+    socket.on('saveUser', function(name, email, age, preferredAgeMin, preferredAgeMax){
+	console.log("saveUser");
+    });
 
+    socket.on('test', function(){
+	console.log("testar");
+    });
 });
 
 /* eslint-disable-next-line no-unused-vars */
