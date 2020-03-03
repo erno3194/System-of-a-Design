@@ -102,14 +102,12 @@ const vm = new Vue({
 	    }
 	},
 
-	incrementNumberOfUsers: function(){
-	    this.numberOfUsersInEvent ++;
-	},
-
 	updateNumberOfUsers: function() {
-	    socket.emit('getNumberOfUsers', this.incrementNumberOfUsers());
+	    socket.emit('getNumberOfUsers', function(result) {
+		this.numberOfUsersInEvent = result;
+		console.log(this.numberOfUsersInEvent);
+	    });
 	    console.log("click");
-	    console.log(this.numberOfUsersInEvent);
 	},
 
 	startDate: function(){

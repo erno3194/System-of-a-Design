@@ -66,9 +66,10 @@ io.on('connection', function(socket) {
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });
-    socket.on('getNumberOfUsers', function(incrementNumberOfUsers){
-	incrementNumberOfUsers();
+    socket.on('getNumberOfUsers', function(callback){
+	callback(data.numberOfClients());
 	console.log("increment");
+	console.log(data.numberOfClients());
     });
 
 
