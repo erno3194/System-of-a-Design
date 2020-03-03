@@ -102,6 +102,16 @@ const vm = new Vue({
 	    }
 	},
 
+	incrementNumberOfUsers: function(){
+	    this.numberOfUsersInEvent ++;
+	},
+
+	updateNumberOfUsers: function() {
+	    socket.emit('getNumberOfUsers', this.incrementNumberOfUsers());
+	    console.log("click");
+	    console.log(this.numberOfUsersInEvent);
+	},
+
 	startDate: function(){
 	    if(this.dateInProgressBool == false){
 		var timer = document.getElementById('timer');
@@ -133,12 +143,7 @@ const vm = new Vue({
 	}
 	
     },
-    created: function() {
-	socket.on('updateNumberOfUsers', function(data){
-	    console.log("hej :)");
-	    //this.numberOfUsersInEvent = data.;
-	});
-    },
+
     
 })
 

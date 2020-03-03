@@ -57,7 +57,7 @@ io.on('connection', function(socket) {
 	const user = {name, email, age, preferredAgeMin, preferredAgeMax};
 	data.maleUsers.push(user);
 	console.log(data.maleUsers);
-	socket.emit('updateNumberOfUsers', data.numberOfClients() );
+	
     });
     
     socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax){
@@ -66,7 +66,10 @@ io.on('connection', function(socket) {
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });
-
+    socket.on('getNumberOfUsers', function(incrementNumberOfUsers){
+	incrementNumberOfUsers();
+	console.log("increment");
+    });
 
 
 });

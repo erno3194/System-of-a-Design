@@ -31,7 +31,7 @@
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
 	  <p>TEMP</p>	  
 	</button>
-	<h2>{{numberOfUsersInEvent}}/20 users have joined the event</h2>
+	<h2 v-on:click="updateNumberOfUsers">{{numberOfUsersInEvent}}/20 users have joined the event</h2>
       </div>
       
       <div id="dateInProgressTemp">
