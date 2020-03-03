@@ -34,41 +34,41 @@ app.get('/evaluation', function(req,res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-  this.orders = {};
+    this.maleUsers = [];
+    this.femaleUsers = []; 
 }
 
 /*
   Adds an order to to the queue
 */
-Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
-};
 
-Data.prototype.getAllOrders = function() {
-  return this.orders;
+
+Data.prototype.numberOfClients = function() {
+    return (this.maleUsers.length + this.femaleUsers.length);
 };
 
 const data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-    socket.emit('initialize', { orders: data.getAllOrders() });
 
-    // When a connected client emits an "addOrder" message
-    socket.on('addOrder', function(order) {
-	data.addOrder(order);
-    // send updated info to all connected clients,
-    // note the use of io instead of socket
-	io.emit('currentQueue', { orders: data.getAllOrders() });
+    socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax){
+	console.log("saveUserMale");
+	const user = {name, email, age, preferredAgeMin, preferredAgeMax};
+	data.maleUsers.push(user);
+	console.log(data.maleUsers);
+	socket.emit('updateNumberOfUsers', data.numberOfClients() );
     });
-    socket.on('saveUser', function(name, email, age, preferredAgeMin, preferredAgeMax){
-	console.log("saveUser");
+    
+    socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax){
+	console.log("saveUserFemale");
+	const user = {name, email, age, preferredAgeMin, preferredAgeMax};
+	data.femaleUsers.push(user);
+	console.log(data.femaleUsers);
     });
 
-    socket.on('test', function(){
-	console.log("testar");
-    });
+
+
 });
 
 /* eslint-disable-next-line no-unused-vars */

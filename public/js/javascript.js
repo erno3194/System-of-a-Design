@@ -70,8 +70,12 @@ const vm = new Vue({
 	    console.log(ageMinimum);
 	    console.log(ageMaximum);
 	    console.log(this.selectedHobbies);
-	    socket.emit('test');
-	    socket.emit('saveUser', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies); 
+	    if(gender == "male"){
+		socket.emit('saveUserMale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+	    }
+	    if(gender == "female"){
+		socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+	    }
 	    var skapaProfil = document.getElementById("skapaProfil");
 
 	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){

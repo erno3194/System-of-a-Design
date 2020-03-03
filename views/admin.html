@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang = "en">
   <head>
+    <script src="/socket.io/socket.io.js" defer></script>
     <script type="text/javascript" src="js/data.js" defer></script>
     <script type="text/javascript" src="js/admin_javascript.js" defer></script>
     <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="/socket.io/socket.io.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/admin_style.css">
     <title>Speed dejting</title>
     <meta charset="utf-8"/>
@@ -31,6 +31,7 @@
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
 	  <p>TEMP</p>	  
 	</button>
+	<h2>{{numberOfUsersInEvent}}/20 users have joined the event</h2>
       </div>
       
       <div id="dateInProgressTemp">

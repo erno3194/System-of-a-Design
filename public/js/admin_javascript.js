@@ -1,4 +1,6 @@
 /* JAVASCRIPT */
+
+const socket = io();
 var on = false
 function startTimer() {
     if(on){
@@ -23,7 +25,9 @@ function checkSecond(sec) {
 
 const vm = new Vue({
     el: '#main',
+
     data: {
+	numberOfUsersInEvent: 0,
 	c: "c",
 	f: "f",
 	m: "m",
@@ -32,6 +36,7 @@ const vm = new Vue({
 	dateInProgressBool: false,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
+
     methods: {
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
@@ -96,6 +101,7 @@ const vm = new Vue({
 		
 	    }
 	},
+
 	startDate: function(){
 	    if(this.dateInProgressBool == false){
 		var timer = document.getElementById('timer');
@@ -126,7 +132,13 @@ const vm = new Vue({
 	    }
 	}
 	
-    }
+    },
+    created: function() {
+	socket.on('updateNumberOfUsers', function(data){
+	    console.log("hej :)");
+	    //this.numberOfUsersInEvent = data.;
+	});
+    },
     
 })
 
