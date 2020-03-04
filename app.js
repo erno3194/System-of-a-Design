@@ -71,6 +71,10 @@ io.on('connection', function(socket) {
 	callback(data.numberOfClients());
     });
 
+    socket.on('getUsersFromServer', function(callback){
+	callback(data);
+    });
+
 
 });
 

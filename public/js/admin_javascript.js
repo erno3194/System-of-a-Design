@@ -3,6 +3,11 @@
 const socket = io();
 var on = false;
 var numberOfUsersInEvent = 0;
+var maleArrayNew = [];
+var femaleArrayNew = [];
+
+
+
 function startTimer() {
     if(on){
 	var presentTime = document.getElementById('timer').innerHTML;
@@ -112,9 +117,15 @@ const vm = new Vue({
 		numberOfUsersInEvent = result;
 		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
 	    });
+	    socket.emit('getUsersFromServer', function(result){
+		maleArrayNew = result.maleUsers;
+		femaleArrayNew = result.femaleUsers;
+	    });
 	    if(numberOfUsersInEvent>= 2) {
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
+	    console.log(maleArrayNew);
+	    console.log(femaleArrayNew);
 	},
 
 	startDate: function(){
