@@ -3,6 +3,8 @@
 const vm = new Vue({
     el: '#main',
     data: {
+	mapOn: false,
+	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
 	match: "",
@@ -10,10 +12,14 @@ const vm = new Vue({
 	email: "",
 	age: "",
 	gender: "male",
-	preferredAge: "18-25",
+	ageMinimum: "",
+	ageMaximum: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [{name:"Kim Johansson", dateNumber: 0},{name:"Alex Andersson", dateNumber: 1}, {name:"Jamie Karlsson", dateNumber:2}],
+	myMatches: [{name: "Kim Johansson", dateNumber: 0, phoneNumber: "112", email: "superduperlångmegamail@mail.se"},
+		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
+		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "Kim Johansson", table: "1"},
 	currentDateNumber: 1,
@@ -39,22 +45,32 @@ const vm = new Vue({
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
+	    var block = document.getElementById("myDates");
+	    block.style.display = "none";
+	    var myMatches = document.getElementById("myMatches");
+	    myMatches.style.display = "grid";
+	    var thankYouMessage = document.getElementById("thankYouMessage");
+	    thankYouMessage.style.display = "block";
+	    thankYouMessage.style.fontStyle = "italic";
+	    thankYouMessage.style.fontSize = "3em";
 	},
-	markDone: function(name, email, age, gender, preferredAge){
+	markDone: function(name, email, age, gender, ageMinimum, ageMaximum){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
 	    this.gender = gender,
-	    this.preferredAge = preferredAge;
+	    this.preferredAgeMin = preferredAgeMin;
+	    this.preferredAgeMax = preferredAgeMax;
 	    console.log(name);
 	    console.log(email);
 	    console.log(age);
 	    console.log(gender);
-	    console.log(preferredAge);
+	    console.log(preferredAgeMin);
+	    console.log(preferredAgeMax);
 	    console.log(this.selectedHobbies);
 	    var skapaProfil = document.getElementById("skapaProfil");
 
-	    if((name && this.reg.test(email) && age && gender && preferredAge && this.selectedHobbies.length > 0)){
+	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
 		
 		var waitingScreen = document.getElementById("waitingScreen");
@@ -73,12 +89,18 @@ const vm = new Vue({
 		if(!this.reg.test(email) || !email){
 		    document.getElementById("emailParagraph").style.color = "red";
 		} else document.getElementById("emailParagraph").style.color = "green";
-		if(!age){
+		if(!age || age < 18 || age > 101){
 		    document.getElementById("ageParagraph").style.color = "red";
 		} else document.getElementById("ageParagraph").style.color = "green";
 		if(this.selectedHobbies.length == 0){
 		    document.getElementById("intressenLabel").style.color = "red";
 		} else document.getElementById("intressenLabel").style.color = "green";
+		if(!ageMinimum || ageMinimum < 18 || ageMinimum > 101){
+		    document.getElementById("ageMinParagraph").style.color = "red";
+		}else document.getElementById("ageMinParagraph").style.color = "green";
+		if(!ageMaximum || ageMaximum < 18 || ageMaximum > 101){
+		    document.getElementById("ageMaxParagraph").style.color = "red";
+		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
 	},
 	hideButtons: function() {
@@ -102,12 +124,44 @@ const vm = new Vue({
 	    waitingScreen.style.display = "none";
 	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+
 	},
 	dateEvaluationView: function() {
 	    var dateInProgress = document.getElementById("dateInProgressTemp");
 	    dateInProgress.style.display = "none";
 	    this.currentDateNumber++;
-	}
+	},
+
+	showMap: function() {
+	    var dateInfo = document.getElementById("currentDateInfo");
+	    dateInfo.style.display = "none";
+	    var map = document.getElementById("map");
+	    map.style.display = "block";
+	    this.mapButtonText = "Close map";
+	    var helpText = document.getElementById("tableMapHelp");
+	    helpText.style.display = "none";
+	},
+
+	hideMap: function() {
+	    var map = document.getElementById("map");
+	    map.style.display = "none";   
+	    var dateInfo = document.getElementById("currentDateInfo");
+	    dateInfo.style.display = "block";
+	    this.mapButtonText = "Open map";
+	    var helpText = document.getElementById("tableMapHelp");
+	    helpText.style.display = "block";
+	},
+	
+	showOrHideMap: function() {
+	    if (!this.mapOn){
+		this.showMap();
+		this.mapOn = true;
+	    }
+	    else{
+		this.hideMap();
+		this.mapOn = false;
+	    }
+	},
     }
     
 })

@@ -1,4 +1,4 @@
-/* JAVASCRIPT */
+ /* JAVASCRIPT */
 
 var on = false
 function startTimer() {
