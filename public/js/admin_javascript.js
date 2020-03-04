@@ -25,6 +25,7 @@ function checkSecond(sec) {
 const vm = new Vue({
     el: '#main',
     data: {
+	matched: false,
 	numbers: [{id:"1"},{id:"2"},{id:"3"},{id:"4"},{id:"5"},{id:"6"},{id:"7"},{id:"8"},{id:"9"},{id:"0"}],
 	c: "c",
 	f: "f",
@@ -39,7 +40,9 @@ const vm = new Vue({
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
-
+	applyAlgorithm: function() {
+	    this.matched  = true;
+	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("exitEventButton");
 	    var tillButton = document.getElementById("beginEventButton");
@@ -181,7 +184,7 @@ function drop(ev) {
 	    block.style.marginTop = "0.5em";
 	    ev.target.appendChild(block);
 	}
-    } else if((ev.target.id[0] == block.id[0]) &&ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
+    } else if((ev.target.id[0] == block.id[0]) && ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
 	block.style.marginTop = "0em";
 	ev.target.id = block.id+"c";
 	ev.target.style.width = block.style.width;
@@ -196,8 +199,7 @@ function drop(ev) {
 		try{
 		    if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";
 		    if(parentBlock.style.height == "5em") parentBlock.style.marginBottom = "0em";
-		} catch(e){}
-		
+		} catch(e){}		
 	    }
 	} else {
 
@@ -222,9 +224,7 @@ function drop(ev) {
 	    } catch(e){}
 
 	    
-	}
+	} 
 	ev.target.appendChild(block);
     }
 }
-
-

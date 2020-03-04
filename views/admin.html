@@ -47,7 +47,7 @@
 	  <div id="males" class="scroller">
 	    <h2>Males</h2>
 	    <div v-for="male in malesRender" v-bind:id="male.id+c" v-bind:class="male.id.substring(1)" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
-	      <div v-bind:id="male.id" class="maleClass" draggable="true" ondragover="" ondragstart="drag(event)" v-on:click="expand(male)">
+	      <div v-bind:id="male.id" v-if="matched" class="maleClass" draggable="true" ondragover="" ondragstart="drag(event)" v-on:click="expand(male)">
 		<p>{{male.name}}</p>
 		<p>Age: {{male.age}}</p>
 	      </div>
@@ -62,7 +62,7 @@
 	  <div id="females" class="scroller">
 	    <h2>Females</h2>
 	    <div v-for="female in femalesRender" v-bind:id="female.id+c" v-bind:class="female.id.substring(1)" class="females" ondrop="drop(event)" ondragover="allowDrop(event)">
-	      <div v-bind:id="female.id" class="femaleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(female)">
+	      <div v-bind:id="female.id" v-if="matched" class="femaleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(female)">
 		<p>{{female.name}}</p> 
 		<p>Age: {{female.age}}</p>
 	      </div>
@@ -74,7 +74,9 @@
 	  <p class="drop">Drop zone for females</p>
 	</div>
 	<div id="trdColumn">
+
 	  <div id="map"><p>Map here</p></div>
+	  <div id="applyAlgorithm" v-on:click="applyAlgorithm()"><p>Apply matching algorithm</p></div>
 	  <div id="startDateButton" v-on:click="startDate()">
 	    <p>Start date</p>
 	    <p id="timer">5:00</p>
