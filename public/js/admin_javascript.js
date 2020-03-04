@@ -49,18 +49,21 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
-	beginEvent: function() {
-	    console.log("Click");
-	    this.hideButtons();
-	    var waitingScreen = document.getElementById("waitingScreen");
-	    waitingScreen.style.display = "grid";
-	},
+
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
 	    var dateInProgress = document.getElementById("dateInProgress");
 	    dateInProgressTemp.style.display = "grid";
 	},
+	
+	beginEvent: function() {
+	    this.hideButtons();
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "grid";
+	    setInterval(this.updateNumberOfUsers, 1000);
+	},
+	
 	exitEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
@@ -102,12 +105,12 @@ const vm = new Vue({
 	    }
 	},
 
+
 	updateNumberOfUsers: function() {
 	    socket.emit('getNumberOfUsers', function(result) {
 		this.numberOfUsersInEvent = result;
-		console.log(this.numberOfUsersInEvent);
+		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
 	    });
-	    console.log("click");
 	},
 
 	startDate: function(){

@@ -68,8 +68,6 @@ io.on('connection', function(socket) {
     });
     socket.on('getNumberOfUsers', function(callback){
 	callback(data.numberOfClients());
-	console.log("increment");
-	console.log(data.numberOfClients());
     });
 
 
