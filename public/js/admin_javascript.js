@@ -1,5 +1,4 @@
 /* JAVASCRIPT */
-
 var on = false
 function startTimer() {
     if(on){
@@ -59,14 +58,7 @@ const vm = new Vue({
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
 	    var dateInProgress = document.getElementById("dateInProgress");
-	    var subCatContainer = document.getElementsByClassName("scroller");
-	    
-	    $(".scroller").scroll(function() {
-		for(var i in subCatContainer)
-		    $(subCatContainer[i]).scrollTop($(this).scrollTop());
-	    });
 	    dateInProgressTemp.style.display = "grid";
-	    
 	},
 	exitEvent: function() {
 	    console.log("Click");
@@ -75,39 +67,24 @@ const vm = new Vue({
 	},
 	expand: function(person){
 	    var sndBlock = document.getElementById(person.id);
-	    //var pairIndex = document.getElementById(this.c + person.id.substring(1));
+	    var pairIndex = document.getElementById(this.c + person.id.substring(1));
+	    if(person.id[0] == 'm'){
+		var pair = document.getElementById(this.f + person.id.substring(1));
+	    } else{
+		var pair = document.getElementById(this.m + person.id.substring(1));
+	    }
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
-		console.log(block.className);
-
-		var pairIndex = document.getElementsByClassName(block.className.substring(block.className.length-1));
+		var trdBlock = document.getElementById(pair.id+this.c);
 	    } catch(e){
 		block = null;
 	    }
 	    if(sndBlock.style.width == "20em"){
-		try{
-		    var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em"; 
-		}catch{}
 		sndBlock.style.width="15em";
 		sndBlock.style.height="3.2em";
 		if(block){
 		    block.style.width="15em";
 		    block.style.height="3.2em";
-
-		    console.log(pairIndex);
-		    
-		    for(blockTmp in pairIndex){
-			try{
-			    if(bothExpanded) pairIndex[1].style.marginBottom = "2.3em";
-			    if(bothExpanded && pairIndex[blockTmp].style.width == "20em") pairIndex[blockTmp].style.marginBottom = "0em";
-			    else if (bothExpanded && pairIndex[blockTmp].style.width == "15em"){
-				pairIndex[blockTmp].style.marginBottom = "2.3em";	
-			    } else{
-				pairIndex[blockTmp].style.marginBottom = "0em";	
-			    }
-			    
-			} catch(e){}
-		    }
 		}
 		sndBlock.innerHTML = person.name + "<br>Age:" + person.age + "<br>";
 	    } else if(block != null && block.hasChildNodes()){		
@@ -116,20 +93,12 @@ const vm = new Vue({
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
 		sndBlock.innerHTML += "Hobbies: " + person.hobbies + "<br> Email: " + person.email;
-		for(blockTmp in pairIndex){
-		    try{
-			if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";
-			if(block.style.height == "5em") block.style.marginBottom = "0em";
-		    } catch(e){}
-		}
-		
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
 		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
 		
 	    }
-	    
 	},
 	startDate: function(){
 	    if(this.dateInProgressBool == false){
@@ -159,8 +128,10 @@ const vm = new Vue({
 		this.dateInProgressBool = false;
 		on = false;
 	    }
-	}	
-    }    
+	}
+	
+    }
+    
 })
 
 function allowDrop(ev) {
@@ -172,13 +143,10 @@ function drag(ev) {
 }
 
 var children = [];
-function drop(ev) {
+function drop(ev, male) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     var block = document.getElementById(data);
-    try{
-	document.getElementById(block.id+"c").id=block.id[0] + "c";
-    } catch(e){}
     if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale"){
 	if(block.id[0].toUpperCase() == ev.target.id[7]){
 	    block.style.marginTop = "0.5em";
@@ -226,5 +194,8 @@ function drop(ev) {
 	    
 	} 
 	ev.target.appendChild(block);
+    } else{
+	console.log(ev.target.childNodes);
+	console.log(ev.target.id);
     }
 }
