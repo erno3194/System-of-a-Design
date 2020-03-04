@@ -228,7 +228,7 @@ footer{
     background-color: lightgreen;
     word-break: break-word;
     display: grid;
-    grid-template-columns: 10% auto 10% auto 10%;
+    grid-template-columns: 10% auto auto auto 10%;
     grid-template-rows: auto auto;
     border: 5px solid black;
 
