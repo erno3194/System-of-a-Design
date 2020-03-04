@@ -47,7 +47,7 @@ Data.prototype.numberOfClients = function() {
     return (this.maleUsers.length + this.femaleUsers.length);
 };
 
-const data = new Data();
+var data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
@@ -66,6 +66,7 @@ io.on('connection', function(socket) {
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });
+    
     socket.on('getNumberOfUsers', function(callback){
 	callback(data.numberOfClients());
     });

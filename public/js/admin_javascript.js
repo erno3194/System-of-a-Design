@@ -1,7 +1,8 @@
 /* JAVASCRIPT */
 
 const socket = io();
-var on = false
+var on = false;
+var numberOfUsersInEvent = 0;
 function startTimer() {
     if(on){
 	var presentTime = document.getElementById('timer').innerHTML;
@@ -25,9 +26,7 @@ function checkSecond(sec) {
 
 const vm = new Vue({
     el: '#main',
-
     data: {
-	numberOfUsersInEvent: 0,
 	c: "c",
 	f: "f",
 	m: "m",
@@ -51,10 +50,12 @@ const vm = new Vue({
 	},
 
 	dateViewTemp: function() {
-	    var waitingScreen = document.getElementById("waitingScreen");
-	    waitingScreen.style.display = "none";
-	    var dateInProgress = document.getElementById("dateInProgress");
-	    dateInProgressTemp.style.display = "grid";
+	    if(numberOfUsersInEvent == 2){
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "none";
+		var dateInProgress = document.getElementById("dateInProgress");
+		dateInProgressTemp.style.display = "grid";
+	    }
 	},
 	
 	beginEvent: function() {
@@ -108,9 +109,12 @@ const vm = new Vue({
 
 	updateNumberOfUsers: function() {
 	    socket.emit('getNumberOfUsers', function(result) {
-		this.numberOfUsersInEvent = result;
+		numberOfUsersInEvent = result;
 		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
 	    });
+	    if(numberOfUsersInEvent>= 2) {
+		document.getElementById("startDateTEMP").style.backgroundColor = "green";
+	    }
 	},
 
 	startDate: function(){

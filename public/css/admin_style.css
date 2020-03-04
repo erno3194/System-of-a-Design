@@ -43,6 +43,17 @@ main{
     
 }
 
+#startDateTEMP {
+    border: 8px solid;
+    height: 15em;
+    width: 35em;
+    background-color: light-grey;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 50px;
+}
+
 footer{
     height: auto;
     width: inherit;
@@ -211,11 +222,6 @@ footer{
     grid-row: 1/span 2;
 }
 
-#startDateTEMP {
-    height: 20em;
-    width: 40em;
-    background-color: pink;
-}
 
 #startDateTEMP p{
     font-size: 5em;
