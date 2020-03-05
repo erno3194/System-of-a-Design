@@ -53,17 +53,17 @@ var data = new Data();
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
 
-    socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax){
+    socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax, selectedHobbies){
 	console.log("saveUserMale");
-	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin, preferredAgeMax};
+	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin, preferredAgeMax, hobbies: selectedHobbies};
 	data.maleUsers.push(user);
 	console.log(data.maleUsers);
 	
     });
     
-    socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax){
+    socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax, selectedHobbies){
 	console.log("saveUserFemale");
-	const user = {id: 'f'+(data.femaleUsers.length+1), name: name, email: email, age: age, gender: "female", preferredAgeMin: preferredAgeMin, preferredAgeMax: preferredAgeMax};
+	const user = {id: 'f'+(data.femaleUsers.length+1), name: name, email: email, age: age, gender: "female", preferredAgeMin: preferredAgeMin, preferredAgeMax: preferredAgeMax, hobbies: selectedHobbies};
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });
