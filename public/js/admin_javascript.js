@@ -1,6 +1,11 @@
- /* JAVASCRIPT */
 
-var on = false
+/* JAVASCRIPT */
+const socket = io();
+var on = false;
+var numberOfUsersInEvent = 0;
+var maleArrayNew = [];
+var femaleArrayNew = [];
+
 function startTimer() {
     if(on){
 	var presentTime = document.getElementById('timer').innerHTML;
@@ -30,11 +35,12 @@ const vm = new Vue({
 	c: "c",
 	f: "f",
 	m: "m",
-	malesRender: maleArray,
-	femalesRender: femaleArray,
+	malesRender: [],
+	femalesRender: [],
 	dateInProgressBool: false,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
+
     methods: {
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
@@ -49,12 +55,23 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
+
+	dateViewTemp: function() {
+	    if(numberOfUsersInEvent == 2){
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "none";
+		var dateInProgress = document.getElementById("dateInProgress");
+		dateInProgressTemp.style.display = "grid";
+	    }
+	},
+	
 	beginEvent: function() {
-	    console.log("Click");
 	    this.hideButtons();
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
+	    setInterval(this.updateNumberOfUsers, 1000);
 	},
+
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
@@ -131,6 +148,24 @@ const vm = new Vue({
 	    }
 	    
 	},
+
+
+	updateNumberOfUsers: function() {
+	    socket.emit('getNumberOfUsers', function(result) {
+		numberOfUsersInEvent = result;
+		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
+	    });
+	    socket.emit('getUsersFromServer', function(result){
+		maleArrayNew = result.maleUsers;
+		femaleArrayNew = result.femaleUsers;
+	    });
+	    if(numberOfUsersInEvent>= 2) {
+		document.getElementById("startDateTEMP").style.backgroundColor = "green";
+	    }
+	    this.malesRender = maleArrayNew;
+	    this.femalesRender = femaleArrayNew;
+	},
+
 	startDate: function(){
 	    if(this.dateInProgressBool == false){
 		var timer = document.getElementById('timer');
@@ -159,8 +194,10 @@ const vm = new Vue({
 		this.dateInProgressBool = false;
 		on = false;
 	    }
+
 	}	
-    }    
+    },    
+
 })
 
 function allowDrop(ev) {

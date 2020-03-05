@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang = "en">
   <head>
+    <script src="/socket.io/socket.io.js" defer></script>
     <script type="text/javascript" src="js/javascript.js" defer></script>
     <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="/socket.io/socket.io.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Speed dejting</title>
     <meta charset="utf-8"/>
@@ -70,10 +70,11 @@
 	               </div>
 	          <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	        </form>
-	        <button type="submit" v-on:click="markDone(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
+	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
 	          <p>SUBMIT</p>
 	        </button>
 	      </div>
+
 
       </div>
       <div id="tillProfilButton" v-on:click="tillProfil">

@@ -1,4 +1,6 @@
 /* JAVASCRIPT */
+'use strict';
+const socket = io();
 
 const vm = new Vue({
     el: '#main',
@@ -54,20 +56,26 @@ const vm = new Vue({
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
 	},
-	markDone: function(name, email, age, gender, ageMinimum, ageMaximum){
+	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
 	    this.gender = gender,
-	    this.preferredAgeMin = preferredAgeMin;
-	    this.preferredAgeMax = preferredAgeMax;
+	    this.ageMinimum = ageMinimum;
+	    this.ageMaximum = ageMaximum;
 	    console.log(name);
 	    console.log(email);
 	    console.log(age);
 	    console.log(gender);
-	    console.log(preferredAgeMin);
-	    console.log(preferredAgeMax);
+	    console.log(ageMinimum);
+	    console.log(ageMaximum);
 	    console.log(this.selectedHobbies);
+	    if(gender == "male"){
+		socket.emit('saveUserMale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+	    }
+	    if(gender == "female"){
+		socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+	    }
 	    var skapaProfil = document.getElementById("skapaProfil");
 
 	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){

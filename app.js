@@ -34,34 +34,48 @@ app.get('/evaluation', function(req,res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-  this.orders = {};
+    this.maleUsers = [];
+    this.femaleUsers = []; 
 }
 
 /*
   Adds an order to to the queue
 */
-Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+
+
+Data.prototype.numberOfClients = function() {
+    return (this.maleUsers.length + this.femaleUsers.length);
 };
 
-Data.prototype.getAllOrders = function() {
-  return this.orders;
-};
 
-const data = new Data();
+var data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders() });
 
-  // When a connected client emits an "addOrder" message
-  socket.on('addOrder', function(order) {
-    data.addOrder(order);
-    // send updated info to all connected clients,
-    // note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders() });
-  });
+    socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax, selectedHobbies){
+	console.log("saveUserMale");
+	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin, preferredAgeMax, hobbies: selectedHobbies};
+	data.maleUsers.push(user);
+	console.log(data.maleUsers);
+	
+    });
+    
+    socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax, selectedHobbies){
+	console.log("saveUserFemale");
+	const user = {id: 'f'+(data.femaleUsers.length+1), name: name, email: email, age: age, gender: "female", preferredAgeMin: preferredAgeMin, preferredAgeMax: preferredAgeMax, hobbies: selectedHobbies};
+	data.femaleUsers.push(user);
+	console.log(data.femaleUsers);
+    });
+    
+    socket.on('getNumberOfUsers', function(callback){
+	callback(data.numberOfClients());
+    });
+
+    socket.on('getUsersFromServer', function(callback){
+	callback(data);
+    });
+
 
 });
 
