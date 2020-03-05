@@ -36,10 +36,10 @@ app.get('/evaluation', function(req,res) {
 var females = [];
 var males = [];
 
-function Data(gender) {
-  if (gender === 'female') {
+function Data(person) {
+  if (person.gender === 'female') {
     this.females = {};
-  } else if (gender === 'male'){
+  } else if (person.gender === 'male'){
     this.males = {};
   }
 };
@@ -47,19 +47,19 @@ function Data(gender) {
 /*
   Adds a date to to the profile database
 */
-Data.prototype.addDate = function(gender) { /* gender = {male or female} */
+Data.prototype.addDate = function(person) {
   // Store a profile in an "associative array" with orderId as key
-  if (gender === 'female') {
+  if (person.gender === 'female') {
     this.females[profile.id] = profile;
-  } else if (gender === 'male') {
+  } else if (person.gender === 'male') {
     this.males[profile.id] = profile;
   }
 };
 
-Data.prototype.getAllDates = function(gender) { /* gender = {male or female} */
-  if (gender === 'female') {
+Data.prototype.getAllDates = function(person) { /* gender = {male or female} */
+  if (person.gender === 'female') {
     return this.females;
-  } else if (gender === 'male') {
+  } else if (person.gender === 'male') {
     return this.males;
   }
 };
@@ -71,11 +71,11 @@ io.on('connection', function(socket) {
   socket.emit('initialize', { dates: data.getAllDates(gender) });
 
   // When a connected client emits an "addOrder" message
-  socket.on('skapaProfil', function(gender) {
-    data.skapaProfil(gender);
+  socket.on('skapaProfil', function(person) {
+    data.skapaProfil(person);
     // send updated info to all connected clients,
     // note the use of io instead of socket
-    io.emit('currentQueue', { dates: data.getAllDates(gender) });
+    io.emit('currentQueue', { dates: data.getAllDates(person) });
   });
 
 });
