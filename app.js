@@ -38,44 +38,44 @@ var males = [];
 
 function Data(person) {
   if (person.gender === 'female') {
-    this.females = {};
+    females.push = person;
   } else if (person.gender === 'male'){
-    this.males = {};
+    males.push = person;
   }
 };
 
 /*
   Adds a date to to the profile database
 */
-Data.prototype.addDate = function(person) {
-  // Store a profile in an "associative array" with orderId as key
+Data.prototype.addProfile = function(person) {
+  // Store a profile in an "associative array"
   if (person.gender === 'female') {
-    this.females[profile.id] = profile;
+    females.push = profile;
   } else if (person.gender === 'male') {
-    this.males[profile.id] = profile;
+    males.push = profile;
   }
 };
 
-Data.prototype.getAllDates = function(person) { /* gender = {male or female} */
-  if (person.gender === 'female') {
-    return this.females;
-  } else if (person.gender === 'male') {
-    return this.males;
+Data.prototype.getAllProfiles = function(gender) {
+  if (gender === 'female') {
+    return females;
+  } else if (gender === 'male') {
+    return males;
   }
 };
 
 const data = new Data();
 
 io.on('connection', function(socket) {
-  // Send list of orders when a client connects
-  socket.emit('initialize', { dates: data.getAllDates(gender) });
+  // Send list of dates when a client connects
+  socket.emit('initialize', { dates: data.getAllProfiles(gender) });
 
-  // When a connected client emits an "addOrder" message
+  // When a connected client emits an "addProfile" message
   socket.on('skapaProfil', function(person) {
     data.skapaProfil(person);
     // send updated info to all connected clients,
     // note the use of io instead of socket
-    io.emit('currentQueue', { dates: data.getAllDates(person) });
+    io.emit('currentGuests', { profiles: data.getAllProfiles(gender) });
   });
 
 });
