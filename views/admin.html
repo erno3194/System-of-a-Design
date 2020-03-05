@@ -48,7 +48,7 @@
 	  <div id="males" class="scroller">
 	    <h2>Males</h2>
 	    <div v-for="male in malesRender" v-bind:id="male.id+c" v-bind:class="male.id.substring(1)" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
-	      <div v-bind:id="male.id" v-if="matched" class="maleClass" draggable="true" ondragover="" ondragstart="drag(event)" v-on:click="expand(male)">
+	      <div v-bind:id="male.id" v-if="matched" class="maleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(male)">
 		<p>{{male.name}}</p>
 		<p>Age: {{male.age}}</p>
 	      </div>

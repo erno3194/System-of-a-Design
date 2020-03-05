@@ -73,17 +73,18 @@ const vm = new Vue({
 	},
 
 	dateViewTemp: function() {
-	    var waitingScreen = document.getElementById("waitingScreen");
-	    waitingScreen.style.display = "none";
-	    var dateInProgress = document.getElementById("dateInProgress");
-	    var subCatContainer = document.getElementsByClassName("scroller");
-	    
-	    $(".scroller").scroll(function() {
-		for(var i in subCatContainer)
-		    $(subCatContainer[i]).scrollTop($(this).scrollTop());
-	    });
-	    dateInProgressTemp.style.display = "grid";
-	    
+	    if(numberOfUsersInEvent >= 2){
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "none";
+		var dateInProgress = document.getElementById("dateInProgress");
+		var subCatContainer = document.getElementsByClassName("scroller");
+		
+		$(".scroller").scroll(function() {
+		    for(var i in subCatContainer)
+			$(subCatContainer[i]).scrollTop($(this).scrollTop());
+		});
+		dateInProgressTemp.style.display = "grid";
+	    }
 	},
 	exitEvent: function() {
 	    console.log("Click");
@@ -96,7 +97,6 @@ const vm = new Vue({
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
 		console.log(block.className);
-
 		var pairIndex = document.getElementsByClassName(block.className.substring(block.className.length-1));
 	    } catch(e){
 		block = null;
