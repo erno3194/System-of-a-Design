@@ -33,34 +33,49 @@ app.get('/evaluation', function(req,res) {
 
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
-function Data() {
-  this.orders = {};
-}
+var females = [];
+var males = [];
 
-/*
-  Adds an order to to the queue
-*/
-Data.prototype.addOrder = function(order) {
-  // Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+function Data(gender) {
+  if (gender === 'female') {
+    this.females = {};
+  } else if (gender === 'male'){
+    this.males = {};
+  }
 };
 
-Data.prototype.getAllOrders = function() {
-  return this.orders;
+/*
+  Adds a date to to the profile database
+*/
+Data.prototype.addDate = function(gender) { /* gender = {male or female} */
+  // Store a profile in an "associative array" with orderId as key
+  if (gender === 'female') {
+    this.females[profile.id] = profile;
+  } else if (gender === 'male') {
+    this.males[profile.id] = profile;
+  }
+};
+
+Data.prototype.getAllDates = function(gender) { /* gender = {male or female} */
+  if (gender === 'female') {
+    return this.females;
+  } else if (gender === 'male') {
+    return this.males;
+  }
 };
 
 const data = new Data();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders() });
+  socket.emit('initialize', { orders: data.getAllDates(gender) });
 
   // When a connected client emits an "addOrder" message
-  socket.on('addOrder', function(order) {
-    data.addOrder(order);
+  socket.on('skapaProfil', function(gender) {
+    data.skapaProfil(gender);
     // send updated info to all connected clients,
     // note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders() });
+    io.emit('currentQueue', { orders: data.getAllDates(gender) });
   });
 
 });
