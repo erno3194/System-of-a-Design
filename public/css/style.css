@@ -405,13 +405,24 @@ label{
   height: auto;
 }
 
+#formHeader h1{
+    color: darkred;
+    font-size: 3em;
+    font-family: Arial;
+    font-style: italic;
+    
+}
+
 #subheader{
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 #dateName{
   /*height: 10px;*/
-  font-size: 3em;
+    font-size: 3em;
+    color: red;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    
 }
 
 #bodyEval{
@@ -438,8 +449,13 @@ label{
   background: lightgrey;
 }
 
+#questionDiv div{
+    padding-top: 7%;
+    padding-bottom:4%;
+}
+
 #question{
-  font-size: 3.5em;
+    font-size: 3.5em;
 }
 
 #rateScale{

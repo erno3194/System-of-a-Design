@@ -1,12 +1,10 @@
-/* JAVASCRIPT */
 
+/* JAVASCRIPT */
 const socket = io();
 var on = false;
 var numberOfUsersInEvent = 0;
 var maleArrayNew = [];
 var femaleArrayNew = [];
-
-
 
 function startTimer() {
     if(on){
@@ -32,6 +30,8 @@ function checkSecond(sec) {
 const vm = new Vue({
     el: '#main',
     data: {
+	matched: false,
+	numbers: [{id:"1"},{id:"2"},{id:"3"},{id:"4"},{id:"5"},{id:"6"},{id:"7"},{id:"8"},{id:"9"},{id:"0"}],
 	c: "c",
 	f: "f",
 	m: "m",
@@ -46,7 +46,9 @@ const vm = new Vue({
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
-
+	applyAlgorithm: function() {
+	    this.matched  = true;
+	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("exitEventButton");
 	    var tillButton = document.getElementById("beginEventButton");
@@ -69,7 +71,20 @@ const vm = new Vue({
 	    waitingScreen.style.display = "grid";
 	    setInterval(this.updateNumberOfUsers, 1000);
 	},
-	
+
+	dateViewTemp: function() {
+	    var waitingScreen = document.getElementById("waitingScreen");
+	    waitingScreen.style.display = "none";
+	    var dateInProgress = document.getElementById("dateInProgress");
+	    var subCatContainer = document.getElementsByClassName("scroller");
+	    
+	    $(".scroller").scroll(function() {
+		for(var i in subCatContainer)
+		    $(subCatContainer[i]).scrollTop($(this).scrollTop());
+	    });
+	    dateInProgressTemp.style.display = "grid";
+	    
+	},
 	exitEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
@@ -77,24 +92,39 @@ const vm = new Vue({
 	},
 	expand: function(person){
 	    var sndBlock = document.getElementById(person.id);
-	    var pairIndex = document.getElementById(this.c + person.id.substring(1));
-	    if(person.id[0] == 'm'){
-		var pair = document.getElementById(this.f + person.id.substring(1));
-	    } else{
-		var pair = document.getElementById(this.m + person.id.substring(1));
-	    }
+	    //var pairIndex = document.getElementById(this.c + person.id.substring(1));
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
-		var trdBlock = document.getElementById(pair.id+this.c);
+		console.log(block.className);
+
+		var pairIndex = document.getElementsByClassName(block.className.substring(block.className.length-1));
 	    } catch(e){
 		block = null;
 	    }
 	    if(sndBlock.style.width == "20em"){
+		try{
+		    var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em"; 
+		}catch{}
 		sndBlock.style.width="15em";
 		sndBlock.style.height="3.2em";
 		if(block){
 		    block.style.width="15em";
 		    block.style.height="3.2em";
+
+		    console.log(pairIndex);
+		    
+		    for(blockTmp in pairIndex){
+			try{
+			    if(bothExpanded) pairIndex[1].style.marginBottom = "2.3em";
+			    if(bothExpanded && pairIndex[blockTmp].style.width == "20em") pairIndex[blockTmp].style.marginBottom = "0em";
+			    else if (bothExpanded && pairIndex[blockTmp].style.width == "15em"){
+				pairIndex[blockTmp].style.marginBottom = "2.3em";	
+			    } else{
+				pairIndex[blockTmp].style.marginBottom = "0em";	
+			    }
+			    
+			} catch(e){}
+		    }
 		}
 		sndBlock.innerHTML = person.name + "<br>Age:" + person.age + "<br>";
 	    } else if(block != null && block.hasChildNodes()){		
@@ -103,12 +133,20 @@ const vm = new Vue({
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
 		sndBlock.innerHTML += "Hobbies: " + person.hobbies + "<br> Email: " + person.email;
+		for(blockTmp in pairIndex){
+		    try{
+			if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";
+			if(block.style.height == "5em") block.style.marginBottom = "0em";
+		    } catch(e){}
+		}
+		
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
 		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
 		
 	    }
+	    
 	},
 
 
@@ -156,11 +194,10 @@ const vm = new Vue({
 		this.dateInProgressBool = false;
 		on = false;
 	    }
-	}
-	
-    },
 
-    
+	}	
+    },    
+
 })
 
 function allowDrop(ev) {
@@ -172,23 +209,59 @@ function drag(ev) {
 }
 
 var children = [];
-function drop(ev, male) {
+function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     var block = document.getElementById(data);
+    try{
+	document.getElementById(block.id+"c").id=block.id[0] + "c";
+    } catch(e){}
     if(ev.target.id == "dropoffMale" || ev.target.id == "dropoffFemale"){
-	block.style.marginTop = "0.5em";
-	ev.target.appendChild(block);
-	document.getElementById(block.id+"c").id="c";
-    } else if(ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
+	if(block.id[0].toUpperCase() == ev.target.id[7]){
+	    block.style.marginTop = "0.5em";
+	    ev.target.appendChild(block);
+	}
+    } else if((ev.target.id[0] == block.id[0]) && ev.target.hasChildNodes.length == 0 && ev.target.id.substring(ev.target.id.length-1) == "c"){
 	block.style.marginTop = "0em";
 	ev.target.id = block.id+"c";
-	document.getElementById(ev.target.id).style.width = block.style.width;
-	document.getElementById(ev.target.id).style.height = block.style.height;
-	ev.target.appendChild(block);
-    } else{
-	console.log(ev.target.childNodes);
-	console.log(ev.target.id);
-    }
+	ev.target.style.width = block.style.width;
+	ev.target.style.height = block.style.height;
+	var parentBlock = ev.target;
+	
+	var pairIndex = document.getElementsByClassName(parentBlock.className.substring(parentBlock.className.length-1));
+	console.log(pairIndex);
+	var bothExpanded = pairIndex[0].style.width=="20em" || pairIndex[2].style.width=="20em"; 
+	if(ev.target.style.width == "20em"){
+	    for(blockTmp in pairIndex){
+		try{
+		    if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";
+		    if(parentBlock.style.height == "5em") parentBlock.style.marginBottom = "0em";
+		} catch(e){}		
+	    }
+	} else {
 
+	    try{
+		if(bothExpanded) pairIndex[1].style.marginBottom = "2.3em";
+		else pairIndex[1].style.marginBottom = "0em";
+		if(pairIndex[0].style.width == "20em"){
+		    pairIndex[0].style.marginBottom = "0em";	
+		} else if(bothExpanded){
+		    pairIndex[0].style.marginBottom = "2.3em";	
+		} else {
+		    pairIndex[0].style.marginBottom = "0em";	
+		}
+		
+		if(pairIndex[2].style.width == "20em"){
+		    pairIndex[2].style.marginBottom = "0em";	
+		} else if(bothExpanded){
+		    pairIndex[2].style.marginBottom = "2.3em";	
+		} else {
+		    pairIndex[2].style.marginBottom = "0em";	
+		}
+	    } catch(e){}
+
+	    
+	} 
+	ev.target.appendChild(block);
+    }
 }

@@ -54,7 +54,7 @@ io.on('connection', function(socket) {
 
     socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax){
 	console.log("saveUserMale");
-	const user = {name, email, age, preferredAgeMin, preferredAgeMax};
+	const user = [name, email, age, preferredAgeMin, preferredAgeMax];
 	data.maleUsers.push(user);
 	console.log(data.maleUsers);
 	
@@ -62,7 +62,7 @@ io.on('connection', function(socket) {
     
     socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax){
 	console.log("saveUserFemale");
-	const user = {name, email, age, preferredAgeMin, preferredAgeMax};
+	const user = [name, email, age, preferredAgeMin, preferredAgeMax];
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });
