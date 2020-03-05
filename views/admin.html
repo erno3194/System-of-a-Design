@@ -36,7 +36,7 @@
       </div>
       
       <div id="dateInProgressTemp">
-	<h2 >REARRANGE DATE MATCHES</h2>
+	<h2 id="rearrangeHeader">REARRANGE DATE MATCHES</h2>
 	<div id="dropoffMale" ondrop="drop(event)" ondragover="allowDrop(event)">
 	  <p class="drop">Drop zone for males</p>
 	</div>
@@ -74,9 +74,10 @@
 	<div id="dropoffFemale" ondrop="drop(event)" ondragover="allowDrop(event)">
 	  <p class="drop">Drop zone for females</p>
 	</div>
+	<h2 id="tablemap">Table map</h2>
 	<div id="trdColumn">
-
-	  <div id="map"><p>Map here</p></div>
+	  
+	  <div id="map"><img src="img/table-map.png"></div>
 	  <div id="applyAlgorithm" v-on:click="applyAlgorithm()"><p>Apply matching algorithm</p></div>
 	  <div id="startDateButton" v-on:click="startDate()">
 	    <p>Start date</p>
@@ -86,7 +87,7 @@
       </div>
     </main>
     <footer id="footer">
-      <hr>
+
       <p>&copy 2020 System of a Design</p>
     </footer>
   </body>
