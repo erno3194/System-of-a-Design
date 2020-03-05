@@ -47,6 +47,7 @@ Data.prototype.numberOfClients = function() {
     return (this.maleUsers.length + this.femaleUsers.length);
 };
 
+
 var data = new Data();
 
 io.on('connection', function(socket) {
@@ -54,7 +55,7 @@ io.on('connection', function(socket) {
 
     socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax){
 	console.log("saveUserMale");
-	const user = [name, email, age, preferredAgeMin, preferredAgeMax];
+	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin, preferredAgeMax};
 	data.maleUsers.push(user);
 	console.log(data.maleUsers);
 	
@@ -62,7 +63,7 @@ io.on('connection', function(socket) {
     
     socket.on('saveUserFemale', function(name, email, age, preferredAgeMin, preferredAgeMax){
 	console.log("saveUserFemale");
-	const user = [name, email, age, preferredAgeMin, preferredAgeMax];
+	const user = {id: 'f'+(data.femaleUsers.length+1), name: name, email: email, age: age, gender: "female", preferredAgeMin: preferredAgeMin, preferredAgeMax: preferredAgeMax};
 	data.femaleUsers.push(user);
 	console.log(data.femaleUsers);
     });

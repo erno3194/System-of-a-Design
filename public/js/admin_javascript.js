@@ -35,8 +35,8 @@ const vm = new Vue({
 	c: "c",
 	f: "f",
 	m: "m",
-	malesRender: maleArray,
-	femalesRender: femaleArray,
+	malesRender: [],
+	femalesRender: [],
 	dateInProgressBool: false,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
@@ -162,8 +162,8 @@ const vm = new Vue({
 	    if(numberOfUsersInEvent>= 2) {
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
-	    console.log(maleArrayNew);
-	    console.log(femaleArrayNew);
+	    this.malesRender = maleArrayNew;
+	    this.femalesRender = femaleArrayNew;
 	},
 
 	startDate: function(){
