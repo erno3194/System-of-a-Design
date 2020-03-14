@@ -35,7 +35,8 @@ app.get('/evaluation', function(req,res) {
 // prepare for multiple instances of data if necessary
 function Data() {
     this.maleUsers = [];
-    this.femaleUsers = []; 
+    this.femaleUsers = [];
+    this.dateReady = false;
 }
 
 /*
@@ -75,6 +76,21 @@ io.on('connection', function(socket) {
     socket.on('getUsersFromServer', function(callback){
 	callback(data);
     });
+
+    socket.on('setDateStatusTrue', function() {
+	data.dataReady = true;
+	console.log('PINGPONG');
+    });
+
+    socket.on('setDateStatusFalse', function() {
+	data.dataReady = false;
+	console.log('PONGPING');
+    });
+
+    socket.on('getDateStatus', function(callback){
+	callback(data.dateReady);
+    });
+
 
 
 });

@@ -55,7 +55,7 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
-
+/*
 	dateViewTemp: function() {
 	    if(numberOfUsersInEvent == 2){
 		var waitingScreen = document.getElementById("waitingScreen");
@@ -63,7 +63,7 @@ const vm = new Vue({
 		var dateInProgress = document.getElementById("dateInProgress");
 		dateInProgressTemp.style.display = "grid";
 	    }
-	},
+	},*/
 	
 	beginEvent: function() {
 	    this.hideButtons();
@@ -172,6 +172,9 @@ const vm = new Vue({
 		timer.innerHTML = 005 + ":" + 00;
 		var block = document.getElementById("startDateButton");
 		this.dateInProgressBool = true;
+
+		socket.emit('setDateStatusTrue');
+		
 		let p = document.createElement("p");
 		p.innerHTML = "End date";
 		block.innerHTML = "";
@@ -192,6 +195,9 @@ const vm = new Vue({
 		block.appendChild(timer);
 		block.style.backgroundColor = "green";
 		this.dateInProgressBool = false;
+
+		socket.emit('setDateStatusFalse');
+		
 		on = false;
 	    }
 
