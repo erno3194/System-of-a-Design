@@ -135,6 +135,7 @@ const vm = new Vue({
 
 	    socket.emit('getDateStatus', function(result){
 		dateStatus = result.dateReady;
+		console.log(result.dateReady);
 	    });
 	    console.log(dateStatus);
 

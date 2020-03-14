@@ -196,7 +196,7 @@ const vm = new Vue({
 		block.style.backgroundColor = "green";
 		this.dateInProgressBool = false;
 
-		socket.emit('setDateStatusFalse');
+		socket.emit('setDateFalse');
 		
 		on = false;
 	    }
