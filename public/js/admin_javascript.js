@@ -47,6 +47,20 @@ const vm = new Vue({
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
 	applyAlgorithm: function() {
+	    this.malesRender = shuffle(maleArrayNew);
+	    this.femalesRender = shuffle(femaleArrayNew);
+	    var c = 1;
+	    for(i in this.malesRender){
+		if(c < 10) this.malesRender[i].id = "m" + c;
+		else this.malesRender[i].id = "m0";
+		c++;
+	    }
+	    c = 1;
+	    for(i in this.femalesRender){
+		if(c < 10) this.femalesRender[i].id = "f" + c;
+		else this.femalesRender[i].id = "f0";
+		c++;
+	    }
 	    this.matched  = true;
 	},
 	hideButtons: function() {
@@ -121,8 +135,7 @@ const vm = new Vue({
 				pairIndex[blockTmp].style.marginBottom = "2.3em";	
 			    } else{
 				pairIndex[blockTmp].style.marginBottom = "0em";	
-			    }
-			    
+			    }	    
 			} catch(e){}
 		    }
 		}
@@ -139,16 +152,12 @@ const vm = new Vue({
 			if(block.style.height == "5em") block.style.marginBottom = "0em";
 		    } catch(e){}
 		}
-		
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
-		
-	    }
-	    
+		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;	
+	    }    
 	},
-
 
 	updateNumberOfUsers: function() {
 	    socket.emit('getNumberOfUsers', function(result) {
@@ -162,10 +171,12 @@ const vm = new Vue({
 	    if(numberOfUsersInEvent>= 2) {
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
-	    this.malesRender = maleArrayNew;
-	    this.femalesRender = femaleArrayNew;
+	    if(!this.matched){
+		this.malesRender = maleArrayNew;
+		this.femalesRender = femaleArrayNew;
+	    }
 	},
-
+	
 	startDate: function(){
 	    if(this.dateInProgressBool == false){
 		var timer = document.getElementById('timer');
@@ -264,4 +275,21 @@ function drop(ev) {
 	} 
 	ev.target.appendChild(block);
     }
+}
+
+function shuffle(arra1) {
+    var ctr = arra1.length, temp, index;
+
+// While there are elements in the array
+    while (ctr > 0) {
+// Pick a random index
+        index = Math.floor(Math.random() * ctr);
+// Decrease ctr by 1
+        ctr--;
+// And swap the last element with it
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
 }
