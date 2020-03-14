@@ -78,17 +78,19 @@ io.on('connection', function(socket) {
     });
 
     socket.on('setDateStatusTrue', function() {
-	data.dataReady = true;
-	console.log('PINGPONG');
+	console.log(data.dateReady + "going to set to true")
+	data.dateReady = true;
+	console.log(data.dateReady + "set to true");
     });
 
     socket.on('setDateStatusFalse', function() {
-	data.dataReady = false;
-	console.log('PONGPING');
+	console.log(data.dateReady + "going to set to false")
+	data.dateReady = false;
+	console.log(data.dateReady + "set to false");
     });
 
     socket.on('getDateStatus', function(callback){
-	callback(data.dateReady);
+	callback(data);
     });
 
 

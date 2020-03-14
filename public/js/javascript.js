@@ -1,10 +1,12 @@
 /* JAVASCRIPT */
 'use strict';
 const socket = io();
+var dateStatus = false;
 
 const vm = new Vue({
     el: '#main',
     data: {
+	dateReady: false,
 	mapOn: false,
 	mapButtonText: "Show map",
 	rating: "",
@@ -130,8 +132,21 @@ const vm = new Vue({
 	dateViewTemp: function() {
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
+
+	    socket.emit('getDateStatus', function(result){
+		dateStatus = result.dateReady;
+	    });
+	    console.log(dateStatus);
+
+	    this.dateReady = dateStatus;
+	    
+	    if (this.dateReady == true) {
+		console.log("true");	
+	    }
+	    else {console.log("false");}
 	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+
 
 	},
 	dateEvaluationView: function() {
