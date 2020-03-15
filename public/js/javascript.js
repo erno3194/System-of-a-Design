@@ -131,23 +131,23 @@ const vm = new Vue({
 	    this.hideButtons();
 	},
 	dateViewTemp: function() {
-
 	    socket.emit('getDateFromServer', this.name, function(result){
 		matchGlobal = result;
 	    });
-	    this.match = matchGlobal;
-
-	    
-	    if(this.match.female.name == this.name) this.currentDate = {name: this.match.male.name, table: this.match.table};
-	    else this.currentDate = {name: this.match.female.name, table: this.match.table};	
-	    
+	    this.match = matchGlobal;	
+	   
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
 	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
+
+	    setInterval(this.dateViewTemp, 1000);	    
+	    this.match = matchGlobal;		    
+	    if(this.match.female.name == this.name) this.currentDate = {name: this.match.male.name, table: this.match.table};
+	    else this.currentDate = {name: this.match.female.name, table: this.match.table};
+	    
+	   
 	},
-	test: function() {
-	    	},
 	dateEvaluationView: function() {
 	    var dateInProgress = document.getElementById("dateInProgressTemp");
 	    dateInProgress.style.display = "none";
