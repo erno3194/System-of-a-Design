@@ -112,6 +112,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
+	    setInterval(this.dateViewTemp, 1000);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -133,9 +134,7 @@ const vm = new Vue({
 
 	    socket.emit('getDateStatus', function(result){
 		dateStatus = result.dateReady;
-		console.log(result.dateReady);
 	    });
-	    console.log(dateStatus);
 
 	    this.dateReady = dateStatus;
 	    
@@ -145,13 +144,8 @@ const vm = new Vue({
 		
 		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 		dateInProgressTemp.style.display = "block";
-		console.log("true");	
+	
 	    }
-	    else {
-		console.log("false");
-	    }
-
-
 
 	},
 	dateEvaluationView: function() {
