@@ -38,6 +38,7 @@ function Data() {
     this.femaleUsers = [];
     this.dateReady = false;
     this.dateDone = false;
+    this.dateCounter = 0;
 }
 
 /*
@@ -80,6 +81,7 @@ io.on('connection', function(socket) {
 
     socket.on('setDateStatusTrue', function() {
 	data.dateReady = true;
+	data.dateCounter ++;
     });
 
     socket.on('setDateStatusFalse', function() {
@@ -100,10 +102,6 @@ io.on('connection', function(socket) {
 
     socket.on('setDateDoneStatusFalse', function() {
 	data.dateDone = false;
-    });
-
-    socket.on('isDateDone', function(callback){
-	callback(data);
     });
 
 });

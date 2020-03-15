@@ -3,6 +3,7 @@
 const socket = io();
 var dateStatus = false;
 var dateDoneStatus = false;
+var dateCounterStatus = 0;
 
 const vm = new Vue({
     el: '#main',
@@ -28,7 +29,7 @@ const vm = new Vue({
 		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "Kim Johansson", table: "1"},
-	currentDateNumber: 1,
+	dateCounter: 0,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
 
     },
@@ -39,12 +40,14 @@ const vm = new Vue({
 	    });
 
 	    this.dateDone = dateDoneStatus;
-
+	    console.log(this.dateDone + "dateStatus");
 	    if (this.dateDone == true) {	
 		var dateInProgress = document.getElementById("dateInProgressTemp");
 		dateInProgress.style.display = "none";
 		var evaluation = document.getElementById("evalFormDiv");
 		evaluation.style.display = "block";
+		socket.emit('setDateDoneStatusFalse');
+		
 	    }
 	},
 	submitEval: function(match, interests, rating){
@@ -57,6 +60,8 @@ const vm = new Vue({
 	    myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
 	},
 	sendContactInfoFunction: function(){
+	    var evaluation = document.getElementById("evalFormDiv");
+	    evalutation.style.display = "none";
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	    var block = document.getElementById("myDates");
@@ -144,8 +149,9 @@ const vm = new Vue({
 
 	    socket.emit('getDateStatus', function(result){
 		dateStatus = result.dateReady;
+		dateCounterStatus = result.dateCounter;
 	    });
-
+	    this.dateCounter = dateCounterStatus;
 	    this.dateReady = dateStatus;
 	    
 	    if (this.dateReady == true) {

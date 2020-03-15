@@ -111,7 +111,7 @@
 
 
 <div id="waitingScreen">
-	<h2>WAITING FOR DATE {{currentDateNumber}}/3 TO BE ARRANGED</h2>
+	<h2>WAITING FOR DATE {{dateCounter}}/3 TO BE ARRANGED</h2>
 	<br>	
 	<!--
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
@@ -123,7 +123,7 @@
 
 <div id="dateInProgressTemp">
 	<h3>DATE IN PROGRESS</h3>
-	<h4>Date number: {{currentDateNumber}}/3</h4>
+	<h4>Date number: {{dateCounter}}/3</h4>
 	<div id="currentDateInfo">
 	  <p class="dTitle">CURRENTLY SEEING</p>
 	  <p class="dInfo">{{currentDate.name}}</p>
@@ -152,7 +152,7 @@
 <div id="evalFormDiv">
   <div id="formHeader">
 	    <h1>Date is over!</h1>
-    <h2 id="subheader">Evaluate your date {{currentDateNumber}}/3 with:</h2>
+    <h2 id="subheader">Evaluate your date {{dateCounter}}/3 with:</h2>
     <h2 id="dateName">Vladimir Ivankoriskoslava Stolinchnaya</h2>
   </div>
   
