@@ -2,11 +2,13 @@
 'use strict';
 const socket = io();
 var dateStatus = false;
+var dateDoneStatus = false;
 
 const vm = new Vue({
     el: '#main',
     data: {
 	dateReady: false,
+	dateDone: false,
 	mapOn: false,
 	mapButtonText: "Show map",
 	rating: "",
@@ -32,10 +34,18 @@ const vm = new Vue({
     },
     methods: {
 	goToEvalTemp: function(){
-	    var dateInProgress = document.getElementById("dateInProgressTemp");
-	    dateInProgress.style.display = "none";
-	    var evaluation = document.getElementById("evalFormDiv");
-	    evaluation.style.display = "block";
+	    socket.emit('isDateDone', function(result) {
+		dateDoneStatus = result.dateDone;
+	    });
+
+	    this.dateDone = dateDoneStatus;
+
+	    if (this.dateDone == true) {	
+		var dateInProgress = document.getElementById("dateInProgressTemp");
+		dateInProgress.style.display = "none";
+		var evaluation = document.getElementById("evalFormDiv");
+		evaluation.style.display = "block";
+	    }
 	},
 	submitEval: function(match, interests, rating){
 	    console.log(match);
@@ -144,14 +154,12 @@ const vm = new Vue({
 		
 		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 		dateInProgressTemp.style.display = "block";
+		this.currentDateNumber++;
+
+		setInterval(this.goToEvalTemp, 1000);
 	
 	    }
 
-	},
-	dateEvaluationView: function() {
-	    var dateInProgress = document.getElementById("dateInProgressTemp");
-	    dateInProgress.style.display = "none";
-	    this.currentDateNumber++;
 	},
 
 	showMap: function() {

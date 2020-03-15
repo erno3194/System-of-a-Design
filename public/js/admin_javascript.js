@@ -174,6 +174,7 @@ const vm = new Vue({
 		this.dateInProgressBool = true;
 
 		socket.emit('setDateStatusTrue');
+		socket.emit('setDateDoneStatusFalse');
 		
 		let p = document.createElement("p");
 		p.innerHTML = "End date";
@@ -195,9 +196,9 @@ const vm = new Vue({
 		block.appendChild(timer);
 		block.style.backgroundColor = "green";
 		this.dateInProgressBool = false;
-
-		socket.emit('setDateFalse');
-		
+	
+		socket.emit('setDateStatusFalse');
+		socket.emit('setDateDoneStatusTrue');
 		on = false;
 	    }
 
