@@ -53,14 +53,22 @@ const vm = new Vue({
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
-	    var block = document.getElementById("evalFormDiv");
-	    block.style.display = "none";
-	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
-	    myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+	    if(this.dateCounter == 3){
+		var block = document.getElementById("evalFormDiv");
+		block.style.display = "none";
+		var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
+		myDates.style.display = "grid"; //TODO: Show this when all 3 dates are finished.
+	    }
+	    else {
+		var block = document.getElementById("evalFormDiv");
+		block.style.display = "none";
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "block";
+	    }
 	},
 	sendContactInfoFunction: function(){
 	    var evaluation = document.getElementById("evalFormDiv");
-	    evalutation.style.display = "none";
+	    evaluation.style.display = "none";
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	    var block = document.getElementById("myDates");
