@@ -40,7 +40,6 @@ const vm = new Vue({
 	    });
 
 	    this.dateDone = dateDoneStatus;
-	    console.log(this.dateDone + "dateStatus");
 	    if (this.dateDone == true) {	
 		var dateInProgress = document.getElementById("dateInProgressTemp");
 		dateInProgress.style.display = "none";
