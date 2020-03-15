@@ -454,15 +454,15 @@ label{
     padding-bottom:4%;
 }
 
-#question{
+.question{
     font-size: 3.5em;
 }
 
-#rateScale{
+.rateScale{
   font-size: 2em;
 }
 
-#radioButtons{
+.radioButtons{
   font-size: 2em;
 }
 
