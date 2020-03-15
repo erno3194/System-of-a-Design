@@ -205,6 +205,13 @@
         
       </div>
 
+      <div id="otherInfo">
+        <p>
+          <label>Other information or feedback</label>
+        </p>
+        <input v-model="other" type="text" id="otherInformation" />
+      </div>
+
 	    </form>
 	    <button id="ratingButton" type="button" v-on:click="submitEval(match,interests,rating)">
 	      <p>Send form</p>
