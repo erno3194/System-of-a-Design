@@ -1,10 +1,12 @@
 /* JAVASCRIPT */
 'use strict';
 const socket = io();
+var dateStatus = false;
 
 const vm = new Vue({
     el: '#main',
     data: {
+	dateReady: false,
 	mapOn: false,
 	mapButtonText: "Show map",
 	rating: "",
@@ -110,6 +112,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
+	    setInterval(this.dateViewTemp, 1000);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -128,10 +131,21 @@ const vm = new Vue({
 	    this.hideButtons();
 	},
 	dateViewTemp: function() {
-	    var waitingScreen = document.getElementById("waitingScreen");
-	    waitingScreen.style.display = "none";
-	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
-	    dateInProgressTemp.style.display = "block";
+
+	    socket.emit('getDateStatus', function(result){
+		dateStatus = result.dateReady;
+	    });
+
+	    this.dateReady = dateStatus;
+	    
+	    if (this.dateReady == true) {
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "none";
+		
+		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
+		dateInProgressTemp.style.display = "block";
+	
+	    }
 
 	},
 	dateEvaluationView: function() {
