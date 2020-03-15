@@ -2,6 +2,8 @@
 'use strict';
 const socket = io();
 
+var matchGlobal = {male: "", female: "", table: ""};
+
 const vm = new Vue({
     el: '#main',
     data: {
@@ -23,8 +25,9 @@ const vm = new Vue({
 		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
 		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
-	currentDate: {name: "Kim Johansson", table: "1"},
+	currentDate: {name: "", table: ""},
 	currentDateNumber: 1,
+	match: {male: "", female: "", table: ""},
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
 
     },
@@ -128,11 +131,23 @@ const vm = new Vue({
 	    this.hideButtons();
 	},
 	dateViewTemp: function() {
+
+	    socket.emit('getDateFromServer', this.name, function(result){
+		matchGlobal = result;
+	    });
+	    this.match = matchGlobal;
+
+	    
+	    if(this.match.female.name == this.name) this.currentDate = {name: this.match.male.name, table: this.match.table};
+	    else this.currentDate = {name: this.match.female.name, table: this.match.table};	
+	    
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "none";
 	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
 	    dateInProgressTemp.style.display = "block";
 	},
+	test: function() {
+	    	},
 	dateEvaluationView: function() {
 	    var dateInProgress = document.getElementById("dateInProgressTemp");
 	    dateInProgress.style.display = "none";

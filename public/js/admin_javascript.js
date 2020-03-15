@@ -94,8 +94,10 @@ const vm = new Vue({
 		var subCatContainer = document.getElementsByClassName("scroller");
 		
 		$(".scroller").scroll(function() {
-		    for(var i in subCatContainer)
-			$(subCatContainer[i]).scrollTop($(this).scrollTop());
+		    try{
+			for(var i in subCatContainer)
+			    $(subCatContainer[i]).scrollTop($(this).scrollTop());
+		    }catch{};
 		});
 		dateInProgressTemp.style.display = "grid";
 	    }
@@ -162,7 +164,7 @@ const vm = new Vue({
 	updateNumberOfUsers: function() {
 	    socket.emit('getNumberOfUsers', function(result) {
 		numberOfUsersInEvent = result;
-		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
+		document.getElementById("updateUserHeader").innerHTML = result + "/20 users have joined the event";
 	    });
 	    socket.emit('getUsersFromServer', function(result){
 		maleArrayNew = result.maleUsers;
@@ -178,7 +180,19 @@ const vm = new Vue({
 	},
 	
 	startDate: function(){
-	    if(this.dateInProgressBool == false){
+	    if(this.dateInProgressBool == false && this.matched){
+		var matches = [];
+		for(var i = 0; i < 10; i++ ){
+		    try{
+			var pairs = document.getElementsByClassName(""+i);
+			var male = this.malesRender.find(user => user.id[1] == pairs[0].id[1]);
+			var female = this.femalesRender.find(user => user.id[1] == pairs[2].id[1]);
+			var match = {male: male, female: female, table: ""+i};
+			matches.push(match);
+		    } catch(e){}
+		}
+		socket.emit('pushMatchesToServer', matches);
+		//console.log(matches);
 		var timer = document.getElementById('timer');
 		timer.innerHTML = 005 + ":" + 00;
 		var block = document.getElementById("startDateButton");
