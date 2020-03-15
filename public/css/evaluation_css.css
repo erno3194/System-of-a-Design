@@ -25,6 +25,7 @@ footer{
     text-align: center;
 }
 
+
 #formHeader{
   display: grid;
   grid-template-rows: 20em;
@@ -105,3 +106,4 @@ input[type=radio] {
     display: grid;
     align-contents: center;
 }
+
