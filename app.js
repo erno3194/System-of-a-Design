@@ -37,6 +37,8 @@ function Data() {
     this.maleUsers = [];
     this.femaleUsers = [];
     this.dateReady = false;
+    this.dateDone = false;
+    this.dateCounter = 0;
 }
 
 /*
@@ -48,8 +50,12 @@ Data.prototype.numberOfClients = function() {
     return (this.maleUsers.length + this.femaleUsers.length);
 };
 
+function Matches() {
+    this.matchesArray = [];
+}
 
 var data = new Data();
+var matches = new Matches();
 
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
@@ -77,8 +83,18 @@ io.on('connection', function(socket) {
 	callback(data);
     });
 
+
+    socket.on('pushMatchesToServer', function(matchesFromAdmin){
+	matches.matchesArray = matchesFromAdmin;
+    });
+
+    socket.on('getDateFromServer', function(name, callback){
+	callback(matches.matchesArray.find(date => date.female.name == name || date.male.name == name));
+    });
+
     socket.on('setDateStatusTrue', function() {
 	data.dateReady = true;
+	data.dateCounter ++;
     });
 
     socket.on('setDateStatusFalse', function() {
@@ -89,7 +105,18 @@ io.on('connection', function(socket) {
 	callback(data);
     });
 
+    socket.on('isDateDone', function(callback){
+	callback(data);
+    })
 
+    socket.on('setDateDoneStatusTrue', function() {
+	data.dateDone = true;
+    });
+
+    socket.on('setDateDoneStatusFalse', function() {
+	data.dateDone = false;
+
+    });
 
 });
 

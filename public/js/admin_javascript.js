@@ -47,6 +47,20 @@ const vm = new Vue({
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
 	applyAlgorithm: function() {
+	    this.malesRender = shuffle(maleArrayNew);
+	    this.femalesRender = shuffle(femaleArrayNew);
+	    var c = 1;
+	    for(i in this.malesRender){
+		if(c < 10) this.malesRender[i].id = "m" + c;
+		else this.malesRender[i].id = "m0";
+		c++;
+	    }
+	    c = 1;
+	    for(i in this.femalesRender){
+		if(c < 10) this.femalesRender[i].id = "f" + c;
+		else this.femalesRender[i].id = "f0";
+		c++;
+	    }
 	    this.matched  = true;
 	},
 	hideButtons: function() {
@@ -80,8 +94,10 @@ const vm = new Vue({
 		var subCatContainer = document.getElementsByClassName("scroller");
 		
 		$(".scroller").scroll(function() {
-		    for(var i in subCatContainer)
-			$(subCatContainer[i]).scrollTop($(this).scrollTop());
+		    try{
+			for(var i in subCatContainer)
+			    $(subCatContainer[i]).scrollTop($(this).scrollTop());
+		    }catch{};
 		});
 		dateInProgressTemp.style.display = "grid";
 	    }
@@ -121,8 +137,7 @@ const vm = new Vue({
 				pairIndex[blockTmp].style.marginBottom = "2.3em";	
 			    } else{
 				pairIndex[blockTmp].style.marginBottom = "0em";	
-			    }
-			    
+			    }	    
 			} catch(e){}
 		    }
 		}
@@ -139,21 +154,17 @@ const vm = new Vue({
 			if(block.style.height == "5em") block.style.marginBottom = "0em";
 		    } catch(e){}
 		}
-		
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
-		
-	    }
-	    
+		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;	
+	    }    
 	},
-
 
 	updateNumberOfUsers: function() {
 	    socket.emit('getNumberOfUsers', function(result) {
 		numberOfUsersInEvent = result;
-		document.getElementById("updateUserHeader").innerHTML = result + "/2 users have joined the event";
+		document.getElementById("updateUserHeader").innerHTML = result + "/20 users have joined the event";
 	    });
 	    socket.emit('getUsersFromServer', function(result){
 		maleArrayNew = result.maleUsers;
@@ -162,18 +173,33 @@ const vm = new Vue({
 	    if(numberOfUsersInEvent>= 2) {
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
-	    this.malesRender = maleArrayNew;
-	    this.femalesRender = femaleArrayNew;
+	    if(!this.matched){
+		this.malesRender = maleArrayNew;
+		this.femalesRender = femaleArrayNew;
+	    }
 	},
-
+	
 	startDate: function(){
-	    if(this.dateInProgressBool == false){
+	    if(this.dateInProgressBool == false && this.matched){
+		var matches = [];
+		for(var i = 0; i < 10; i++ ){
+		    try{
+			var pairs = document.getElementsByClassName(""+i);
+			var male = this.malesRender.find(user => user.id[1] == pairs[0].id[1]);
+			var female = this.femalesRender.find(user => user.id[1] == pairs[2].id[1]);
+			var match = {male: male, female: female, table: ""+i};
+			matches.push(match);
+		    } catch(e){}
+		}
+		socket.emit('pushMatchesToServer', matches);
+		//console.log(matches);
 		var timer = document.getElementById('timer');
 		timer.innerHTML = 005 + ":" + 00;
 		var block = document.getElementById("startDateButton");
 		this.dateInProgressBool = true;
 
 		socket.emit('setDateStatusTrue');
+		socket.emit('setDateDoneStatusFalse');
 		
 		let p = document.createElement("p");
 		p.innerHTML = "End date";
@@ -195,9 +221,9 @@ const vm = new Vue({
 		block.appendChild(timer);
 		block.style.backgroundColor = "green";
 		this.dateInProgressBool = false;
-
-		socket.emit('setDateFalse');
-		
+		this.matched = false;
+		socket.emit('setDateStatusFalse');
+		socket.emit('setDateDoneStatusTrue');
 		on = false;
 	    }
 
@@ -270,4 +296,21 @@ function drop(ev) {
 	} 
 	ev.target.appendChild(block);
     }
+}
+
+function shuffle(arra1) {
+    var ctr = arra1.length, temp, index;
+
+// While there are elements in the array
+    while (ctr > 0) {
+// Pick a random index
+        index = Math.floor(Math.random() * ctr);
+// Decrease ctr by 1
+        ctr--;
+// And swap the last element with it
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
 }
