@@ -130,8 +130,6 @@ const vm = new Vue({
 	    this.hideButtons();
 	},
 	dateViewTemp: function() {
-	    var waitingScreen = document.getElementById("waitingScreen");
-	    waitingScreen.style.display = "none";
 
 	    socket.emit('getDateStatus', function(result){
 		dateStatus = result.dateReady;
@@ -142,11 +140,17 @@ const vm = new Vue({
 	    this.dateReady = dateStatus;
 	    
 	    if (this.dateReady == true) {
+		var waitingScreen = document.getElementById("waitingScreen");
+		waitingScreen.style.display = "none";
+		
+		var dateInProgressTemp = document.getElementById("dateInProgressTemp");
+		dateInProgressTemp.style.display = "block";
 		console.log("true");	
 	    }
-	    else {console.log("false");}
-	    var dateInProgressTemp = document.getElementById("dateInProgressTemp");
-	    dateInProgressTemp.style.display = "block";
+	    else {
+		console.log("false");
+	    }
+
 
 
 	},
