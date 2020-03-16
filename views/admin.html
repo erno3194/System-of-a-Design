@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html lang = "en">
   <head>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/data.js" defer></script>
     <script type="text/javascript" src="js/admin_javascript.js" defer></script>
     <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="/socket.io/socket.io.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/admin_style.css">
     <title>Speed dejting</title>
     <meta charset="utf-8"/>
@@ -29,31 +30,40 @@
 	<h2>WAITING FOR ALL PARTICIPANTS TO CREATE A PROFILE</h2>
 	<br>
 	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
-	  <p>TEMP</p>	  
+	  <p>Continue</p>	  
 	</button>
+	<h2 id="updateUserHeader">0/20 users have joined the event</h2>
       </div>
       
       <div id="dateInProgressTemp">
-	<h2 >REARRANGE DATE MATCHES</h2>
+	<h2 id="rearrangeHeader">REARRANGE DATE MATCHES</h2>
 	<div id="dropoffMale" ondrop="drop(event)" ondragover="allowDrop(event)">
-	  <p class="drop">Drop zone</p>
+	  <p class="drop">Drop zone for males</p>
 	</div>
 	<div id="currentDateInfo">
 	  <p id="currentDateInfoHeader">You can drag and drop cards to the dropzones or to empty slots. <br>
-	    You can expand cards by clicking them for more info.
+	    You can expand cards by clicking them for more info. <br>
+	    Each table is a date.
 	  </p>
-	  <div id="males">
-	    <div v-for="male in malesRender" v-bind:id="male.id+c" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
-	      <div v-bind:id="male.id" class="maleClass" draggable="true" ondragover="" ondragstart="drag(event)" v-on:click="expand(male)">
+	  <div id="males" class="scroller">
+	    <h2>Males</h2>
+	    <div v-for="male in malesRender" v-bind:id="male.id+c" v-bind:class="male.id.substring(1)" class="males" ondrop="drop(event)" ondragover="allowDrop(event)">
+	      <div v-bind:id="male.id" v-if="matched" class="maleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(male)">
 		<p>{{male.name}}</p>
 		<p>Age: {{male.age}}</p>
 	      </div>
 	    </div>
 	  </div>
-	  
-	  <div id="females">
-	    <div v-for="female in femalesRender" v-bind:id="female.id+c" class="females" ondrop="drop(event)" ondragover="allowDrop(event)">
-	      <div v-bind:id="female.id" class="femaleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(female)">
+	  <div id="index" class="scroller">
+	    <h2>TABLE</h2>
+	    <div v-for="index in numbers" v-bind:id="c+index.id" v-bind:class="index.id" class="number">
+	      <p>< {{index.id}} ></p>
+	    </div>
+	  </div>
+	  <div id="females" class="scroller">
+	    <h2>Females</h2>
+	    <div v-for="female in femalesRender" v-bind:id="female.id+c" v-bind:class="female.id.substring(1)" class="females" ondrop="drop(event)" ondragover="allowDrop(event)">
+	      <div v-bind:id="female.id" v-if="matched" class="femaleClass" draggable="true" ondragstart="drag(event)" v-on:click="expand(female)">
 		<p>{{female.name}}</p> 
 		<p>Age: {{female.age}}</p>
 	      </div>
@@ -62,16 +72,22 @@
 	  </div>
 	</div>
 	<div id="dropoffFemale" ondrop="drop(event)" ondragover="allowDrop(event)">
-	  <p class="drop">Drop zone</p>
+	  <p class="drop">Drop zone for females</p>
 	</div>
-	<div id="startDateButton" v-on:click="startDate()">
-	  <p>Start date</p>
-	  <p id="timer">5:00</p>
+	<h2 id="tablemap">Table map</h2>
+	<div id="trdColumn">
+	  
+	  <div id="map"><img src="img/table-map.png"></div>
+	  <div id="applyAlgorithm" v-on:click="applyAlgorithm()"><p>Apply matching algorithm</p></div>
+	  <div id="startDateButton" v-on:click="startDate()">
+	    <p>Start date</p>
+	    <p id="timer">5:00</p>
+	  </div>
 	</div>
       </div>
     </main>
     <footer id="footer">
-      <hr>
+
       <p>&copy 2020 System of a Design</p>
     </footer>
   </body>
