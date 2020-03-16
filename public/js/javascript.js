@@ -37,6 +37,7 @@ const vm = new Vue({
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
+      console.log(other);
 	    var block = document.getElementById("evalFormDiv");
 	    block.style.display = "none";
 	    var myDates = document.getElementById("myDates"); //TODO: get this info from the back-end
