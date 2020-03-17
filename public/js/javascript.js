@@ -53,7 +53,7 @@ const vm = new Vue({
 		
 	    }
 	},
-	submitEval: function(match, interests, rating){
+	      submitEval: function(match, interests, rating, other){
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
