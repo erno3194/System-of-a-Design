@@ -58,6 +58,9 @@ const vm = new Vue({
 	    console.log(interests);
 	    console.log(rating);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
+	    socket.emit('incrementEvalCounter');
+	    
+	    this.incrementEvalCounter;
 	    if(this.dateCounter == 3){
 		var block = document.getElementById("evalFormDiv");
 		block.style.display = "none";
@@ -157,6 +160,12 @@ const vm = new Vue({
 	    console.log("Click");
 	    this.hideButtons();
 	},
+
+	incrementEvalCounter: function(){
+	    console.log(":)");
+	    socket.emit('incrementEvalCounter');
+	},
+	
 	dateViewTemp: function() {
 
 	    
