@@ -17,6 +17,7 @@ const vm = new Vue({
 	rating: "",
 	interests: "",
 	match: "",
+  other: "",
 	name: "",
 	email: "",
 	age: "",
