@@ -142,7 +142,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
-	    setInterval(this.dateViewTemp, 1000);
+	    setInterval(this.dateViewTemp, 100);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -196,7 +196,7 @@ const vm = new Vue({
 		dateInProgressTemp.style.display = "block";
 		this.currentDateNumber++;
 
-		setInterval(this.goToEvalTemp, 1000);
+		setInterval(this.goToEvalTemp, 100);
 	
 	    }
 

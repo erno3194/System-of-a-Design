@@ -88,12 +88,12 @@ const vm = new Vue({
 	    this.hideButtons();
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
-	    setInterval(this.updateNumberOfUsers, 1000);
-	    setInterval(this.updateEvalCounter, 1000);
+	    setInterval(this.updateNumberOfUsers, 100);
+	    setInterval(this.updateEvalCounter, 100);
 	},
 
 	dateViewUpdate: function() {
-	    setInterval(this.dateView, 1000);
+	    setInterval(this.dateView, 100);
 	},
 	
 	dateView: function() {
