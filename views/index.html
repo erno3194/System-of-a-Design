@@ -68,9 +68,11 @@
 		                 <input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
 	                 </div>
 	               </div>
+                 <label>Other information or feedback</label>
+                 <input v-model="otherinfo" type="text" id="otherInformation" maxlength="500" size="70" >
 	          <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	        </form>
-	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
+	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum, otherinfo)" id="submitProfileButton">
 	          <p>SUBMIT</p>
 	        </button>
 	      </div>

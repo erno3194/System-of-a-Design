@@ -23,7 +23,8 @@ const vm = new Vue({
 	age: "",
 	gender: "male",
 	ageMinimum: "",
-	ageMaximum: "",
+	      ageMaximum: "",
+        otherinfo: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
@@ -87,7 +88,7 @@ const vm = new Vue({
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
 	},
-	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
+	      submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
@@ -99,7 +100,8 @@ const vm = new Vue({
 	    console.log(age);
 	    console.log(gender);
 	    console.log(ageMinimum);
-	    console.log(ageMaximum);
+	          console.log(ageMaximum);
+            console.log(otherinfo);
 	    console.log(this.selectedHobbies);
 	    
 	    var skapaProfil = document.getElementById("skapaProfil");
