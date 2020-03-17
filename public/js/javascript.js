@@ -57,6 +57,7 @@ const vm = new Vue({
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
+      console.log(other);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
 	    if(this.dateCounter == 3){
 		var block = document.getElementById("evalFormDiv");
