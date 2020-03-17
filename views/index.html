@@ -15,88 +15,75 @@
     </header>
     <main id="main">
       <div id="skapaProfil">
-	      <div id="skapaProfilDiv"> 
-	        <form id="skapaProfilForm">
+	<div id="skapaProfilDiv"> 
+	  <form id="skapaProfilForm">
 
-	          <p class="skapaProfilInput" id="nameParagraph">
-	            <label for="name">Full name</label><br>
-	            <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
-	          </p>
+	    <p class="skapaProfilInput" id="nameParagraph">
+	      <label for="name">Full name</label><br>
+	      <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
+	    </p>
 
-	          <p class="skapaProfilInput" id="emailParagraph">
-	            <label for="email">Email</label><br>
-	            <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
-	          </p>
+	    <p class="skapaProfilInput" id="emailParagraph">
+	      <label for="email">Email</label><br>
+	      <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
+	    </p>
 
-	          <p class="skapaProfilInput" id="ageParagraph">
-	            <label for="age">Age</label><br>
-	            <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
-	          </p>
+	    <p class="skapaProfilInput" id="ageParagraph">
+	      <label for="age">Age</label><br>
+	      <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
+	    </p>
 
-	          <p class="skapaProfilInput" id="kön">
-	            <label id="genderLabel" for="gender">Gender</label><br>
-	            <label id="maleLabel" for="male">Male</label>
-	            <input v-model="gender" type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
-	            <label id="femaleLabel" for="female">Female</label>
-	            <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
-	          </p>
+	    <p class="skapaProfilInput" id="kön">
+	      <label id="genderLabel" for="gender">Gender</label><br>
+	      <label id="maleLabel" for="male">Male</label>
+	      <input v-model="gender" type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
+	      <label id="femaleLabel" for="female">Female</label>
+	      <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
+	    </p>
 
-	          <p class="skapaProfilInput" id="ageMinParagraph">
-	            <label for="preferedAgeMin">Preferred lowest age: </label><br>
-	            <input v-model="ageMinimum"  placeholder="18-100" id="preferredAgeMin" type="number" min="18" max="100" class="inputField"/>
-	          </p>
+	    <p class="skapaProfilInput" id="ageMinParagraph">
+	      <label for="preferedAgeMin">Preferred lowest age: </label><br>
+	      <input v-model="ageMinimum"  placeholder="18-100" id="preferredAgeMin" type="number" min="18" max="100" class="inputField"/>
+	    </p>
 
-	          <p class="skapaProfilInput" id="ageMaxParagraph">
-	            <label for="preferedAgeMax">Preferred highest age: </label><br>
-	            <input v-model="ageMaximum" placeholder="18-100" id="preferredAgeMax" type="number" min="18" max="100" class="inputField"/>
-	          </p>
-	          <!-- DROPDOWN ÅLDER
-	               <p class="skapaProfilInput" id="preferredAgeParagraph">
-	                 <label for="preferredAge">Preferred age range</label><br>
-	                 <select v-model="preferredAge" id="preferredAge">
-		                 <option selected="selected">18-25</option>
-		                 <option>25-35</option>
-		                 <option>35-45</option>
-		                 <option>45+</option>
-	                 </select>
-	               </p>
-	               -->
-	               <div class="skapaProfilInput" id="intressen">
-	                 <label id="intressenLabel">Hobbies:</label>
-	                 <div v-for="hobby in hobbies">
-		                 <label for="hobby">{{hobby}}</label>
-		                 <input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
-	                 </div>
-	               </div>
-	          <p id="failedProfile" style="display: none">Please fill in correct information.</p>
-	        </form>
-	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
-	          <p>SUBMIT</p>
-	        </button>
+	    <p class="skapaProfilInput" id="ageMaxParagraph">
+	      <label for="preferedAgeMax">Preferred highest age: </label><br>
+	      <input v-model="ageMaximum" placeholder="18-100" id="preferredAgeMax" type="number" min="18" max="100" class="inputField"/>
+	    </p>
+	     <div class="skapaProfilInput" id="intressen">
+	      <label id="intressenLabel">Hobbies:</label>
+	      <div v-for="hobby in hobbies">
+		<label for="hobby">{{hobby}}</label>
+		<input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
 	      </div>
-
-
+	    </div>
+	    <p id="failedProfile" style="display: none">Please fill in correct information.</p>
+	  </form>
+	  <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
+	    <p>SUBMIT</p>
+	  </button>
+	</div>
       </div>
+
       <div id="tillProfilButton" v-on:click="tillProfil">
-	      <h2>LOGIN</h2>
+	<h2>LOGIN</h2>
       </div>
       <div id="skapaProfilButton" v-on:click="skapaProfil">
-	      <h2>CREATE PROFILE</h2>
+	<h2>CREATE PROFILE</h2>
       </div>
 
       <div id="myDates">
-	      <h2>Your dates</h2>
-	      <h3>Who do you want to share your contact information with?</h3>
-	      <div v-for="date in myDates">
-	        <label for="date.name">{{date.name}}</label>
-	        <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
-	      </div>
-	      <button id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
-	        <p>Send my information</p>
-	    </div>
-</div>
+	<h2>Your dates</h2>
+	<h3>Who do you want to share your contact information with?</h3>
+	<div v-for="date in myDates">
+	  <label for="date.name">{{date.name}}</label>
+	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
+	</div>
+	<button id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
+	  <p>Send my information</p>
+      </div>
 
-<div id="myMatches">
+      <div id="myMatches">
 	<h2>Your matches</h2>
 	<h3>Here is their information:</h3>
 	<div id="matchInfo" v-for="match in myMatches">
@@ -105,23 +92,16 @@
 	  <label for="match.name">{{match.email}}</label>	 
 	</div>
 	<p id="thankYouMessage"><br>Thank you for using Speed Dejting!</p>
-</div>
+      </div>
 
 
 
 
-<div id="waitingScreen">
+      <div id="waitingScreen">
 	<h2>WAITING FOR DATE {{dateCounter+1}}/3 TO BE ARRANGED</h2>
 	<br>	
-	<!--
-	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
-	  <p>TEMP</p>
-	</button>
-	-->
-</div>
-
-
-<div id="dateInProgressTemp">
+      </div>
+      <div id="dateInProgressTemp">
 	<h3>DATE IN PROGRESS</h3>
 	<h4>Date number: {{dateCounter}}/3</h4>
 	<div id="currentDateInfo">
@@ -129,12 +109,6 @@
 	  <p class="dInfo">{{currentDate.name}}</p>
 	  <p class="dTitle">AT TABLE</p>
 	  <p class="dInfo">{{currentDate.table}}</p>
-
-	  <!--
-	  <button id="goToEvalTemp" type="button" v-on:click="goToEvalTemp">
-	    <p>TEMP</p>
-	  </button>
-	-->
 	</div>
 	<div>
 	  <p id="map">
@@ -147,82 +121,82 @@
 	  </button>
 	  <p id="tableMapHelp">Not sure where table {{currentDate.table}} is?<br>Click the button for a map!</p>
 	</div>
-</div>
-
-<div id="evalFormDiv">
-  <div id="formHeader">
-	    <h1>Date is over!</h1>
-    <h2 id="subheader">Evaluate your date {{dateCounter}}/3 with:</h2>
-    <h2 id="dateName">{{currentDate.name}}</h2>
-  </div>
-  
-  <div id="formDiv">
-    <div id="questionDiv">
-      <form id="evalForm">
-	<div id="matchning">
-
-	  <label class="question">How well did your date match the info and preferences you provided in your profile?</label>
-          <p class="rateScale">(1 = not at all, 5 = very well)</p>
-	  <p class="radioButtons">
-            <input v-model="match" type="radio" name="matching" value="1" >
-            <label id="matchOneID" for="one">1</label>
-            <input v-model="match" type="radio" name="matching" value="2" >
-            <label id="matchTwoID" for="two">2</label>
-            <input v-model="match" type="radio" name="matching" value="3" >
-            <label id="matchThreeID" for="three">3</label>
-            <input v-model="match" type="radio" name="matching" value="4" >
-            <label id="matchFourID" for="four">4</label>
-            <input v-model="match" type="radio" name="matching" value="5" >
-            <label id="matchFiveID" for="five">5</label>
-          </p>
       </div>
 
-      <div id="interest">
-        <label class="question">To what extent did your and your date's interests coincide?</label>
-        <p class="rateScale">(1 = not at all, 5 = entirely)</p>
-        <p class="radioButtons">
-          <input v-model="interests" type="radio" name="inter" value="1" >
-          <label id="interOneID" for="one">1</label>
-          <input v-model="interests" type="radio" name="inter" value="2" >
-          <label id="interTwoID" for="two">2</label>
-          <input v-model="interests" type="radio" name="inter" value="3" >
-          <label id="interThreeID" for="three">3</label>
-          <input v-model="interests" type="radio" name="inter" value="4" >
-          <label id="interFourID" for="four">4</label>
-          <input v-model="interests" type="radio" name="inter" value="5" >
-          <label id="interFiveID" for="five">5</label>
-        </p>
-      </div>
+      <div id="evalFormDiv">
+	<div id="formHeader">
+	  <h1>Date is over!</h1>
+	  <h2 id="subheader">Evaluate your date {{dateCounter}}/3 with:</h2>
+	  <h2 id="dateName">{{currentDate.name}}</h2>
+	</div>
+	
+	<div id="formDiv">
+	  <div id="questionDiv">
+	    <form id="evalForm">
+	      <div id="matchning">
 
-      <div id="allRate">
-        <label class="question">How would you rate this date in it's entirety?</label>
-        <p class="rateScale">(1 = really bad, 5 = really good)</p>
-        <p class="radioButtons">
-          <input v-model="rating" type="radio" name="rate" value="1" >
-          <label id="rateOneID" for="one">1</label>
-          <input v-model="rating" type="radio" name="rate" value="2" >
-          <label id="rateTwoID" for="two">2</label>
-          <input v-model="rating" type="radio" name="rate" value="3" >
-          <label id="rateThreeID" for="three">3</label>
-          <input v-model="rating" type="radio" name="rate" value="4" >
-          <label id="rateFourID" for="four">4</label>
-          <input v-model="rating" type="radio" name="rate" value="5" >
-          <label id="rateFiveID" for="five">5</label>
-        </p>
-        
-      </div>
+		<label class="question">How well did your date match the info and preferences you provided in your profile?</label>
+		<p class="rateScale">(1 = not at all, 5 = very well)</p>
+		<p class="radioButtons">
+		  <input v-model="match" type="radio" name="matching" value="1" >
+		  <label id="matchOneID" for="one">1</label>
+		  <input v-model="match" type="radio" name="matching" value="2" >
+		  <label id="matchTwoID" for="two">2</label>
+		  <input v-model="match" type="radio" name="matching" value="3" >
+		  <label id="matchThreeID" for="three">3</label>
+		  <input v-model="match" type="radio" name="matching" value="4" >
+		  <label id="matchFourID" for="four">4</label>
+		  <input v-model="match" type="radio" name="matching" value="5" >
+		  <label id="matchFiveID" for="five">5</label>
+		</p>
+	      </div>
 
-      </form>
+	      <div id="interest">
+		<label class="question">To what extent did your and your date's interests coincide?</label>
+		<p class="rateScale">(1 = not at all, 5 = entirely)</p>
+		<p class="radioButtons">
+		  <input v-model="interests" type="radio" name="inter" value="1" >
+		  <label id="interOneID" for="one">1</label>
+		  <input v-model="interests" type="radio" name="inter" value="2" >
+		  <label id="interTwoID" for="two">2</label>
+		  <input v-model="interests" type="radio" name="inter" value="3" >
+		  <label id="interThreeID" for="three">3</label>
+		  <input v-model="interests" type="radio" name="inter" value="4" >
+		  <label id="interFourID" for="four">4</label>
+		  <input v-model="interests" type="radio" name="inter" value="5" >
+		  <label id="interFiveID" for="five">5</label>
+		</p>
+	      </div>
+
+	      <div id="allRate">
+		<label class="question">How would you rate this date in it's entirety?</label>
+		<p class="rateScale">(1 = really bad, 5 = really good)</p>
+		<p class="radioButtons">
+		  <input v-model="rating" type="radio" name="rate" value="1" >
+		  <label id="rateOneID" for="one">1</label>
+		  <input v-model="rating" type="radio" name="rate" value="2" >
+		  <label id="rateTwoID" for="two">2</label>
+		  <input v-model="rating" type="radio" name="rate" value="3" >
+		  <label id="rateThreeID" for="three">3</label>
+		  <input v-model="rating" type="radio" name="rate" value="4" >
+		  <label id="rateFourID" for="four">4</label>
+		  <input v-model="rating" type="radio" name="rate" value="5" >
+		  <label id="rateFiveID" for="five">5</label>
+		</p>
+		
+	      </div>
+
+	    </form>
 	    <button id="ratingButton" type="button" v-on:click="submitEval(match,interests,rating)">
 	      <p>Send form</p>
 	    </button>
 	  </div>
 	</div>	
-</div>
-</main>
-<footer id="footer">
-  <hr>
-  <p>&copy 2020 System of a Design</p>
-</footer>
-</body>
+      </div>
+    </main>
+    <footer id="footer">
+      <hr>
+      <p>&copy 2020 System of a Design</p>
+    </footer>
+  </body>
 </html>

@@ -26,9 +26,7 @@ const vm = new Vue({
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
-	myMatches: [{name: "Kim Johansson", dateNumber: 0, phoneNumber: "112", email: "superduperlångmegamail@mail.se"},
-		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
-		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
+	myMatches: [],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "", table: ""},
 	currentDateNumber: 1,
@@ -73,9 +71,14 @@ const vm = new Vue({
 	},
 	sendContactInfoFunction: function(){
 	    var evaluation = document.getElementById("evalFormDiv");
-	    evaluation.style.display = "none";
-	    for(number in this.sendContactInfo)
-		console.log(this.myDates[this.sendContactInfo[number]].name);
+	    evaluation.style.display = "none";	    
+	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);
+
+	    
+	    socket.emit('getContactInfo', this.name, function(result){
+		this.myMatches = result;
+	    });
+	    
 	    var block = document.getElementById("myDates");
 	    block.style.display = "none";
 	    var myMatches = document.getElementById("myMatches");
