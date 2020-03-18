@@ -198,7 +198,7 @@ const vm = new Vue({
 		block.style.height="5em";
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += "Hobbies: " + person.hobbies + "<br> Email: " + person.email;
+		sndBlock.innerHTML += "Hobbies: " + person.hobbies + "<br> Age preference: " + person.preferredAgeMin + " - " + person.preferredAgeMax + " years";
 		for(blockTmp in pairIndex){
 		    try{
 			if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";

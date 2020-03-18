@@ -119,10 +119,10 @@ const vm = new Vue({
 	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
 		if(gender == "male"){
-		    socket.emit('saveUserMale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+		    socket.emit('saveUserMale', name, email, age, ageMinimum, ageMaximum, this.selectedHobbies);
 		}
 		if(gender == "female"){
-		    socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+		    socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMaximum, this.selectedHobbies);
 		}
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
