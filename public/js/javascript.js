@@ -6,6 +6,7 @@ var dateDoneStatus = false;
 var dateCounterStatus = 0;
 var eventStatusGlobal = true;
 var matchGlobal = {male: "", female: "", table: ""};
+var myMatchesGlobal = [];
 
 const vm = new Vue({
     el: '#main',
@@ -27,9 +28,7 @@ const vm = new Vue({
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
-	myMatches: [{name: "Kim Johansson", dateNumber: 0, phoneNumber: "112", email: "superduperlångmegamail@mail.se"},
-		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
-		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
+	myMatches: [],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "", table: ""},
 	currentDateNumber: 1,
@@ -77,9 +76,11 @@ const vm = new Vue({
 	},
 	sendContactInfoFunction: function(){
 	    var evaluation = document.getElementById("evalFormDiv");
-	    evaluation.style.display = "none";
-	    for(number in this.sendContactInfo)
-		console.log(this.myDates[this.sendContactInfo[number]].name);
+	    evaluation.style.display = "none";	    
+	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);
+	    
+
+	    
 	    var block = document.getElementById("myDates");
 	    block.style.display = "none";
 	    var myMatches = document.getElementById("myMatches");
@@ -88,6 +89,15 @@ const vm = new Vue({
 	    thankYouMessage.style.display = "block";
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
+
+	    setInterval(this.getContacts,100);
+	    
+	},
+	getContacts: function(){
+	    socket.emit('getContactInfo', this.name, function(result){
+		myMatchesGlobal = result;
+	    });
+	    this.myMatches = myMatchesGlobal;
 	},
 	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
 	    this.name = name,

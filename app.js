@@ -58,7 +58,7 @@ function Matches() {
 
 var data = new Data();
 var matches = new Matches();
-
+var shared = [];
 io.on('connection', function(socket) {
   // Send list of orders when a client connects
 
@@ -131,6 +131,18 @@ io.on('connection', function(socket) {
 
     });
 
+  socket.on('shareContactInfo', function(name, email, sharedInfo){
+	shared.push({name: name, email: email, shared: sharedInfo});
+
+    });
+
+    socket.on('getContactInfo', function(name, callback){		    	
+	var share = shared.filter(user => user.shared.includes(name));
+	console.log(share);
+	callback(share);
+    });
+    
+    
     socket.on('eventOver', function() {
 	data.eventOn = false;
     });
@@ -142,7 +154,6 @@ io.on('connection', function(socket) {
     socket.on('isEventOver', function(callback){
 	callback(data.eventOn);
     });
-
 });
 
 /* eslint-disable-next-line no-unused-vars */
