@@ -39,6 +39,8 @@ function Data() {
     this.dateReady = false;
     this.dateDone = false;
     this.dateCounter = 0;
+    this.evalCounter = 0;
+    this.eventOn = true;
 }
 
 /*
@@ -83,6 +85,17 @@ io.on('connection', function(socket) {
 	callback(data);
     });
 
+    socket.on('updateEvalCounter', function(callback){
+	callback(data.evalCounter);
+    });
+
+    socket.on('incrementEvalCounter', function() {
+	data.evalCounter ++;
+    });
+
+    socket.on('resetEvalCounter', function() {
+	data.evalCounter = 0;
+    });
 
     socket.on('pushMatchesToServer', function(matchesFromAdmin){
 	matches.matchesArray = matchesFromAdmin;
@@ -118,7 +131,7 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('shareContactInfo', function(name, email, sharedInfo){
+  socket.on('shareContactInfo', function(name, email, sharedInfo){
 	shared.push({name: name, email: email, shared: sharedInfo});
 
     });
@@ -130,6 +143,17 @@ io.on('connection', function(socket) {
     });
     
     
+    socket.on('eventOver', function() {
+	data.eventOn = false;
+    });
+
+    socket.on('eventOn', function() {
+	data.eventOn = true;
+    });
+
+    socket.on('isEventOver', function(callback){
+	callback(data.eventOn);
+    });
 });
 
 /* eslint-disable-next-line no-unused-vars */

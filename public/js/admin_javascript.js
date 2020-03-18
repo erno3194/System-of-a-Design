@@ -5,6 +5,7 @@ var on = false;
 var numberOfUsersInEvent = 0;
 var maleArrayNew = [];
 var femaleArrayNew = [];
+var evalCounterGlobal = 0;
 
 function startTimer() {
     if(on){
@@ -27,6 +28,20 @@ function checkSecond(sec) {
   return sec;
 }
 
+const vh = new Vue({
+    el: '#header',
+    methods: {
+	
+	terminate: function() {	    
+	    vm.hideScreen();
+	    var exitButton = document.getElementById("exitButton");
+	    exitButton.style.display = "none";
+	    socket.emit('eventOver');
+	},
+    },
+})
+    
+
 const vm = new Vue({
     el: '#main',
     data: {
@@ -38,6 +53,8 @@ const vm = new Vue({
 	malesRender: [],
 	femalesRender: [],
 	dateInProgressBool: false,
+	evalCounter: 0,
+	dateRound: 1,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     },
 
@@ -46,22 +63,33 @@ const vm = new Vue({
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
 	},
+	hideScreen: function() {
+	    var screen = document.getElementById("main");
+	    screen.style.display = "none";
+	    var exitDiv = document.getElementById("exitDiv");
+	    var exitMessage = document.createTextNode("Event is over, goodbye!");
+	    exitDiv.appendChild(exitMessage);
+	    exitDiv.style.fontWeight = "bold";
+	    exitDiv.style.fontSize = "5em";
+	},
 	applyAlgorithm: function() {
-	    this.malesRender = shuffle(maleArrayNew);
-	    this.femalesRender = shuffle(femaleArrayNew);
-	    var c = 1;
-	    for(i in this.malesRender){
-		if(c < 10) this.malesRender[i].id = "m" + c;
-		else this.malesRender[i].id = "m0";
-		c++;
+	    if(this.evalCounter >= 2 || this.dateRound == 1){
+		this.malesRender = shuffle(maleArrayNew);
+		this.femalesRender = shuffle(femaleArrayNew);
+		var c = 1;
+		for(i in this.malesRender){
+		    if(c < 10) this.malesRender[i].id = "m" + c;
+		    else this.malesRender[i].id = "m0";
+		    c++;
+		}
+		c = 1;
+		for(i in this.femalesRender){
+		    if(c < 10) this.femalesRender[i].id = "f" + c;
+		    else this.femalesRender[i].id = "f0";
+		    c++;
+		}
+		this.matched  = true;
 	    }
-	    c = 1;
-	    for(i in this.femalesRender){
-		if(c < 10) this.femalesRender[i].id = "f" + c;
-		else this.femalesRender[i].id = "f0";
-		c++;
-	    }
-	    this.matched  = true;
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("exitEventButton");
@@ -83,13 +111,36 @@ const vm = new Vue({
 	    this.hideButtons();
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
-	    setInterval(this.updateNumberOfUsers, 1000);
+	    setInterval(this.updateNumberOfUsers, 100);
+	    setInterval(this.updateEvalCounter, 100);
 	},
 
-	dateViewTemp: function() {
+	dateViewUpdate: function() {
+	    setInterval(this.dateView, 100);
+	},
+	
+	dateView: function() {
+	    console.log("dateView Update" + this.evalCounter);
+	    this.updateEvalCounter;
 	    if(numberOfUsersInEvent >= 2){
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "none";
+		if(this.evalCounter < 2 && this.dateRound != 1){
+		    var applyAlgorithm = document.getElementById("applyAlgorithm");
+		    applyAlgorithm.style.backgroundColor = "grey";
+		}
+		else{
+		    var applyAlgorithm = document.getElementById("applyAlgorithm");
+		    applyAlgorithm.style.backgroundColor = "lightblue";
+		}
+		if(this.dateRound == 1){
+		    var evalCounterText = document.getElementById("evalCounterDiv");
+		    evalCounterText.style.display = "none";
+		}
+		else{
+		    var evalCounterText = document.getElementById("evalCounterDiv");
+		    evalCounterText.style.display = "block";
+		}
 		var dateInProgress = document.getElementById("dateInProgress");
 		var subCatContainer = document.getElementsByClassName("scroller");
 		
@@ -178,56 +229,70 @@ const vm = new Vue({
 		this.femalesRender = femaleArrayNew;
 	    }
 	},
+
+
+	updateEvalCounter: function() {
+	    socket.emit('updateEvalCounter', function(result){
+		evalCounterGlobal = result;
+	    });
+	    this.evalCounter = evalCounterGlobal;
+	},
 	
 	startDate: function(){
-	    if(this.dateInProgressBool == false && this.matched){
-		var matches = [];
-		for(var i = 0; i < 10; i++ ){
-		    try{
-			var pairs = document.getElementsByClassName(""+i);
-			var male = this.malesRender.find(user => user.id[1] == pairs[0].id[1]);
-			var female = this.femalesRender.find(user => user.id[1] == pairs[2].id[1]);
-			var match = {male: male, female: female, table: ""+i};
-			matches.push(match);
-		    } catch(e){}
+	    if(this.evalCounter >= 2 || this.dateRound == 1){
+		if(this.dateInProgressBool == false && this.matched){
+		    console.log(this.dateRound);
+		    this.updateEvalCounter();
+		    var matches = [];
+		    for(var i = 0; i < 10; i++ ){
+			try{
+			    var pairs = document.getElementsByClassName(""+i);
+			    var male = this.malesRender.find(user => user.id[1] == pairs[0].id[1]);
+			    var female = this.femalesRender.find(user => user.id[1] == pairs[2].id[1]);
+			    var match = {male: male, female: female, table: ""+i};
+			    matches.push(match);
+			} catch(e){}
+		    }
+		    socket.emit('pushMatchesToServer', matches);
+		    //console.log(matches);
+		    var timer = document.getElementById('timer');
+		    timer.innerHTML = 005 + ":" + 00;
+		    var block = document.getElementById("startDateButton");
+		    this.dateInProgressBool = true;
+
+		    socket.emit('setDateStatusTrue');
+		    socket.emit('setDateDoneStatusFalse');
+		    
+		    let p = document.createElement("p");
+		    p.innerHTML = "End date";
+		    block.innerHTML = "";
+		    block.appendChild(p);
+		    block.appendChild(timer);
+		    block.style.backgroundColor = "red";
+		    on = true;
+		    startTimer();
+		    
+		} else{
+		    var timer = document.getElementById('timer');
+		    timer.innerHTML = 005 + ":" + "00";
+		    var block = document.getElementById("startDateButton");
+		    let p = document.createElement("p");
+		    p.innerHTML = "Start date";
+		    block.innerHTML = "";
+		    block.appendChild(p);
+		    block.appendChild(timer);
+		    block.style.backgroundColor = "green";
+		    this.dateInProgressBool = false;
+		    this.matched = false;
+		    socket.emit('setDateStatusFalse');
+		    socket.emit('setDateDoneStatusTrue');
+		    on = false;
+		    this.dateRound ++;
+		    socket.emit('resetEvalCounter');
 		}
-		socket.emit('pushMatchesToServer', matches);
-		//console.log(matches);
-		var timer = document.getElementById('timer');
-		timer.innerHTML = 005 + ":" + 00;
-		var block = document.getElementById("startDateButton");
-		this.dateInProgressBool = true;
 
-		socket.emit('setDateStatusTrue');
-		socket.emit('setDateDoneStatusFalse');
-		
-		let p = document.createElement("p");
-		p.innerHTML = "End date";
-		block.innerHTML = "";
-		block.appendChild(p);
-		block.appendChild(timer);
-		block.style.backgroundColor = "red";
-		on = true;
-		startTimer();
-
-	    } else{
-		var timer = document.getElementById('timer');
-		timer.innerHTML = 005 + ":" + "00";
-		var block = document.getElementById("startDateButton");
-		let p = document.createElement("p");
-		p.innerHTML = "Start date";
-		block.innerHTML = "";
-		block.appendChild(p);
-		block.appendChild(timer);
-		block.style.backgroundColor = "green";
-		this.dateInProgressBool = false;
-		this.matched = false;
-		socket.emit('setDateStatusFalse');
-		socket.emit('setDateDoneStatusTrue');
-		on = false;
 	    }
-
-	}	
+	}
     },    
 
 })

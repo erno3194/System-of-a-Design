@@ -13,11 +13,12 @@
   </head>
   <body id="body">
     <header id="header">
+      <img id="exitButton" src="img/exit-button.jpg" v-on:click="terminate">
       <h1>Speed dejting</h1>
     </header>
+    <div id="exitDiv"></div>
     <main id="main">
       <div id="beginEvent">
-
       </div>
       <div id="beginEventButton" v-on:click="beginEvent">
 	<h2>BEGIN EVENT</h2>
@@ -26,10 +27,13 @@
 	<h2>EXIT EVENT</h2>
       </div>
 
+ 
+
+
       <div id="waitingScreen">
 	<h2>WAITING FOR ALL PARTICIPANTS TO CREATE A PROFILE</h2>
 	<br>
-	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
+	<button id="startDateTEMP" type="button" v-on:click="dateViewUpdate">
 	  <p>Continue</p>	  
 	</button>
 	<h2 id="updateUserHeader">0/20 users have joined the event</h2>
@@ -83,7 +87,11 @@
 	    <p>Start date</p>
 	    <p id="timer">5:00</p>
 	  </div>
+	  <div id="evalCounterDiv">
+	    <p>{{evalCounter}}/20 users done with evaluation</p>
+	  </div>
 	</div>
+
       </div>
     </main>
     <footer id="footer">

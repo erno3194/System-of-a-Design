@@ -4,7 +4,7 @@ const socket = io();
 var dateStatus = false;
 var dateDoneStatus = false;
 var dateCounterStatus = 0;
-
+var eventStatusGlobal = true;
 var matchGlobal = {male: "", female: "", table: ""};
 var myMatchesGlobal = [];
 
@@ -14,6 +14,7 @@ const vm = new Vue({
 	dateReady: false,
 	dateDone: false,
 	mapOn: false,
+	eventStatus: true,
 	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
@@ -57,6 +58,9 @@ const vm = new Vue({
 	    console.log(interests);
 	    console.log(rating);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
+	    socket.emit('incrementEvalCounter');
+	    
+	    this.incrementEvalCounter;
 	    if(this.dateCounter == 3){
 		var block = document.getElementById("evalFormDiv");
 		block.style.display = "none";
@@ -149,7 +153,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
-	    setInterval(this.dateViewTemp, 1000);
+	    setInterval(this.dateViewTemp, 100);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -157,7 +161,29 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
+
+	getEventStatus: function() {
+	    socket.emit('isEventOver', function(result) {
+		eventStatusGlobal = result;
+		console.log(result);
+	    });
+	    this.eventStatus = eventStatusGlobal;
+	    if(this.eventStatus == false){
+		this.eventOverScreen();
+	    }
+	},
+
+	eventOverScreen: function() {
+	    var screen = document.getElementById("main");
+	    screen.style.display = "none";
+	    var eventOverScreen = document.getElementById("eventOverDiv");
+	    eventOverScreen.innerHTML = "This event has been closed, goodbye!";
+	    eventOverScreen.style.fontWeight = "bold";
+	    eventOverScreen.style.fontSize = "5em";
+	    eventOverScreen.style.textAlign = "center";
+	},
 	skapaProfil: function() {
+	    setInterval(this.getEventStatus, 1000);
 	    console.log("Click");
 	    this.hideButtons();
 	    var skapaProfil = document.getElementById("skapaProfil");
@@ -167,6 +193,12 @@ const vm = new Vue({
 	    console.log("Click");
 	    this.hideButtons();
 	},
+
+	incrementEvalCounter: function(){
+	    console.log(":)");
+	    socket.emit('incrementEvalCounter');
+	},
+	
 	dateViewTemp: function() {
 
 	    
@@ -197,7 +229,7 @@ const vm = new Vue({
 		dateInProgressTemp.style.display = "block";
 		this.currentDateNumber++;
 
-		setInterval(this.goToEvalTemp, 1000);
+		setInterval(this.goToEvalTemp, 100);
 	
 	    }
 
@@ -231,6 +263,7 @@ const vm = new Vue({
 		this.mapOn = false;
 	    }
 	},
+
     }
     
 })
