@@ -26,6 +26,9 @@ body {
     grid-row: 1;
 }
 
+#exitButton:hover {
+    cursor: pointer;
+}
 
 header{
     display: grid;
