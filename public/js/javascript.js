@@ -4,7 +4,7 @@ const socket = io();
 var dateStatus = false;
 var dateDoneStatus = false;
 var dateCounterStatus = 0;
-
+var eventStatusGlobal = true;
 var matchGlobal = {male: "", female: "", table: ""};
 
 const vm = new Vue({
@@ -13,6 +13,7 @@ const vm = new Vue({
 	dateReady: false,
 	dateDone: false,
 	mapOn: false,
+	eventStatus: true,
 	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
@@ -150,7 +151,29 @@ const vm = new Vue({
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
+
+	getEventStatus: function() {
+	    socket.emit('isEventOver', function(result) {
+		eventStatusGlobal = result;
+		console.log(result);
+	    });
+	    this.eventStatus = eventStatusGlobal;
+	    if(this.eventStatus == false){
+		this.eventOverScreen();
+	    }
+	},
+
+	eventOverScreen: function() {
+	    var screen = document.getElementById("main");
+	    screen.style.display = "none";
+	    var eventOverScreen = document.getElementById("eventOverDiv");
+	    eventOverScreen.innerHTML = "This event has been closed, goodbye!";
+	    eventOverScreen.style.fontWeight = "bold";
+	    eventOverScreen.style.fontSize = "5em";
+	    eventOverScreen.style.textAlign = "center";
+	},
 	skapaProfil: function() {
+	    setInterval(this.getEventStatus, 1000);
 	    console.log("Click");
 	    this.hideButtons();
 	    var skapaProfil = document.getElementById("skapaProfil");
@@ -230,6 +253,7 @@ const vm = new Vue({
 		this.mapOn = false;
 	    }
 	},
+
     }
     
 })

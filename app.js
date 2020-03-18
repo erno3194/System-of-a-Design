@@ -40,6 +40,7 @@ function Data() {
     this.dateDone = false;
     this.dateCounter = 0;
     this.evalCounter = 0;
+    this.eventOn = true;
 }
 
 /*
@@ -128,6 +129,18 @@ io.on('connection', function(socket) {
     socket.on('setDateDoneStatusFalse', function() {
 	data.dateDone = false;
 
+    });
+
+    socket.on('eventOver', function() {
+	data.eventOn = false;
+    });
+
+    socket.on('eventOn', function() {
+	data.eventOn = true;
+    });
+
+    socket.on('isEventOver', function(callback){
+	callback(data.eventOn);
     });
 
 });
