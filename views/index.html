@@ -69,7 +69,8 @@
 	                 </div>
 	               </div>
                  <label>Other information or feedback</label>
-                 <input v-model="otherinfo" type="text" id="otherInformation" maxlength="500" size="70" >
+		 <textarea class="otherInfo" v-model="otherinfo"></textarea>
+		 <!--<input v-model="otherinfo" type="text" id="otherInfo">-->
 	          <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	        </form>
 	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum, otherinfo)" id="submitProfileButton">
@@ -218,7 +219,7 @@
         <p>
           <label>Other information or feedback</label>
         </p>
-        <textarea v-model="other" type="text" id="otherInformation" rows="10" cols="50" >
+	<textarea class="otherInfo" v-model="other"></textarea>
       </div>
 
       </form>
