@@ -29,7 +29,7 @@
       <div id="waitingScreen">
 	<h2>WAITING FOR ALL PARTICIPANTS TO CREATE A PROFILE</h2>
 	<br>
-	<button id="startDateTEMP" type="button" v-on:click="dateViewTemp">
+	<button id="startDateTEMP" type="button" v-on:click="dateViewUpdate">
 	  <p>Continue</p>	  
 	</button>
 	<h2 id="updateUserHeader">0/20 users have joined the event</h2>
@@ -83,7 +83,11 @@
 	    <p>Start date</p>
 	    <p id="timer">5:00</p>
 	  </div>
+	  <div id="evalCounterDiv">
+	    <p>{{evalCounter}}/20 users done with evaluation</p>
+	  </div>
 	</div>
+
       </div>
     </main>
     <footer id="footer">
