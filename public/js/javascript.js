@@ -58,6 +58,9 @@ const vm = new Vue({
 	    console.log(interests);
 	    console.log(rating);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
+	    socket.emit('incrementEvalCounter');
+	    
+	    this.incrementEvalCounter;
 	    if(this.dateCounter == 3){
 		var block = document.getElementById("evalFormDiv");
 		block.style.display = "none";
@@ -139,7 +142,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
-	    setInterval(this.dateViewTemp, 1000);
+	    setInterval(this.dateViewTemp, 100);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -157,6 +160,12 @@ const vm = new Vue({
 	    console.log("Click");
 	    this.hideButtons();
 	},
+
+	incrementEvalCounter: function(){
+	    console.log(":)");
+	    socket.emit('incrementEvalCounter');
+	},
+	
 	dateViewTemp: function() {
 
 	    
@@ -187,7 +196,7 @@ const vm = new Vue({
 		dateInProgressTemp.style.display = "block";
 		this.currentDateNumber++;
 
-		setInterval(this.goToEvalTemp, 1000);
+		setInterval(this.goToEvalTemp, 100);
 	
 	    }
 

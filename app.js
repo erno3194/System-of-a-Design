@@ -39,6 +39,7 @@ function Data() {
     this.dateReady = false;
     this.dateDone = false;
     this.dateCounter = 0;
+    this.evalCounter = 0;
 }
 
 /*
@@ -83,6 +84,17 @@ io.on('connection', function(socket) {
 	callback(data);
     });
 
+    socket.on('updateEvalCounter', function(callback){
+	callback(data.evalCounter);
+    });
+
+    socket.on('incrementEvalCounter', function() {
+	data.evalCounter ++;
+    });
+
+    socket.on('resetEvalCounter', function() {
+	data.evalCounter = 0;
+    });
 
     socket.on('pushMatchesToServer', function(matchesFromAdmin){
 	matches.matchesArray = matchesFromAdmin;
