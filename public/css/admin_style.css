@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     display: grid;
     height: 100%;
     width: 100%;
@@ -18,8 +18,18 @@ body{
     background-color: white;
 }
 
+#exitButton{
+    margin-left: 70px;
+    width: 50%;
+    height: 70%;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+
 header{
     display: grid;
+    grid-template-columns: 90% 10%;
     align-items: center;
     width: inherit;
     height: 100%;

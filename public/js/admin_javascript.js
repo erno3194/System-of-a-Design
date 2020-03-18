@@ -28,6 +28,20 @@ function checkSecond(sec) {
   return sec;
 }
 
+const vh = new Vue({
+    el: '#header',
+    methods: {
+	
+	terminate: function() {	    
+	    vm.hideScreen();
+	    var exitButton = document.getElementById("exitButton");
+	    exitButton.style.display = "none";
+	    socket.emit('eventOver');
+	},
+    },
+})
+    
+
 const vm = new Vue({
     el: '#main',
     data: {
@@ -48,6 +62,15 @@ const vm = new Vue({
 	sendContactInfoFunction: function(){
 	    for(number in this.sendContactInfo)
 		console.log(this.myDates[this.sendContactInfo[number]].name);
+	},
+	hideScreen: function() {
+	    var screen = document.getElementById("main");
+	    screen.style.display = "none";
+	    var exitDiv = document.getElementById("exitDiv");
+	    var exitMessage = document.createTextNode("Event is over, goodbye!");
+	    exitDiv.appendChild(exitMessage);
+	    exitDiv.style.fontWeight = "bold";
+	    exitDiv.style.fontSize = "5em";
 	},
 	applyAlgorithm: function() {
 	    if(this.evalCounter >= 2 || this.dateRound == 1){
@@ -206,6 +229,7 @@ const vm = new Vue({
 		this.femalesRender = femaleArrayNew;
 	    }
 	},
+
 
 	updateEvalCounter: function() {
 	    socket.emit('updateEvalCounter', function(result){
