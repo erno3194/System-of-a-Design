@@ -86,6 +86,10 @@ main{
     border-radius: 50px;
 }
 
+#startDateTEMP:hover {
+    cursor: pointer;
+}
+
 footer{
     height: auto;
     width: inherit;
