@@ -30,6 +30,25 @@ body {
     cursor: pointer;
 }
 
+#greeting {
+    margin-bottom: 1em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 4em;
+}
+
+#beginEventInfo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+#exitEventInfo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
 header{
     display: grid;
     grid-template-columns: 90% 10%;
@@ -84,18 +103,20 @@ footer{
 }
 
 #beginEventButton{
+    
     display: flex;
     align-items: center;
-    height: auto;
-    width: auto;
+    height: 3em;
+    width: 12em;
     background-color: green;
-    margin: 5% ;
+    margin-top: 2em;
     text-align: center;
     font-size: 5em;
     grid-row: 1;
     box-shadow: 5px 5px black;
     border: 2px solid black;
     overflow-y: hidden;
+    border-radius: 70px;
 }
 
 #beginEventButton:hover{

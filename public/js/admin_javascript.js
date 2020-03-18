@@ -92,9 +92,7 @@ const vm = new Vue({
 	    }
 	},
 	hideButtons: function() {
-	    var skapaButton = document.getElementById("exitEventButton");
 	    var tillButton = document.getElementById("beginEventButton");
-	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
 /*
