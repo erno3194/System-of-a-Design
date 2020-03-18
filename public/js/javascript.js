@@ -6,6 +6,7 @@ var dateDoneStatus = false;
 var dateCounterStatus = 0;
 
 var matchGlobal = {male: "", female: "", table: ""};
+var myMatchesGlobal = [];
 
 const vm = new Vue({
     el: '#main',
@@ -73,11 +74,8 @@ const vm = new Vue({
 	    var evaluation = document.getElementById("evalFormDiv");
 	    evaluation.style.display = "none";	    
 	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);
-
 	    
-	    socket.emit('getContactInfo', this.name, function(result){
-		this.myMatches = result;
-	    });
+
 	    
 	    var block = document.getElementById("myDates");
 	    block.style.display = "none";
@@ -87,6 +85,15 @@ const vm = new Vue({
 	    thankYouMessage.style.display = "block";
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
+
+	    setInterval(this.getContacts,100);
+	    
+	},
+	getContacts: function(){
+	    socket.emit('getContactInfo', this.name, function(result){
+		myMatchesGlobal = result;
+	    });
+	    this.myMatches = myMatchesGlobal;
 	},
 	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
 	    this.name = name,

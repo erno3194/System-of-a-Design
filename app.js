@@ -123,11 +123,9 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('getContactInfo', function(name, callback){
-	while(shared.length != data.femaleUsers.length + data.maleUsers.length){
-	    setTimeout(function(){}, 1000);
-	}
-	var share = shared.filter(user => user.shared.includes(name))
+    socket.on('getContactInfo', function(name, callback){		    	
+	var share = shared.filter(user => user.shared.includes(name));
+	console.log(share);
 	callback(share);
     });
     

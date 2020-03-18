@@ -77,7 +77,7 @@
 	<h3>Who do you want to share your contact information with?</h3>
 	<div v-for="date in myDates">
 	  <label for="date.name">{{date.name}}</label>
-	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.dateNumber" v-bind:id="date.name">
+	  <input type="checkbox" v-model="sendContactInfo" v-bind:value="date.name" v-bind:id="date.dateNumber">
 	</div>
 	<button id="sendContactInfoButton" v-on:click="sendContactInfoFunction()">
 	  <p>Send my information</p>
@@ -91,7 +91,8 @@
 	  <!-- <label for="match.name">{{match.phoneNumber}}</label> -->
 	  <label for="match.name">{{match.email}}</label>	 
 	</div>
-	<p id="thankYouMessage"><br>Thank you for using Speed Dejting!</p>
+	<p id="thankYouMessage"><br>Thank you for using Speed Dejting!
+	ps. wait a few minutes for everyone to send their info, you don't want to miss out on someone ;)</p>
       </div>
 
 
