@@ -107,6 +107,7 @@ const vm = new Vue({
 	
 	beginEvent: function() {
 	    this.hideButtons();
+	    socket.emit('eventOn');
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
 	    setInterval(this.updateNumberOfUsers, 100);
