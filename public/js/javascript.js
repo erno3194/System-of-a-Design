@@ -14,17 +14,21 @@ const vm = new Vue({
 	dateReady: false,
 	dateDone: false,
 	mapOn: false,
+	helpButtonText: "HELP",
+	helpTextOn: false,
 	eventStatus: true,
 	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
 	match: "",
+	other: "",
 	name: "",
 	email: "",
 	age: "",
 	gender: "male",
 	ageMinimum: "",
 	ageMaximum: "",
+        otherinfo: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
@@ -53,10 +57,36 @@ const vm = new Vue({
 		
 	    }
 	},
-	submitEval: function(match, interests, rating){
+	displayHelp: function() {
+	    if(!this.helpTextOn){
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "none";
+		createProfileButton.style.display = "none";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "block";
+		helpText.innerHTML = "Welcome to Speed Dejting! <br> You will soon go on three dates. But first you need to login or create a profile! Just click on either the Login button or the Create Profile button if it is your first time. Have fun!";
+		helpText.style.fontSize = "4em";
+		helpText.style.textAlign = "center";
+		this.helpButtonText = "HIDE HELP";
+		this.helpTextOn = true;
+	    }
+	    else{
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "flex";
+		createProfileButton.style.display = "flex";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "none";
+		this.helpButtonText = "HELP";
+		this.helpTextOn = false;
+	    }
+	},
+ 	submitEval: function(match, interests, rating, other){
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
+	    console.log(other);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
 	    socket.emit('incrementEvalCounter');
 	    
@@ -99,7 +129,7 @@ const vm = new Vue({
 	    });
 	    this.myMatches = myMatchesGlobal;
 	},
-	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
+	      submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
@@ -111,7 +141,8 @@ const vm = new Vue({
 	    console.log(age);
 	    console.log(gender);
 	    console.log(ageMinimum);
-	    console.log(ageMaximum);
+	          console.log(ageMaximum);
+            console.log(otherinfo);
 	    console.log(this.selectedHobbies);
 	    
 	    var skapaProfil = document.getElementById("skapaProfil");
@@ -158,6 +189,8 @@ const vm = new Vue({
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
 	    var tillButton = document.getElementById("tillProfilButton");
+	    var userHelp = document.getElementById("userHelp");
+	    userHelp.style.display = "none";
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
