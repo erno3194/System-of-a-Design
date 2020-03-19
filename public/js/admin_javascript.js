@@ -95,27 +95,17 @@ const vm = new Vue({
 	    var tillButton = document.getElementById("beginEventButton");
 	    tillButton.style.display = "none";
 	},
-/*
-	dateViewTemp: function() {
-	    if(numberOfUsersInEvent == 2){
-		var waitingScreen = document.getElementById("waitingScreen");
-		waitingScreen.style.display = "none";
-		var dateInProgress = document.getElementById("dateInProgress");
-		dateInProgressTemp.style.display = "grid";
-	    }
-	},*/
-
 	beginEvent: function() {
 	    this.hideButtons();
 	    socket.emit('eventOn');
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
-	    setInterval(this.updateNumberOfUsers, 100);
-	    setInterval(this.updateEvalCounter, 100);
+	    setInterval(this.updateNumberOfUsers, 500);
+	    setInterval(this.updateEvalCounter, 500);
 	},
 
 	dateViewUpdate: function() {
-	    setInterval(this.dateView, 100);
+	    setInterval(this.dateView, 500);
 	},
 
 	dateView: function() {

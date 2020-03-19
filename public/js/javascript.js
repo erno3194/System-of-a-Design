@@ -120,7 +120,7 @@ const vm = new Vue({
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
 
-	    setInterval(this.getContacts,100);
+	    setInterval(this.getContacts,500);
 	    
 	},
 	getContacts: function(){
@@ -129,7 +129,7 @@ const vm = new Vue({
 	    });
 	    this.myMatches = myMatchesGlobal;
 	},
-	      submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
+	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
@@ -141,7 +141,7 @@ const vm = new Vue({
 	    console.log(age);
 	    console.log(gender);
 	    console.log(ageMinimum);
-	          console.log(ageMaximum);
+	    console.log(ageMaximum);
             console.log(otherinfo);
 	    console.log(this.selectedHobbies);
 	    
@@ -184,7 +184,7 @@ const vm = new Vue({
 		    document.getElementById("ageMaxParagraph").style.color = "red";
 		}else document.getElementById("ageMaxParagraph").style.color = "green";
 	    }
-	    setInterval(this.dateViewTemp, 100);
+	    setInterval(this.dateViewTemp, 500);
 	},
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
@@ -262,7 +262,7 @@ const vm = new Vue({
 		dateInProgressTemp.style.display = "block";
 		this.currentDateNumber++;
 
-		setInterval(this.goToEvalTemp, 100);
+		setInterval(this.goToEvalTemp, 500);
 	
 	    }
 

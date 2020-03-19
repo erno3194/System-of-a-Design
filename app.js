@@ -34,24 +34,24 @@ app.get('/evaluation', function(req,res) {
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
-    this.maleUsers = [{id:"m1", name: "Lucas Lucasson", email: "lucas@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
-    		{id:"m2", name: "Liam Liamsson2", email: "Liam@test.se", age: 22, gender: "male", hobbies: ["Sports", "Food"], preferredAge: "18-25"},
-    		{id:"m3", name: "William Williamsson", email: "william@test.se", age: 22, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
-    		{id:"m4", name: "Elias Eliasson", email: "Elias@test.se", age: 23, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
-    		{id:"m5", name: "Noah Noahsson", email: "Noah@test.se", age: 27, gender: "male", hobbies: ["Sports", "Food"], preferredAge: "25-35"},
-    		{id:"m6", name: "Hugo Hugosson", email: "Hugo@test.se", age: 40, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "25-35"},
-    		{id:"m7", name: "Oliver Oliversson", email: "Oliver@test.se", age: 23, gender: "male", hobbies: ["Outdoors", "Food"], preferredAge: "35-55"},
-    		{id:"m8", name: "Oscar Oscarsson", email: "Oscar@test.se", age: 21, gender: "male", hobbies: ["Movies", "Food"], preferredAge: "25-35"},
-    		{id:"m9", name: "Adam Adamsson", email: "Adam@test.se", age: 30, gender: "male", hobbies: ["Food"], preferredAge: "35-55"}];
-    this.femaleUsers = [{id:"f1", name: "Maria Mariadotter", email: "maria@test.se", age: 38, gender: "female", hobbies: ["Other", "Food"], preferredAge: "18-25"},
-    		{id:"f2", name: "Anna Annadotter", email: "anna@test.se", age: 28, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "18-25"},
-    		{id:"f3", name: "Margareta Margaretadotter", email: "margareta@test.se", age: 21, gender: "female", hobbies: ["Outdoors", "Fitness"], preferredAge: "18-25"},
-    		{id:"f4", name: "Elisabeth Elisabethdotter", email: "Elisabeth@test.se", age: 22, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "25-35"},
-    		{id:"f5", name: "Eva Kristinadotter", email: "kristina@test.se", age: 23, gender: "female", hobbies: ["Outdoors", "Sports"], preferredAge: "25-35"},
-    		{id:"f6", name: "Birgitta Birgittadotter", email: "birgitta@test.se", age: 26, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "25-35"},
-    		{id:"f7", name: "Karin Karindotter", email: "arin@test.se", age: 25, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "25-35"},
-    		{id:"f8", name: "Ingrid Ingriddotter", email: "ingrid@test.se", age: 23, gender: "female", hobbies: ["Movies"], preferredAge: "18-25"},
-        {id:"f9", name: "Christina Christinadotter", email: "christina@test.se", age: 20, gender: "female", hobbies: ["Outdoors", "Food"], preferredAge: "35-45"}];
+    this.maleUsers = [{id:"m1", name: "Lucas Lucasson", email: "lucas@test.se", age: 32, gender: "male", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m2", name: "Liam Liamsson2", email: "Liam@test.se", age: 22, gender: "male", hobbies: ["Sports", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m3", name: "William Williamsson", email: "william@test.se", age: 22, gender: "male", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m4", name: "Elias Eliasson", email: "Elias@test.se", age: 23, gender: "male", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m5", name: "Noah Noahsson", email: "Noah@test.se", age: 27, gender: "male", hobbies: ["Sports", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m6", name: "Hugo Hugosson", email: "Hugo@test.se", age: 40, gender: "male", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m7", name: "Oliver Oliversson", email: "Oliver@test.se", age: 23, gender: "male", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m8", name: "Oscar Oscarsson", email: "Oscar@test.se", age: 21, gender: "male", hobbies: ["Movies", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    		      {id:"m9", name: "Adam Adamsson", email: "Adam@test.se", age: 30, gender: "male", hobbies: ["Food"], preferredAgeMin: "23", preferredAgeMax: "33"}];
+    this.femaleUsers = [{id:"f1", name: "Maria Mariadotter", email: "maria@test.se", age: 38, gender: "female", hobbies: ["Other", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f2", name: "Anna Annadotter", email: "anna@test.se", age: 28, gender: "female", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f3", name: "Margareta Margaretadotter", email: "margareta@test.se", age: 21, gender: "female", hobbies: ["Outdoors", "Fitness"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f4", name: "Elisabeth Elisabethdotter", email: "Elisabeth@test.se", age: 22, gender: "female", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f5", name: "Eva Kristinadotter", email: "kristina@test.se", age: 23, gender: "female", hobbies: ["Outdoors", "Sports"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f6", name: "Birgitta Birgittadotter", email: "birgitta@test.se", age: 26, gender: "female", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f7", name: "Karin Karindotter", email: "arin@test.se", age: 25, gender: "female", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"},
+    			{id:"f8", name: "Ingrid Ingriddotter", email: "ingrid@test.se", age: 23, gender: "female", hobbies: ["Movies"], preferredAgeMin: "23", preferredAgeMax: "33"},
+			{id:"f9", name: "Christina Christinadotter", email: "christina@test.se", age: 20, gender: "female", hobbies: ["Outdoors", "Food"], preferredAgeMin: "23", preferredAgeMax: "33"}]
     this.dateReady = false;
     this.dateDone = false;
     this.dateCounter = 0;
@@ -80,7 +80,7 @@ io.on('connection', function(socket) {
 
     socket.on('saveUserMale', function(name, email, age, preferredAgeMin, preferredAgeMax, selectedHobbies){
 	console.log("saveUserMale");
-	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin, preferredAgeMax, hobbies: selectedHobbies};
+	const user = {id: 'm'+(data.maleUsers.length+1), name: name, email: email, age: age, gender: "male", preferredAgeMin: preferredAgeMin, preferredAgeMax: preferredAgeMax, hobbies: selectedHobbies};
 	data.maleUsers.push(user);
 	console.log(data.maleUsers);
 
@@ -110,7 +110,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('resetEvalCounter', function() {
-	data.evalCounter = 19;
+	data.evalCounter = 18;
     });
 
     socket.on('pushMatchesToServer', function(matchesFromAdmin){
