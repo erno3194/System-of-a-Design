@@ -66,11 +66,16 @@
 	</div>
       </div>
 
+      <div id="helpText">
+      </div>
       <div id="tillProfilButton" v-on:click="tillProfil">
 	<h2>LOGIN</h2>
       </div>
       <div id="skapaProfilButton" v-on:click="skapaProfil">
 	<h2>CREATE PROFILE</h2>
+      </div>
+      <div id="userHelp" v-on:click="displayHelp">
+	<h2>{{helpButtonText}}</h2>
       </div>
 
       <div id="myDates">

@@ -14,6 +14,8 @@ const vm = new Vue({
 	dateReady: false,
 	dateDone: false,
 	mapOn: false,
+	helpButtonText: "HELP",
+	helpTextOn: false,
 	eventStatus: true,
 	mapButtonText: "Show map",
 	rating: "",
@@ -51,6 +53,32 @@ const vm = new Vue({
 		evaluation.style.display = "block";
 		socket.emit('setDateDoneStatusFalse');
 		
+	    }
+	},
+
+	displayHelp: function() {
+	    if(!this.helpTextOn){
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "none";
+		createProfileButton.style.display = "none";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "block";
+		helpText.innerHTML = "Welcome to Speed Dejting! <br> You will soon go on three dates. But first you need to login or create a profile! Just click on either the Login button or the Create Profile button if it is your first time. Have fun!";
+		helpText.style.fontSize = "4em";
+		helpText.style.textAlign = "center";
+		this.helpButtonText = "HIDE HELP";
+		this.helpTextOn = true;
+	    }
+	    else{
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "flex";
+		createProfileButton.style.display = "flex";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "none";
+		this.helpButtonText = "HELP";
+		this.helpTextOn = false;
 	    }
 	},
 	submitEval: function(match, interests, rating){
@@ -158,6 +186,8 @@ const vm = new Vue({
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
 	    var tillButton = document.getElementById("tillProfilButton");
+	    var userHelp = document.getElementById("userHelp");
+	    userHelp.style.display = "none";
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
