@@ -35,7 +35,7 @@ h1{
 
 main{
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 40% 40% 20%;
     width: inherit;
     height: 100%;
     border: 2px solid;
@@ -58,6 +58,8 @@ footer{
     grid-template-rows: auto auto;
     grid-gap: 2em;
 }
+
+
 
 #tillProfilButton{
     display: flex;
@@ -82,6 +84,27 @@ footer{
     color: white;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
+
+#userHelp h2 {
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#userHelp {
+    display: flex;
+    align-items: center;
+    height: 3em;;
+    width: 11em;
+    background-color: orange;
+    margin-top: 0.5em;
+    text-align: center;
+    font-size: 5em;
+    grid-row: 3;
+    box-shadow: 5px 5px black;
+    border: 2px solid black;
+    overflow-y: hidden;
+}
+
 #skapaProfilButton{
     display: flex;
     align-items: center;
@@ -111,7 +134,7 @@ footer{
     height: auto;
     width: auto;
     margin: 5%;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
     background-color: lightgrey;
     border: 2px solid black;
     /*box-shadow: 5px 5px black;*/
@@ -187,7 +210,7 @@ label{
 
 #genderLabel{
     grid-row: 1;
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 3;
 }
 #male{
     grid-row: 2;
@@ -231,7 +254,7 @@ label{
 
 #intressenLabel{
     font-size: 4em;
-    grid-column: 1/span 2;
+    grid-column: 1/span 3;
 }
 
 #intressen div{
@@ -276,7 +299,7 @@ label{
 
 #myDates{
     display: none;
-    grid-row: 1/span 2;
+    grid-row: 1/span 3;
     grid-template-rows: 10% 10% auto auto auto auto;
     width: 90%;
     margin-top: 2em;
@@ -339,7 +362,7 @@ label{
 
 #myMatches{
     display: none;
-    grid-row: 1/span 2;
+    grid-row: 1/span 3;
     grid-template-rows: 10% 10% auto auto auto auto;
     width: 90%;
     margin-top: 2em;
@@ -358,10 +381,12 @@ label{
     display: none;
     font-size: 4em;
     text-align: center;
-    grid-row:1/span 2;
+    grid-row:1/span 3;
 }
 
 #waitingScreen {
+    grid-row: 2;
+    display: none;
     font-size: 5em;
     text-align: center;
 }
@@ -502,7 +527,7 @@ input[type=radio] {
 
 #evalFormDiv {
     display: none;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
 }
 
 

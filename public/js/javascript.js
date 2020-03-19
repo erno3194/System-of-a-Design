@@ -4,8 +4,9 @@ const socket = io();
 var dateStatus = false;
 var dateDoneStatus = false;
 var dateCounterStatus = 0;
-
+var eventStatusGlobal = true;
 var matchGlobal = {male: "", female: "", table: ""};
+var myMatchesGlobal = [];
 
 const vm = new Vue({
     el: '#main',
@@ -13,6 +14,9 @@ const vm = new Vue({
 	dateReady: false,
 	dateDone: false,
 	mapOn: false,
+	helpButtonText: "HELP",
+	helpTextOn: false,
+	eventStatus: true,
 	mapButtonText: "Show map",
 	rating: "",
 	interests: "",
@@ -28,9 +32,7 @@ const vm = new Vue({
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
-	myMatches: [{name: "Kim Johansson", dateNumber: 0, phoneNumber: "112", email: "superduperlångmegamail@mail.se"},
-		    {name: "Alex Andersson", dateNumber: 1, phoneNumber: "112", email: "e@mail.se"},
-		    {name: "Jamie Karlsson", dateNumber: 2, phoneNumber: "112", email: "e@mail.se"}],
+	myMatches: [],
 	sendContactInfo: [], //dateNumbers of the dates to send info to.
 	currentDate: {name: "", table: ""},
 	currentDateNumber: 1,
@@ -55,7 +57,32 @@ const vm = new Vue({
 		
 	    }
 	},
-	      submitEval: function(match, interests, rating, other){
+	displayHelp: function() {
+	    if(!this.helpTextOn){
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "none";
+		createProfileButton.style.display = "none";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "block";
+		helpText.innerHTML = "Welcome to Speed Dejting! <br> You will soon go on three dates. But first you need to login or create a profile! Just click on either the Login button or the Create Profile button if it is your first time. Have fun!";
+		helpText.style.fontSize = "4em";
+		helpText.style.textAlign = "center";
+		this.helpButtonText = "HIDE HELP";
+		this.helpTextOn = true;
+	    }
+	    else{
+		var loginButton = document.getElementById("tillProfilButton");
+		var createProfileButton = document.getElementById("skapaProfilButton");
+		loginButton.style.display = "flex";
+		createProfileButton.style.display = "flex";
+		var helpText = document.getElementById("helpText");
+		helpText.style.display = "none";
+		this.helpButtonText = "HELP";
+		this.helpTextOn = false;
+	    }
+	},
+ 	submitEval: function(match, interests, rating){
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
@@ -79,9 +106,11 @@ const vm = new Vue({
 	},
 	sendContactInfoFunction: function(){
 	    var evaluation = document.getElementById("evalFormDiv");
-	    evaluation.style.display = "none";
-	    for(number in this.sendContactInfo)
-		console.log(this.myDates[this.sendContactInfo[number]].name);
+	    evaluation.style.display = "none";	    
+	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);
+	    
+
+	    
 	    var block = document.getElementById("myDates");
 	    block.style.display = "none";
 	    var myMatches = document.getElementById("myMatches");
@@ -90,6 +119,15 @@ const vm = new Vue({
 	    thankYouMessage.style.display = "block";
 	    thankYouMessage.style.fontStyle = "italic";
 	    thankYouMessage.style.fontSize = "3em";
+
+	    setInterval(this.getContacts,100);
+	    
+	},
+	getContacts: function(){
+	    socket.emit('getContactInfo', this.name, function(result){
+		myMatchesGlobal = result;
+	    });
+	    this.myMatches = myMatchesGlobal;
 	},
 	      submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
 	    this.name = name,
@@ -112,10 +150,10 @@ const vm = new Vue({
 	    if((name && this.reg.test(email) && age && gender && ageMinimum && ageMaximum && this.selectedHobbies.length > 0)){
 		skapaProfil.style.display = "none";
 		if(gender == "male"){
-		    socket.emit('saveUserMale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+		    socket.emit('saveUserMale', name, email, age, ageMinimum, ageMaximum, this.selectedHobbies);
 		}
 		if(gender == "female"){
-		    socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMinimum, this.selectedHobbies);
+		    socket.emit('saveUserFemale', name, email, age, ageMinimum, ageMaximum, this.selectedHobbies);
 		}
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "block";
@@ -151,10 +189,34 @@ const vm = new Vue({
 	hideButtons: function() {
 	    var skapaButton = document.getElementById("skapaProfilButton");
 	    var tillButton = document.getElementById("tillProfilButton");
+	    var userHelp = document.getElementById("userHelp");
+	    userHelp.style.display = "none";
 	    skapaButton.style.display = "none";
 	    tillButton.style.display = "none";
 	},
+
+	getEventStatus: function() {
+	    socket.emit('isEventOver', function(result) {
+		eventStatusGlobal = result;
+		console.log(result);
+	    });
+	    this.eventStatus = eventStatusGlobal;
+	    if(this.eventStatus == false){
+		this.eventOverScreen();
+	    }
+	},
+
+	eventOverScreen: function() {
+	    var screen = document.getElementById("main");
+	    screen.style.display = "none";
+	    var eventOverScreen = document.getElementById("eventOverDiv");
+	    eventOverScreen.innerHTML = "This event has been closed, goodbye!";
+	    eventOverScreen.style.fontWeight = "bold";
+	    eventOverScreen.style.fontSize = "5em";
+	    eventOverScreen.style.textAlign = "center";
+	},
 	skapaProfil: function() {
+	    setInterval(this.getEventStatus, 1000);
 	    console.log("Click");
 	    this.hideButtons();
 	    var skapaProfil = document.getElementById("skapaProfil");
@@ -234,6 +296,7 @@ const vm = new Vue({
 		this.mapOn = false;
 	    }
 	},
+
     }
     
 })
