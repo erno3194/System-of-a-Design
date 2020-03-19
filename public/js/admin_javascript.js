@@ -221,7 +221,7 @@ const vm = new Vue({
 		maleArrayNew = result.maleUsers;
 		femaleArrayNew = result.femaleUsers;
 	    });
-	    if(numberOfUsersInEvent>= 18) {
+	    if(numberOfUsersInEvent>= 19) { 
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
 	    if(!this.matched){

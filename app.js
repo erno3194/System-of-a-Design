@@ -110,7 +110,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('resetEvalCounter', function() {
-	data.evalCounter = 0;
+	data.evalCounter = 19;
     });
 
     socket.on('pushMatchesToServer', function(matchesFromAdmin){
