@@ -76,6 +76,8 @@ const vm = new Vue({
 	    if(this.evalCounter >= 2 || this.dateRound == 1){
 		this.malesRender = shuffle(maleArrayNew);
 		this.femalesRender = shuffle(femaleArrayNew);
+		console.log(this.malesRender);
+		console.log(this.femalesRender);
 		var c = 1;
 		for(i in this.malesRender){
 		    if(c < 10) this.malesRender[i].id = "m" + c;
@@ -148,8 +150,7 @@ const vm = new Vue({
 
 	},
 	expand: function(person){
-	    var sndBlock = document.getElementById(person.id);
-	    //var pairIndex = document.getElementById(this.c + person.id.substring(1));
+	    var sndBlock = document.getElementById(person.id);	    
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
 		console.log(block.className);
@@ -273,13 +274,13 @@ const vm = new Vue({
 		    block.style.backgroundColor = "green";
 		    this.dateInProgressBool = false;
 		    this.matched = false;
+		    var tmp = document.getElementById("dateInProgressTemp");		    
 		    socket.emit('setDateStatusFalse');
 		    socket.emit('setDateDoneStatusTrue');
 		    on = false;
 		    this.dateRound ++;
 		    socket.emit('resetEvalCounter');
 		}
-
 	    }
 	}
     },
