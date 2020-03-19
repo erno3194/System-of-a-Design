@@ -73,8 +73,8 @@ const vm = new Vue({
 	    else{
 		var loginButton = document.getElementById("tillProfilButton");
 		var createProfileButton = document.getElementById("skapaProfilButton");
-		loginButton.style.display = "block";
-		createProfileButton.style.display = "block";
+		loginButton.style.display = "flex";
+		createProfileButton.style.display = "flex";
 		var helpText = document.getElementById("helpText");
 		helpText.style.display = "none";
 		this.helpButtonText = "HELP";
