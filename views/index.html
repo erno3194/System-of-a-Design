@@ -16,77 +16,57 @@
     <div id="eventOverDiv"></div>
     <main id="main">
       <div id="skapaProfil">
-	      <div id="skapaProfilDiv"> 
-	        <form id="skapaProfilForm">
+	<div id="skapaProfilDiv"> 
+	  <form id="skapaProfilForm">
+	    <p class="skapaProfilInput" id="nameParagraph">
+	      <label for="name">Full name</label><br>
+	      <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
+	    </p>
 
-	          <p class="skapaProfilInput" id="nameParagraph">
-	            <label for="name">Full name</label><br>
-	            <input v-model="name" type="text" id="name" class="inputField" required="required" placeholder="First- and lastname">
-	          </p>
+	    <p class="skapaProfilInput" id="emailParagraph">
+	      <label for="email">Email</label><br>
+	      <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
+	    </p>
 
-	          <p class="skapaProfilInput" id="emailParagraph">
-	            <label for="email">Email</label><br>
-	            <input v-model="email" type="email" id="email" class="inputField" required="required" placeholder="Email address">
-	          </p>
+	    <p class="skapaProfilInput" id="ageParagraph">
+	      <label for="age">Age</label><br>
+	      <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
+	    </p>
 
-	          <p class="skapaProfilInput" id="ageParagraph">
-	            <label for="age">Age</label><br>
-	            <input v-model="age" type="number" id="age" class="inputField" required="required" placeholder="Your age" min="18" mmax="100">
-	          </p>
+	    <p class="skapaProfilInput" id="kön">
+	      <label id="genderLabel" for="gender">Gender</label><br>
+	      <label id="maleLabel" for="male">Male</label>
+	      <input v-model="gender" type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
+	      <label id="femaleLabel" for="female">Female</label>
+	      <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
+	    </p>
 
-	          <p class="skapaProfilInput" id="kön">
-	            <label id="genderLabel" for="gender">Gender</label><br>
-	            <label id="maleLabel" for="male">Male</label>
-	            <input v-model="gender" type="radio" name="gender" value="male" class="inputField" id="male" checked="checked">
-	            <label id="femaleLabel" for="female">Female</label>
-	            <input v-model="gender" type="radio" name="gender" value="female" class="inputField" id="female">
-	          </p>
+	    <p class="skapaProfilInput" id="ageMinParagraph">
+	      <label for="preferedAgeMin">Preferred lowest age: </label><br>
+	      <input v-model="ageMinimum"  placeholder="18-100" id="preferredAgeMin" type="number" min="18" max="100" class="inputField"/>
+	    </p>
 
-	          <p class="skapaProfilInput" id="ageMinParagraph">
-	            <label for="preferedAgeMin">Preferred lowest age: </label><br>
-	            <input v-model="ageMinimum"  placeholder="18-100" id="preferredAgeMin" type="number" min="18" max="100" class="inputField"/>
-	          </p>
-
-	          <p class="skapaProfilInput" id="ageMaxParagraph">
-	            <label for="preferedAgeMax">Preferred highest age: </label><br>
-	            <input v-model="ageMaximum" placeholder="18-100" id="preferredAgeMax" type="number" min="18" max="100" class="inputField"/>
-	          </p>
-	          <!-- DROPDOWN ÅLDER
-	               <p class="skapaProfilInput" id="preferredAgeParagraph">
-	                 <label for="preferredAge">Preferred age range</label><br>
-	                 <select v-model="preferredAge" id="preferredAge">
-		                 <option selected="selected">18-25</option>
-		                 <option>25-35</option>
-		                 <option>35-45</option>
-		                 <option>45+</option>
-	                 </select>
-	               </p>
-	               -->
-	               <div class="skapaProfilInput" id="intressen">
-	                 <label id="intressenLabel">Hobbies:</label>
-	                 <div v-for="hobby in hobbies">
-		                 <label for="hobby">{{hobby}}</label>
-		                 <input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
-	                 </div>
-	               </div>
-                 <label>Other information or feedback</label>
-		 <textarea class="otherInfo" v-model="otherinfo"></textarea>
-		 <!--<input v-model="otherinfo" type="text" id="otherInfo">-->
-	          <p id="failedProfile" style="display: none">Please fill in correct information.</p>
-	        </form>
-	        <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum, otherinfo)" id="submitProfileButton">
-	          <p>SUBMIT</p>
-	        </button>
+	    <p class="skapaProfilInput" id="ageMaxParagraph">
+	      <label for="preferedAgeMax">Preferred highest age: </label><br>
+	      <input v-model="ageMaximum" placeholder="18-100" id="preferredAgeMax" type="number" min="18" max="100" class="inputField"/>
+	    </p>
+	    
+	    <div class="skapaProfilInput" id="intressen">
+	      <label id="intressenLabel">Hobbies:</label>
+	      <div v-for="hobby in hobbies">
+		<label for="hobby">{{hobby}}</label>
+		<input type="checkbox" v-bind:id="hobby" v-bind:value="hobby" v-model="selectedHobbies">
 	      </div>
 	    </div>
+            <label>Other information or feedback</label>
+	    <textarea class="otherInfo" v-model="otherinfo"></textarea>	
 	    <p id="failedProfile" style="display: none">Please fill in correct information.</p>
 	  </form>
-	  <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum)" id="submitProfileButton">
+	  <button type="submit" v-on:click="submitProfile(name, email, age, gender, ageMinimum, ageMaximum, otherinfo)" id="submitProfileButton">
 	    <p>SUBMIT</p>
 	  </button>
 	</div>
       </div>
-
       <div id="helpText">
       </div>
       <div id="tillProfilButton" v-on:click="tillProfil">
@@ -119,7 +99,7 @@
 	  <label for="match.name">{{match.email}}</label>	 
 	</div>
 	<p id="thankYouMessage"><br>Thank you for using Speed Dejting!
-	ps. wait a few minutes for everyone to send their info, you don't want to miss out on someone ;)</p>
+	  ps. wait a few minutes for everyone to send their info, you don't want to miss out on someone ;)</p>
       </div>
 
 
@@ -195,7 +175,7 @@
 		  <label id="interFiveID" for="five">5</label>
 		</p>
 	      </div>
-        	      <div id="allRate">
+              <div id="allRate">
 		<label class="question">How would you rate this date in it's entirety?</label>
 		<p class="rateScale">(1 = really bad, 5 = really good)</p>
 		<p class="radioButtons">
@@ -210,13 +190,13 @@
 		  <input v-model="rating" type="radio" name="rate" value="5" >
 		  <label id="rateFiveID" for="five">5</label>
 		</p>
-        <p>
-          <label>Other information or feedback</label>
-        </p>
-	<textarea class="otherInfo" v-model="other"></textarea>
-      </div>
+		<p>
+		  <label>Other information or feedback</label>
+		</p>
+		<textarea class="otherInfo" v-model="other"></textarea>
+	      </div>
 
-      </form>
+	    </form>
 	    <button id="ratingButton" type="button" v-on:click="submitEval(match,interests,rating, other)">
 
 	      <p>Send form</p>

@@ -21,13 +21,13 @@ const vm = new Vue({
 	rating: "",
 	interests: "",
 	match: "",
-  other: "",
+	other: "",
 	name: "",
 	email: "",
 	age: "",
 	gender: "male",
 	ageMinimum: "",
-	      ageMaximum: "",
+	ageMaximum: "",
         otherinfo: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
@@ -82,11 +82,11 @@ const vm = new Vue({
 		this.helpTextOn = false;
 	    }
 	},
- 	submitEval: function(match, interests, rating){
+ 	submitEval: function(match, interests, rating, other){
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
-      console.log(other);
+	    console.log(other);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
 	    socket.emit('incrementEvalCounter');
 	    
