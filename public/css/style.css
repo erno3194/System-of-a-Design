@@ -370,6 +370,12 @@ label{
     text-align:center;
 }
 
+.otherInfo{
+    font-size: 3em;
+    resize: none;
+    width: 100%;
+    height: 5em;
+}
 
 #dateInProgressTemp {
     display: none;
@@ -569,3 +575,4 @@ input[type=radio] {
 .matchNameClass {
     font-weight: bold;
 }
+

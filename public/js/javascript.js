@@ -21,12 +21,14 @@ const vm = new Vue({
 	rating: "",
 	interests: "",
 	match: "",
+	other: "",
 	name: "",
 	email: "",
 	age: "",
 	gender: "male",
 	ageMinimum: "",
 	ageMaximum: "",
+        otherinfo: "",
 	hobbies: ["Sports", "Food", "Outdoors", "Fitness", "Movies", "Other"],
 	selectedHobbies: [],
 	myDates: [],
@@ -55,7 +57,6 @@ const vm = new Vue({
 		
 	    }
 	},
-
 	displayHelp: function() {
 	    if(!this.helpTextOn){
 		var loginButton = document.getElementById("tillProfilButton");
@@ -81,10 +82,11 @@ const vm = new Vue({
 		this.helpTextOn = false;
 	    }
 	},
-	submitEval: function(match, interests, rating){
+ 	submitEval: function(match, interests, rating, other){
 	    console.log(match);
 	    console.log(interests);
 	    console.log(rating);
+	    console.log(other);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
 	    socket.emit('incrementEvalCounter');
 	    
@@ -127,7 +129,7 @@ const vm = new Vue({
 	    });
 	    this.myMatches = myMatchesGlobal;
 	},
-	submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum){
+	      submitProfile: function(name, email, age, gender, ageMinimum, ageMaximum, otherinfo){
 	    this.name = name,
 	    this.email = email,
 	    this.age = age,
@@ -139,7 +141,8 @@ const vm = new Vue({
 	    console.log(age);
 	    console.log(gender);
 	    console.log(ageMinimum);
-	    console.log(ageMaximum);
+	          console.log(ageMaximum);
+            console.log(otherinfo);
 	    console.log(this.selectedHobbies);
 	    
 	    var skapaProfil = document.getElementById("skapaProfil");
