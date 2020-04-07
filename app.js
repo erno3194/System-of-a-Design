@@ -136,8 +136,8 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('getContactInfo', function(name, callback){		    	
-	var share = shared.filter(user => user.shared.includes(name));
+    socket.on('getContactInfo', function(name, myShared, callback){		    	
+	var share = shared.filter(user => user.shared.includes(name) && myShared.includes(user.name));
 	console.log(share);
 	callback(share);
     });
