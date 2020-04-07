@@ -226,6 +226,23 @@ footer{
 
 }
 
+
+
+#seeComments{
+    grid-row: 1;
+    grid-column: 1;
+    border: 3px solid black;
+    color: black;
+    background-color: lightblue;
+    margin-right: 6px;
+    margin-left: 6px;
+    border-radius: 10px;
+}
+
+#seeComments:hover {
+    cursor: pointer;
+}
+
 #rearrangeHeader{
     grid-row: 1;
     grid-column: 2;

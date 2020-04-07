@@ -6,6 +6,9 @@ var numberOfUsersInEvent = 0;
 var maleArrayNew = [];
 var femaleArrayNew = [];
 var evalCounterGlobal = 0;
+var dateOneEvalGlobal = [];
+var dateTwoEvalGlobal = [];
+var dateThreeEvalGlobal = [];
 
 function startTimer() {
     if(on){
@@ -40,7 +43,7 @@ const vh = new Vue({
 	},
     },
 })
-    
+
 
 const vm = new Vue({
     el: '#main',
@@ -53,6 +56,9 @@ const vm = new Vue({
 	malesRender: [],
 	femalesRender: [],
 	dateInProgressBool: false,
+	dateOneEval: [],
+	dateTwoEval: [],
+	dateThreeEval: [],
 	evalCounter: 0,
 	dateRound: 1,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -229,6 +235,39 @@ const vm = new Vue({
 	    }
 	},
 
+	goToUserComments: function(){
+	    this.getDateOneEvals();
+	    this.getDateTwoEvals();
+	    this.getDateTwoEvals();
+	    console.log(this.dateOneEval);
+	    var evalView = document.getElementById("fstDateEvals");
+	    for (eval in this.dateOneEval){
+		var evalDiv = document.createElement("div");
+		evalDiv.innerHTML = this.dateOneEval[eval];
+		evalView.appendChild(evalDiv);
+	    }
+	    var myWindow = window.open("http://localhost:3000/userComments", "Date Evaluations", "width=1000, height=500");
+
+	},
+	getDateOneEvals: function(){
+	    socket.emit('getFstDateEvals', function(result){
+		dateOneEvalGlobal = result;
+	    });
+	    this.dateOneEval = dateOneEvalGlobal;
+	},
+	getDateTwoEvals: function(){
+	    socket.emit('getSndDateEvals', function(result){
+		dateTwoEvalGlobal = result;
+	    });
+	    this.dateTwoEval = dateTwoEvalGlobal;
+	},
+	getDateThreeEvals: function(){
+	    socket.emit('getTrdDateEvals', function(result){
+		dateThreeGlobal = result;
+	    });
+	    this.dateThreeEval = dateThreeEvalGlobal;
+	},
+	
 
 	updateEvalCounter: function() {
 	    socket.emit('updateEvalCounter', function(result){
