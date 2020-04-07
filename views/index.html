@@ -193,12 +193,12 @@
 		<p>
 		  <label>Other information or feedback</label>
 		</p>
-		<textarea class="otherInfo" v-model="other"></textarea>
+		<textarea id="otherText" class="otherInfo" v-model="other"></textarea>
 	      </div>
 
 	    </form>
 	    <button id="ratingButton" type="button" v-on:click="submitEval(match,interests,rating, other)">
-
+	      
 	      <p>Send form</p>
 	    </button>
 	  </div>
