@@ -15,7 +15,7 @@ function startTimer() {
 	var s = checkSecond((timeArray[1] - 1));
 	if(s==59){m=m-1}
 	//if(m<0){alert('timer completed')}
-	
+
 	document.getElementById('timer').innerHTML =
 	    m + ":" + s;
 	setTimeout(startTimer, 1000);
@@ -31,8 +31,8 @@ function checkSecond(sec) {
 const vh = new Vue({
     el: '#header',
     methods: {
-	
-	terminate: function() {	    
+
+	terminate: function() {
 	    vm.hideScreen();
 	    var exitButton = document.getElementById("exitButton");
 	    exitButton.style.display = "none";
@@ -40,7 +40,7 @@ const vh = new Vue({
 	},
     },
 })
-    
+
 
 const vm = new Vue({
     el: '#main',
@@ -76,6 +76,8 @@ const vm = new Vue({
 	    if(this.evalCounter >= 2 || this.dateRound == 1){
 		this.malesRender = shuffle(maleArrayNew);
 		this.femalesRender = shuffle(femaleArrayNew);
+		console.log(this.malesRender);
+		console.log(this.femalesRender);
 		var c = 1;
 		for(i in this.malesRender){
 		    if(c < 10) this.malesRender[i].id = "m" + c;
@@ -95,29 +97,19 @@ const vm = new Vue({
 	    var tillButton = document.getElementById("beginEventButton");
 	    tillButton.style.display = "none";
 	},
-/*
-	dateViewTemp: function() {
-	    if(numberOfUsersInEvent == 2){
-		var waitingScreen = document.getElementById("waitingScreen");
-		waitingScreen.style.display = "none";
-		var dateInProgress = document.getElementById("dateInProgress");
-		dateInProgressTemp.style.display = "grid";
-	    }
-	},*/
-	
 	beginEvent: function() {
 	    this.hideButtons();
 	    socket.emit('eventOn');
 	    var waitingScreen = document.getElementById("waitingScreen");
 	    waitingScreen.style.display = "grid";
-	    setInterval(this.updateNumberOfUsers, 100);
-	    setInterval(this.updateEvalCounter, 100);
+	    setInterval(this.updateNumberOfUsers, 500);
+	    setInterval(this.updateEvalCounter, 500);
 	},
 
 	dateViewUpdate: function() {
-	    setInterval(this.dateView, 100);
+	    setInterval(this.dateView, 500);
 	},
-	
+
 	dateView: function() {
 	    console.log("dateView Update" + this.evalCounter);
 	    this.updateEvalCounter;
@@ -142,7 +134,7 @@ const vm = new Vue({
 		}
 		var dateInProgress = document.getElementById("dateInProgress");
 		var subCatContainer = document.getElementsByClassName("scroller");
-		
+
 		$(".scroller").scroll(function() {
 		    try{
 			for(var i in subCatContainer)
@@ -155,11 +147,10 @@ const vm = new Vue({
 	exitEvent: function() {
 	    console.log("Click");
 	    this.hideButtons();
-	    
+
 	},
 	expand: function(person){
-	    var sndBlock = document.getElementById(person.id);
-	    //var pairIndex = document.getElementById(this.c + person.id.substring(1));
+	    var sndBlock = document.getElementById(person.id);	    
 	    try{
 		var block = document.getElementById(sndBlock.id+this.c);
 		console.log(block.className);
@@ -169,7 +160,7 @@ const vm = new Vue({
 	    }
 	    if(sndBlock.style.width == "20em"){
 		try{
-		    var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em"; 
+		    var bothExpanded = pairIndex[0].style.width=="20em" && pairIndex[2].style.width=="20em";
 		}catch{}
 		sndBlock.style.width="15em";
 		sndBlock.style.height="3.2em";
@@ -178,21 +169,21 @@ const vm = new Vue({
 		    block.style.height="3.2em";
 
 		    console.log(pairIndex);
-		    
+
 		    for(blockTmp in pairIndex){
 			try{
 			    if(bothExpanded) pairIndex[1].style.marginBottom = "2.3em";
 			    if(bothExpanded && pairIndex[blockTmp].style.width == "20em") pairIndex[blockTmp].style.marginBottom = "0em";
 			    else if (bothExpanded && pairIndex[blockTmp].style.width == "15em"){
-				pairIndex[blockTmp].style.marginBottom = "2.3em";	
+				pairIndex[blockTmp].style.marginBottom = "2.3em";
 			    } else{
-				pairIndex[blockTmp].style.marginBottom = "0em";	
-			    }	    
+				pairIndex[blockTmp].style.marginBottom = "0em";
+			    }
 			} catch(e){}
 		    }
 		}
 		sndBlock.innerHTML = person.name + "<br>Age:" + person.age + "<br>";
-	    } else if(block != null && block.hasChildNodes()){		
+	    } else if(block != null && block.hasChildNodes()){
 		block.style.width="20em";
 		block.style.height="5em";
 		sndBlock.style.width="20em";
@@ -207,8 +198,8 @@ const vm = new Vue({
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;	
-	    }    
+		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;
+	    }
 	},
 
 	updateNumberOfUsers: function() {
@@ -220,7 +211,7 @@ const vm = new Vue({
 		maleArrayNew = result.maleUsers;
 		femaleArrayNew = result.femaleUsers;
 	    });
-	    if(numberOfUsersInEvent>= 2) {
+	    if(numberOfUsersInEvent>= 19) { 
 		document.getElementById("startDateTEMP").style.backgroundColor = "green";
 	    }
 	    if(!this.matched){
@@ -236,7 +227,7 @@ const vm = new Vue({
 	    });
 	    this.evalCounter = evalCounterGlobal;
 	},
-	
+
 	startDate: function(){
 	    if(this.evalCounter >= 2 || this.dateRound == 1){
 		if(this.dateInProgressBool == false && this.matched){
@@ -261,7 +252,7 @@ const vm = new Vue({
 
 		    socket.emit('setDateStatusTrue');
 		    socket.emit('setDateDoneStatusFalse');
-		    
+
 		    let p = document.createElement("p");
 		    p.innerHTML = "End date";
 		    block.innerHTML = "";
@@ -270,7 +261,7 @@ const vm = new Vue({
 		    block.style.backgroundColor = "red";
 		    on = true;
 		    startTimer();
-		    
+
 		} else{
 		    var timer = document.getElementById('timer');
 		    timer.innerHTML = 005 + ":" + "00";
@@ -283,16 +274,16 @@ const vm = new Vue({
 		    block.style.backgroundColor = "green";
 		    this.dateInProgressBool = false;
 		    this.matched = false;
+		    var tmp = document.getElementById("dateInProgressTemp");		    
 		    socket.emit('setDateStatusFalse');
 		    socket.emit('setDateDoneStatusTrue');
 		    on = false;
 		    this.dateRound ++;
 		    socket.emit('resetEvalCounter');
 		}
-
 	    }
 	}
-    },    
+    },
 
 })
 
@@ -323,16 +314,16 @@ function drop(ev) {
 	ev.target.style.width = block.style.width;
 	ev.target.style.height = block.style.height;
 	var parentBlock = ev.target;
-	
+
 	var pairIndex = document.getElementsByClassName(parentBlock.className.substring(parentBlock.className.length-1));
 	console.log(pairIndex);
-	var bothExpanded = pairIndex[0].style.width=="20em" || pairIndex[2].style.width=="20em"; 
+	var bothExpanded = pairIndex[0].style.width=="20em" || pairIndex[2].style.width=="20em";
 	if(ev.target.style.width == "20em"){
 	    for(blockTmp in pairIndex){
 		try{
 		    if(pairIndex[blockTmp].style.height != "5em") pairIndex[blockTmp].style.marginBottom = "2.3em";
 		    if(parentBlock.style.height == "5em") parentBlock.style.marginBottom = "0em";
-		} catch(e){}		
+		} catch(e){}
 	    }
 	} else {
 
@@ -340,24 +331,24 @@ function drop(ev) {
 		if(bothExpanded) pairIndex[1].style.marginBottom = "2.3em";
 		else pairIndex[1].style.marginBottom = "0em";
 		if(pairIndex[0].style.width == "20em"){
-		    pairIndex[0].style.marginBottom = "0em";	
+		    pairIndex[0].style.marginBottom = "0em";
 		} else if(bothExpanded){
-		    pairIndex[0].style.marginBottom = "2.3em";	
+		    pairIndex[0].style.marginBottom = "2.3em";
 		} else {
-		    pairIndex[0].style.marginBottom = "0em";	
+		    pairIndex[0].style.marginBottom = "0em";
 		}
-		
+
 		if(pairIndex[2].style.width == "20em"){
-		    pairIndex[2].style.marginBottom = "0em";	
+		    pairIndex[2].style.marginBottom = "0em";
 		} else if(bothExpanded){
-		    pairIndex[2].style.marginBottom = "2.3em";	
+		    pairIndex[2].style.marginBottom = "2.3em";
 		} else {
-		    pairIndex[2].style.marginBottom = "0em";	
+		    pairIndex[2].style.marginBottom = "0em";
 		}
 	    } catch(e){}
 
-	    
-	} 
+
+	}
 	ev.target.appendChild(block);
     }
 }
