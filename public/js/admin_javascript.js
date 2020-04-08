@@ -232,7 +232,7 @@ const vm = new Vue({
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;	
+		sndBlock.innerHTML += person.hobbies + "<br> Age preference: " + person.preferredAgeMin + " - " + person.preferredAgeMax + " years";	
 	    }    
 	},
 
@@ -264,7 +264,7 @@ const vm = new Vue({
 		document.getElementById("seeCommentsDiv").style.display = "grid";
 		document.getElementById("seeComments").innerHTML = "Hide user evaluations";
 	    } else{
-		document.getElementById("dropoffMale").style.display = "grid";
+		document.getElementById("dropoffMale").style.display = "block";
 		document.getElementById("currentDateInfo").style.display = "grid";
 		document.getElementById("seeCommentsDiv").style.display = "none";
 		document.getElementById("seeComments").innerHTML = "See user evaluations";
