@@ -164,6 +164,7 @@ io.on('connection', function(socket) {
 
     socket.on('updateEval', function(evaluation){
 	console.log(evaluation);
+	console.log("DATECOunter: " + data.dateCounter);
 	if (data.dateCounter == 1){
 	    data.dateOneEvals.push(evaluation);
 	}

@@ -254,7 +254,7 @@ const vm = new Vue({
 	goToUserComments: function(){
 	    this.getDateOneEvals();
 	    this.getDateTwoEvals();
-	    this.getDateTwoEvals();
+	    this.getDateThreeEvals();
 	    this.displayEval();
 	},
 	displayEval: function(){
@@ -284,7 +284,7 @@ const vm = new Vue({
 	},
 	getDateThreeEvals: function(){
 	    socket.emit('getTrdDateEvals', function(result){
-		dateThreeGlobal = result;
+		dateThreeEvalGlobal = result;
 	    });
 	    this.dateThreeEval = dateThreeEvalGlobal;
 	},
