@@ -132,6 +132,9 @@ const vm = new Vue({
 	},
 	
 	dateView: function() {
+	    this.getDateOneEvals();
+	    this.getDateTwoEvals();
+	    this.getDateTwoEvals();
 	    console.log("dateView Update" + this.evalCounter);
 	    this.updateEvalCounter;
 	    if(!this.matched){
@@ -252,9 +255,7 @@ const vm = new Vue({
 	},
 
 	goToUserComments: function(){
-	    this.getDateOneEvals();
-	    this.getDateTwoEvals();
-	    this.getDateTwoEvals();
+
 	    this.displayEval();
 	},
 	displayEval: function(){
