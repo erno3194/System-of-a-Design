@@ -89,6 +89,16 @@ const vm = new Vue({
 	    console.log(other);
 	    this.myDates.push({name: this.currentDate.name, dateNumber: this.myDates.length});
 	    socket.emit('incrementEvalCounter');
+	    var ele1 = document.getElementsByName("rate");
+	    var ele2 = document.getElementsByName("matching");
+	    var ele3 = document.getElementsByName("inter");
+	    for(var i=0;i<ele1.length;i++){
+		ele1[i].checked = false;
+		ele2[i].checked = false;
+		ele3[i].checked = false;
+	    }
+	    document.getElementById("otherText").value = "";
+	    this.other = "";
 	    
 	    socket.emit('updateEval', {myName: this.name,dateName: this.currentDate.name, match: match, interests: interests, rating, other: other});
 	    this.incrementEvalCounter;
@@ -108,9 +118,7 @@ const vm = new Vue({
 	sendContactInfoFunction: function(){
 	    var evaluation = document.getElementById("evalFormDiv");
 	    evaluation.style.display = "none";	    
-	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);
-	    
-
+	    socket.emit('shareContactInfo',this.name, this.email, this.sendContactInfo);	    
 	    
 	    var block = document.getElementById("myDates");
 	    block.style.display = "none";
@@ -125,7 +133,7 @@ const vm = new Vue({
 	    
 	},
 	getContacts: function(){
-	    socket.emit('getContactInfo', this.name, function(result){
+	    socket.emit('getContactInfo', this.name, this.sendContactInfo, function(result){
 		myMatchesGlobal = result;
 	    });
 	    this.myMatches = myMatchesGlobal;

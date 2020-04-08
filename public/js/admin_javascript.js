@@ -95,6 +95,12 @@ const vm = new Vue({
 		    c++;
 		}
 		this.matched  = true;
+		var cardsM = document.getElementsByClassName("maleClass");
+		var cardsF = document.getElementsByClassName("femaleClass");
+		for(var i = 0; i < cardsM.length; i++){
+		    cardsM[i].style.display = "block";
+		    cardsF[i].style.display = "block";
+		}
 	    }
 	},
 	hideButtons: function() {
@@ -128,6 +134,15 @@ const vm = new Vue({
 	dateView: function() {
 	    console.log("dateView Update" + this.evalCounter);
 	    this.updateEvalCounter;
+	    if(!this.matched){
+		var cardsM = document.getElementsByClassName("maleClass");
+		var cardsF = document.getElementsByClassName("femaleClass");
+		for(var i = 0; i < cardsM.length; i++){
+		    cardsM[i].style.display = "none";
+		    cardsF[i].style.display = "none";
+		}
+		
+	    }
 	    if(numberOfUsersInEvent >= 2){
 		var waitingScreen = document.getElementById("waitingScreen");
 		waitingScreen.style.display = "none";
@@ -327,6 +342,12 @@ const vm = new Vue({
 		    block.style.backgroundColor = "green";
 		    this.dateInProgressBool = false;
 		    this.matched = false;
+		    var cardsM = document.getElementsByClassName("maleClass");
+		    var cardsF = document.getElementsByClassName("femaleClass");
+		    for(var i = 0; i < cardsM.length; i++){
+			cardsM[i].style.display = "none";
+			cardsF[i].style.display = "none";
+		    }
 		    socket.emit('setDateStatusFalse');
 		    socket.emit('setDateDoneStatusTrue');
 		    on = false;
