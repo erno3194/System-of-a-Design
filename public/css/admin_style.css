@@ -226,6 +226,23 @@ footer{
 
 }
 
+
+
+#seeComments{
+    grid-row: 1;
+    grid-column: 1;
+    border: 3px solid black;
+    color: black;
+    background-color: lightblue;
+    margin-right: 6px;
+    margin-left: 0px;
+    border-radius: 10px;
+}
+
+#seeComments:hover {
+    cursor: pointer;
+}
+
 #rearrangeHeader{
     grid-row: 1;
     grid-column: 2;
@@ -413,4 +430,54 @@ footer{
 #tablemap{
     grid-column: 4;
     grid-row: 1;
+}
+
+#seeCommentsDiv{
+    display: none;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    grid-row: 2;
+    grid-column: 1/span 2;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 0.1em;
+}
+
+.date{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+}
+.date h3{
+    grid-column:1/span 2;
+    grid-row: 1;
+}
+
+
+.date div{
+    grid-column:1;
+    grid-row: 2;
+}
+
+.dateOne p{
+    grid-column:2;
+    grid-row: 2;
+}
+
+#dateOne{
+    grid-column: 1;
+    width: 100%;
+    border: 2px solid black;
+}
+
+#dateTwo{
+    grid-column: 2;
+    width: 100%;
+    border: 2px solid black;
+}
+
+#dateThree{
+    grid-column: 3;
+    width: 100%;
+    border: 2px solid black;
 }

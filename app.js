@@ -30,6 +30,10 @@ app.get('/admin', function(req, res) {
 app.get('/evaluation', function(req,res) {
   res.sendFile(path.join(__dirname, 'views/evaluation.html'));
 });
+app.get('/userComments', function(req,res) {
+  res.sendFile(path.join(__dirname, 'views/userComments.html'));
+});
+
 
 // Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
@@ -41,6 +45,9 @@ function Data() {
     this.dateCounter = 0;
     this.evalCounter = 0;
     this.eventOn = true;
+    this.dateOneEvals = [];
+    this.dateTwoEvals = [];
+    this.dateThreeEvals = [];
 }
 
 /*
@@ -153,6 +160,33 @@ io.on('connection', function(socket) {
 
     socket.on('isEventOver', function(callback){
 	callback(data.eventOn);
+    });
+
+    socket.on('updateEval', function(evaluation){
+	console.log(evaluation);
+	console.log("DATECOunter: " + data.dateCounter);
+	if (data.dateCounter == 1){
+	    data.dateOneEvals.push(evaluation);
+	}
+	if (data.dateCounter == 2){
+	    data.dateTwoEvals.push(evaluation);
+	}
+	if (data.dateCounter == 3){
+	    data.dateThreeEvals.push(evaluation);
+	}
+	
+    });
+    
+    socket.on('getFstDateEvals', function(callback){
+	callback(data.dateOneEvals);
+    });
+        
+    socket.on('getSndDateEvals', function(callback){
+	callback(data.dateTwoEvals);
+    });
+        
+    socket.on('getTrdDateEvals', function(callback){
+	callback(data.dateThreeEvals);
     });
 });
 

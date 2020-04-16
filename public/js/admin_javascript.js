@@ -6,6 +6,9 @@ var numberOfUsersInEvent = 0;
 var maleArrayNew = [];
 var femaleArrayNew = [];
 var evalCounterGlobal = 0;
+var dateOneEvalGlobal = [];
+var dateTwoEvalGlobal = [];
+var dateThreeEvalGlobal = [];
 
 function startTimer() {
     if(on){
@@ -40,7 +43,7 @@ const vh = new Vue({
 	},
     },
 })
-    
+
 
 const vm = new Vue({
     el: '#main',
@@ -53,6 +56,9 @@ const vm = new Vue({
 	malesRender: [],
 	femalesRender: [],
 	dateInProgressBool: false,
+	dateOneEval: [],
+	dateTwoEval: [],
+	dateThreeEval: [],
 	evalCounter: 0,
 	dateRound: 1,
 	reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -121,10 +127,14 @@ const vm = new Vue({
 	},
 
 	dateViewUpdate: function() {
+	    dateInProgressTemp.style.display = "grid";
 	    setInterval(this.dateView, 100);
 	},
 	
 	dateView: function() {
+	    this.getDateOneEvals();
+	    this.getDateTwoEvals();
+	    this.getDateThreeEvals();
 	    console.log("dateView Update" + this.evalCounter);
 	    this.updateEvalCounter;
 	    if(!this.matched){
@@ -164,7 +174,7 @@ const vm = new Vue({
 			    $(subCatContainer[i]).scrollTop($(this).scrollTop());
 		    }catch{};
 		});
-		dateInProgressTemp.style.display = "grid";
+		
 	    }
 	},
 	exitEvent: function() {
@@ -222,7 +232,7 @@ const vm = new Vue({
 	    } else {
 		sndBlock.style.width="20em";
 		sndBlock.style.height="5em";
-		sndBlock.innerHTML += person.hobbies + "<br>" + person.email;	
+		sndBlock.innerHTML += person.hobbies + "<br> Age preference: " + person.preferredAgeMin + " - " + person.preferredAgeMax + " years";	
 	    }    
 	},
 
@@ -244,7 +254,41 @@ const vm = new Vue({
 	    }
 	},
 
-
+	goToUserComments: function(){
+	    this.displayEval();
+	},
+	displayEval: function(){
+	    if(document.getElementById("dropoffMale").style.display != "none"){
+		document.getElementById("dropoffMale").style.display = "none";
+		document.getElementById("currentDateInfo").style.display = "none";
+		document.getElementById("seeCommentsDiv").style.display = "grid";
+		document.getElementById("seeComments").innerHTML = "Hide user evaluations";
+	    } else{
+		document.getElementById("dropoffMale").style.display = "block";
+		document.getElementById("currentDateInfo").style.display = "grid";
+		document.getElementById("seeCommentsDiv").style.display = "none";
+		document.getElementById("seeComments").innerHTML = "See user evaluations";
+	    }  
+	},
+	getDateOneEvals: function(){
+	    socket.emit('getFstDateEvals', function(result){
+		dateOneEvalGlobal = result;
+	    });
+	    this.dateOneEval = dateOneEvalGlobal;
+	},
+	getDateTwoEvals: function(){
+	    socket.emit('getSndDateEvals', function(result){
+		dateTwoEvalGlobal = result;
+	    });
+	    this.dateTwoEval = dateTwoEvalGlobal;
+	},
+	getDateThreeEvals: function(){
+	    socket.emit('getTrdDateEvals', function(result){
+		dateThreeEvalGlobal = result;
+	    });
+	    this.dateThreeEval = dateThreeEvalGlobal;
+	},
+	
 	updateEvalCounter: function() {
 	    socket.emit('updateEvalCounter', function(result){
 		evalCounterGlobal = result;

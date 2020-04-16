@@ -100,6 +100,7 @@ const vm = new Vue({
 	    document.getElementById("otherText").value = "";
 	    this.other = "";
 	    
+	    socket.emit('updateEval', {myName: this.name,dateName: this.currentDate.name, match: match, interests: interests, rating, other: other});
 	    this.incrementEvalCounter;
 	    if(this.dateCounter == 3){
 		var block = document.getElementById("evalFormDiv");
