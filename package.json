@@ -4,7 +4,7 @@
   "description": "Repository for project in System Design 2020",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {},
